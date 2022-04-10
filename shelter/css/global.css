@@ -57,6 +57,8 @@ body {
     margin-top: -180px;
 }
 .section__title {
+    margin: 0 auto;
+    padding: 0;
     font-family: 'Georgia';
     font-style: normal;
     font-weight: 400;
@@ -64,8 +66,6 @@ body {
     line-height: 130%;
     letter-spacing: 0.06em;
     color: var(--color-dark-l);
-    margin: 0 auto;
-    padding: 80px 0 60px 0;
 }
 .image {
     width: 100%;
