@@ -1,0 +1,26 @@
+.main {
+    margin-top: 0;
+}
+
+/* header styles start*/
+.header {
+    background-color: var(--color-light-xl);
+}
+.header__wrapper {
+    margin: 0 auto;
+    padding: 30px 0;
+}
+.logo__title {
+    color: var(--color-dark-l);
+}
+.logo__subtitle {
+    color: var(--color-dark-3xl);
+}
+.nav__link {
+    color: var(--color-dark-l);
+}
+.nav__link:hover,
+.nav__link:active {
+    color: var(--color-dark-3xl);
+}
+/* header styles end*/
