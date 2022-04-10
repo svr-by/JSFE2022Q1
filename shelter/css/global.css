@@ -79,7 +79,6 @@ body {
     font-style: normal;
     font-weight: 400;
     font-size: 17px;
-    line-height: 130%;
     letter-spacing: 0.06em;
     color: var(--color-dark-3xl);
     background-color: var(--color-primary);
