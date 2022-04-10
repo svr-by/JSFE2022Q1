@@ -155,3 +155,57 @@ body {
     width: 100%;
 }
 /* header styles end*/
+
+
+/* footer styles start*/
+.footer {
+    background: url(../assets/images/noise_transparent@2x.png), radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%), #211F20;
+}
+.footer__wapper {
+    font-family: 'Georgia';
+    padding-top: 40px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+.title--footer {
+    color: var(--color-light-xl);
+    text-align: left;
+}
+.footer__contacts,
+.footer__location {
+    max-width: 300px;
+    min-height: 234px;
+    margin-top: 16px;
+    margin-bottom: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.footer__link {
+    height: 40px;
+    padding-left: 60px;
+    font-size: 20px;
+    line-height: 115%;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    background-position: 0 center;
+    background-repeat: no-repeat;
+}
+.footer__link--email {
+    background-image: url(../assets/icons/mail.svg);
+}
+.footer__link--phone {
+    background-image: url(../assets/icons/phone.svg);
+}
+.footer__link--map {
+    background-image: url(../assets/icons/pin.svg);
+    padding-left: 42px;
+}
+.footer__img {
+    max-width: 300px;
+}
+/* footer styles end*/
