@@ -70,6 +70,10 @@
 /* about styles end*/
 
 /* pets styles start*/
+.pets__link {
+    display: inline-block;
+    text-decoration: none;
+}
 .btn__round--arr-right {
     background-image: url(../../assets/icons/Arrow.svg);
     transform: rotate(180deg);

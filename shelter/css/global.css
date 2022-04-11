@@ -82,16 +82,16 @@ body {
     letter-spacing: 0.06em;
     color: var(--color-dark-3xl);
     background-color: var(--color-primary);
-    border: 2px solid var(--color-primary);
     border-radius: 100px;
     cursor: pointer;
     transition: all 0.3s;
 }
 .button:not(.nohover):hover {
     background-color: var(--color-primary-light);
-    border: 2px solid var(--color-primary-light);
 }
-
+.nohover {
+    cursor: auto;
+}
 
 /* header styles start*/
 .header__wrapper {
@@ -188,6 +188,7 @@ body {
     border-radius: 9px;
     padding-bottom: 30px;
     background-color: var(--color-light-s);
+    cursor: pointer;
     transition: all 0.3s;
 }
 .pets__card:hover {
@@ -215,7 +216,7 @@ body {
 }
 .btn__clear {
     background: none;
-
+    border: 2px solid var(--color-primary);
 }
 .btn__round {
     background: none;
@@ -224,6 +225,11 @@ body {
     height: 52px;
     background-repeat: no-repeat;
     background-position: center;
+    border: 2px solid var(--color-primary);
+}
+.btn__clear:not(.nohover):hover,
+.btn__round:not(.nohover):hover {
+    border: 2px solid var(--color-primary-light);
 }
 
 /* pets styles end*/
