@@ -137,7 +137,10 @@ body {
 .nav__link {
     text-decoration: none;
     color: var(--color-dark-s);
-    margin-left: 35px;
+    margin-right: 35px;
+}
+.nav__link:last-child {
+    margin-right: 0;
 }
 .nav__link::after {
     content: "";
@@ -242,9 +245,14 @@ body {
     color: var(--color-light-xl);
     text-align: left;
 }
-.footer__contacts,
+.footer__contacts {
+    max-width: 280px;
+}
 .footer__location {
     max-width: 300px;
+}
+.footer__contacts,
+.footer__location {
     min-height: 234px;
     margin-top: 16px;
     margin-bottom: 60px;
