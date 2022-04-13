@@ -1,13 +1,17 @@
+.main {
+    margin-top: -180px;
+}
+
 /* start styles start*/
 .start {
-    background: url(../../assets/images/noise_transparent@2x.png), radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%), #211F20;
+    background: url(../assets/images/noise_transparent@2x.png), radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%), #211F20;
 }
 .start__wrapper {
     padding-top: 180px;
     display: flex;
 }
 .start__content{
-    max-width: 460px;
+    max-width: 40%;
     padding: 163px 0 20px 0;
     margin-right: auto;
     display: flex;
@@ -20,12 +24,12 @@
     padding: 0;
     font-size: 44px;
     letter-spacing: 0;
-    color: var(--color-light-xl);
+    color: $color-light-xl;
 }
 .start__text {
     margin: 0 0 42px 0;
     line-height: 160%;
-    color: var(--color-dark-s);
+    color: $color-dark-s;
 }
 .start__link {
     text-decoration: none;
@@ -39,7 +43,7 @@
 
 /* about styles start*/
 .about {
-    background-color: var(--color-light-xl);
+    background-color: $color-light-xl;
 }
 .about__wrapper {
     padding-top: 80px;
@@ -64,29 +68,40 @@
     margin: 0;
 }
 .about__text {
-    color: var(--color-dark-xl);
+    color: $color-dark-xl;
     margin: 0;
 }
 /* about styles end*/
 
 /* pets styles start*/
+.pets {
+    background-color: $color-light-l;
+}
+.pets__wrapper {
+    padding-top: 80px;
+    padding-bottom: 100px;
+    text-align: center;
+}
+.title--pets {
+    max-width: 400px;
+}
+.pets__slider {
+    width: 100%;
+    margin: 60px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .pets__link {
     display: inline-block;
     text-decoration: none;
-}
-.btn__round--arr-right {
-    background-image: url(../../assets/icons/Arrow.svg);
-    transform: rotate(180deg);
-}
-.btn__round--arr-left {
-    background-image: url(../../assets/icons/Arrow.svg);
 }
 /* pets styles end*/
 
 
 /* help styles start*/
 .help {
-    background-color: var(--color-light-xl);
+    background-color: $color-light-xl;
 }
 .help__wrapper {
     padding-top: 80px;
@@ -116,13 +131,13 @@
     line-height: 115%;
     letter-spacing: 0.06em;
     margin: 0;
-    color: var(--color-dark-l);
+    color: $color-dark-l;
 }
 /* help styles end*/
 
 /* donation styles start*/
 .donation {
-    background-color: var(--color-light-l);
+    background-color: $color-light-l;
 }
 .donation__wrapper {
     padding-top: 80px;
@@ -152,7 +167,7 @@
     font-size: 15px;
     line-height: 110%;
     letter-spacing: 0.06em;
-    color: var(--color-dark-l);
+    color: $color-dark-l;
 }
 .card {
     margin-bottom: 20px;
@@ -166,24 +181,25 @@
     font-size: 20px;
     line-height: 115%;
     letter-spacing: 0.06em;
-    color: var(--color-dark-l);
-    background-color: var(--color-primary);
-    background-image: url(../../assets/icons/credit-card.svg);
+    color: $color-dark-l;
+    background-color: $color-primary;
+    background-image: url(../assets/icons/credit-card.svg);
     background-position: 15px center;
     background-repeat: no-repeat;
     border-radius: 9px;
     text-decoration: none;
     transition: all 0.3s;
-}
-.card__link:hover {
-    background-color: var(--color-primary-light);
+
+    &:hover {
+        background-color: $color-primary-light;
+    }
 }
 .donation__text {
     margin: 0;
     font-style: italic;
     font-size: 12px;
     line-height: 18px;
-    color: var(--color-dark-m);
+    color: $color-dark-m;
 }
 
 /* donation styles end*/

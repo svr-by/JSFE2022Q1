@@ -1,0 +1,70 @@
+.button {
+    padding: 15px 45px;
+    font-family: 'Georgia';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    letter-spacing: 0.06em;
+    color: $color-dark-3xl;
+    background-color: $color-primary;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all 0.3s;
+
+    &:not(.nohover):hover {
+        background-color: $color-primary-light;
+    }
+}
+
+
+.btn__clear {
+    background: none;
+    border: 2px solid $color-primary;
+
+    &:not(.nohover):hover {
+        border: 2px solid $color-primary-light;
+    }
+}
+
+
+.btn__round {
+    background: none;
+    padding: 0;
+    width: 52px;
+    height: 52px;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 2px solid $color-primary;
+
+    &:not(.nohover):hover {
+        border: 2px solid $color-primary-light;
+    }
+}
+.btn__round--arr-right {
+    background-image: url(../assets/icons/Arrow.svg);
+    transform: rotate(180deg);
+}
+.btn__round--arr-left {
+    background-image: url(../assets/icons/Arrow.svg);
+}
+.btn__round--dbab-left {
+    background-image: url(../assets/icons/Double_angled_bracket.svg);
+    transform: rotate(180deg);
+}
+.btn__round--ab-left {
+    background-image: url(../assets/icons/Angled_bracket.svg);
+    transform: rotate(180deg);
+}
+.btn__round--dbab-right {
+    background-image: url(../assets/icons/Double_angled_bracket.svg);
+}
+.btn__round--ab-right {
+    background-image: url(../assets/icons/Angled_bracket.svg);
+}
+.btn__round--active {
+    background-color: $color-primary;
+}
+.btn__round--last {
+    border: 2px solid $color-dark-3xl;
+    filter: invert(91%) sepia(0%) saturate(437%) hue-rotate(144deg) brightness(96%) contrast(81%);;
+}
