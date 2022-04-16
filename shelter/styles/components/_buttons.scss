@@ -40,6 +40,10 @@
     &:not(.nohover):hover {
         border: 2px solid $color-primary-light;
     }
+
+    @media screen and (max-width: $mobile) {
+        order: 2;
+    }
 }
 .btn__round--arr-right {
     background-image: url(../assets/icons/Arrow.svg);
