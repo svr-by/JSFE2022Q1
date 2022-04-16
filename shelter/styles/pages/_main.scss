@@ -9,6 +9,10 @@
 .start__wrapper {
     padding-top: 180px;
     display: flex;
+
+    @media screen and (max-width: $tablet) {
+        flex-direction: column;
+    }
 }
 .start__content{
     max-width: 40%;
@@ -17,6 +21,13 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+
+    @media screen and (max-width: $tablet) {
+        max-width: 65%;
+        padding: 0 0 100px 0;
+        margin: 0 auto;
+    }
+
 }
 .title--start {
     max-width: 310px;
@@ -34,9 +45,18 @@
 .start__link {
     text-decoration: none;
     display: block;
+
+    @media screen and (max-width: $tablet) {
+        align-self: center;
+    }
 }
 .start__img {
     max-width: 698px;
+
+    @media screen and (max-width: $tablet) {
+        max-width: 80%;
+        align-self: end;
+    }
 }
 /* start styles end*/
 
@@ -52,9 +72,18 @@
     align-items: center;
     justify-content: center;
     column-gap: 120px;
+
+    @media screen and (max-width: $tablet) {
+        flex-direction: column;
+        row-gap: 80px;
+    }
 }
 .about__img {
     max-width: 300px;
+
+    @media screen and (max-width: $tablet) {
+        order: 2;
+    }
 }
 .about__content {
     max-width: 430px;
@@ -62,6 +91,10 @@
     display: flex;
     flex-direction: column;
     row-gap: 25px;
+
+    @media screen and (max-width: $tablet) {
+        max-width: 61%;
+    }
 }
 .title--about {
     max-width: 370px;
@@ -91,7 +124,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @media screen and (max-width: $tablet) {
+        .pets__card:nth-child(4) {
+            display: none;
+        }
+    }
 }
+
+
 .pets__link {
     display: inline-block;
     text-decoration: none;
@@ -107,9 +148,11 @@
     padding-top: 80px;
     padding-bottom: 100px;
     text-align: center;
+
 }
 .title--help {
     padding-bottom: 60px;
+
 }
 .help__list {
     margin: 0 auto;
@@ -118,7 +161,21 @@
     flex-wrap: wrap;
     column-gap: 120px;
     row-gap: 55px;
+
+    @media screen and (max-width: $tablet) {
+        column-gap: 60px;
+        row-gap: 55px;
+    }
+
 }
+
+.help__item {
+    @media screen and (max-width: $tablet) {
+        width: 24%;
+    }
+
+}
+
 .help__img {
     height: 60px;
     margin-bottom: 30px;
@@ -132,6 +189,9 @@
     letter-spacing: 0.06em;
     margin: 0;
     color: $color-dark-l;
+
+
+
 }
 /* help styles end*/
 
@@ -145,9 +205,19 @@
     display: flex;
     justify-content: center;
     column-gap: 30px;
+
+    @media screen and (max-width: $tablet) {
+        flex-direction: column;
+        align-items: center;
+        row-gap: 60px;
+    }
 }
 .donation__img {
     max-width: 505px;
+
+    @media screen and (max-width: $tablet) {
+        order: 2;
+    }    
 }
 .title--donation {
     margin: 0 auto 20px 0;
@@ -158,6 +228,10 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+
+    @media screen and (max-width: $tablet) {
+        max-width: 54%;
+    } 
 }
 .donation__subtitle {
     margin: 0 0 20px 0;

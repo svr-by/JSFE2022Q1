@@ -382,6 +382,11 @@ body {
   margin: 0 auto;
   padding: 0 40px;
 }
+@media screen and (max-width: 1279px) {
+  .wrapper {
+    padding: 0 30px;
+  }
+}
 
 .section__title {
   margin: 0 auto;
@@ -413,6 +418,7 @@ body {
   font-style: normal;
   font-weight: 400;
   font-size: 17px;
+  line-height: 130%;
   letter-spacing: 0.06em;
   color: #292929;
   background-color: #F1CDB3;
@@ -526,6 +532,11 @@ body {
   display: flex;
   align-items: center;
 }
+@media screen and (max-width: 1279px) {
+  .header__wrapper {
+    margin: 30px auto 60px;
+  }
+}
 
 .logo__link {
   text-decoration: none;
@@ -570,7 +581,7 @@ body {
 .nav__link {
   text-decoration: none;
   color: #CDCDCD;
-  margin-right: 35px;
+  margin-right: 36px;
 }
 
 .nav__link:last-child {
@@ -605,8 +616,20 @@ body {
   font-family: "Georgia";
   padding-top: 40px;
   margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  -moz-column-gap: 160px;
+       column-gap: 160px;
+  justify-items: center;
+}
+@media screen and (max-width: 1279px) {
+  .footer__wapper {
+    padding: 30px 64px 0;
+    grid-template-columns: repeat(2, 1fr);
+    -moz-column-gap: 60px;
+         column-gap: 60px;
+    row-gap: 65px;
+  }
 }
 
 .title--footer {
@@ -615,11 +638,11 @@ body {
 }
 
 .footer__contacts {
-  max-width: 280px;
+  width: 280px;
 }
 
 .footer__location {
-  max-width: 300px;
+  width: 300px;
 }
 
 .footer__contacts,
@@ -630,6 +653,12 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+@media screen and (max-width: 1279px) {
+  .footer__contacts,
+.footer__location {
+    margin: 0 auto;
+  }
 }
 
 .footer__link {
@@ -660,7 +689,12 @@ body {
 }
 
 .footer__img {
-  max-width: 300px;
+  width: 300px;
+}
+@media screen and (max-width: 1279px) {
+  .footer__img {
+    grid-column: 1/span 2;
+  }
 }
 
 /* footer styles end*/
@@ -669,6 +703,7 @@ body {
   background-color: #FFFFFF;
   position: fixed;
   width: 100%;
+  z-index: 2;
 }
 
 .header__wrapper {
@@ -714,13 +749,20 @@ body {
   width: 100%;
   margin: 45px auto;
   padding: 15px 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   -moz-column-gap: 40px;
        column-gap: 40px;
   row-gap: 30px;
+}
+@media screen and (max-width: 1279px) {
+  .pets__slider {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .pets__slider .pets__card:nth-child(7),
+.pets__slider .pets__card:nth-child(8) {
+    display: none;
+  }
 }
 
 .pagination {

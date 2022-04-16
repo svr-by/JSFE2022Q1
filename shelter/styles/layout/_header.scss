@@ -3,6 +3,10 @@
     margin: 60px auto;
     display: flex;
     align-items: center;
+
+    @media screen and (max-width: $tablet) {
+        margin: 30px auto 60px;
+    }
 } 
 .logo__link {
     text-decoration: none;
@@ -38,11 +42,13 @@
 .header__nav {
     margin-left: auto;
     display: flex;
+
+
 }
 .nav__link {
     text-decoration: none;
     color: $color-dark-s;
-    margin-right: 35px;
+    margin-right: 36px;
 }
 .nav__link:last-child {
     margin-right: 0;

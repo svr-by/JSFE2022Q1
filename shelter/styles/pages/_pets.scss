@@ -3,6 +3,7 @@
     background-color: $color-light-xl;
     position: fixed;
     width: 100%;
+    z-index: 2;
 }
 .header__wrapper {
     margin: 0 auto;
@@ -41,12 +42,19 @@
     width: 100%;
     margin: 45px auto;
     padding: 15px 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     column-gap: 40px;
     row-gap: 30px;
+
+    @media screen and (max-width: $tablet) {
+        grid-template-columns: repeat(2, 1fr);
+
+        .pets__card:nth-child(7),
+        .pets__card:nth-child(8) {
+            display: none;
+        }
+    } 
 }
 .pagination {
     margin: 0 auto;
