@@ -11,12 +11,20 @@ body {
     font-weight: 400;
     font-size: 15px;
     line-height: 160%;
-    background-color: $color-dark-2xl;
 }
 .wrapper {
     max-width: 1280px;
+    min-width: 300px;
     margin: 0 auto;
     padding: 0 40px;
+
+    @media screen and (max-width: $tablet) {
+        padding: 0 30px;
+    }
+    @media screen and (max-width: $mobile) {
+        padding: 0 10px;
+        overflow-x: hidden;
+    }
 }
 
 .section__title {
@@ -29,6 +37,10 @@ body {
     line-height: 130%;
     letter-spacing: 0.06em;
     color: $color-dark-l;
+
+    @media screen and (max-width: $mobile) {
+        font-size: 25px;
+    }
 }
 .image {
     width: 100%;

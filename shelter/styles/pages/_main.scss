@@ -9,6 +9,10 @@
 .start__wrapper {
     padding-top: 180px;
     display: flex;
+
+    @media screen and (max-width: $tablet) {
+        flex-direction: column;
+    }
 }
 .start__content{
     max-width: 40%;
@@ -17,6 +21,18 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+
+    @media screen and (max-width: $tablet) {
+        max-width: 65%;
+        padding: 0 0 100px 0;
+        margin: 0 auto;
+    }
+    @media screen and (max-width: $mobile) {
+        max-width: 100%;
+        padding-bottom: 105px;
+        align-items: center;
+        text-align: center;
+    }
 }
 .title--start {
     max-width: 310px;
@@ -25,6 +41,11 @@
     font-size: 44px;
     letter-spacing: 0;
     color: $color-light-xl;
+
+    @media screen and (max-width: $mobile) {
+        font-size: 25px;
+        letter-spacing: 0.06em;
+    }
 }
 .start__text {
     margin: 0 0 42px 0;
@@ -34,9 +55,23 @@
 .start__link {
     text-decoration: none;
     display: block;
+
+    @media screen and (max-width: $tablet) {
+        align-self: center;
+    }
 }
 .start__img {
-    max-width: 698px;
+    width: 698px;
+
+    @media screen and (max-width: $tablet) {
+        width: 569px;
+        align-self: center;
+        margin-left: 139px;
+    }
+    @media screen and (max-width: $mobile) {
+        max-width: 87%;
+        margin-left: 40px;
+    }
 }
 /* start styles end*/
 
@@ -52,9 +87,25 @@
     align-items: center;
     justify-content: center;
     column-gap: 120px;
+
+    @media screen and (max-width: $tablet) {
+        flex-direction: column;
+        row-gap: 80px;
+    }
+    @media screen and (max-width: $mobile) {
+        padding: 42px 10px;
+        row-gap: 42px;
+    }
 }
 .about__img {
     max-width: 300px;
+
+    @media screen and (max-width: $tablet) {
+        order: 2;
+    }
+    @media screen and (max-width: $mobile) {
+        max-width: 260px;
+    }
 }
 .about__content {
     max-width: 430px;
@@ -62,14 +113,32 @@
     display: flex;
     flex-direction: column;
     row-gap: 25px;
+
+    @media screen and (max-width: $tablet) {
+        max-width: 61%;
+    }
+    @media screen and (max-width: $mobile) {
+        max-width: 100%;
+        row-gap: 22px;
+        text-align: center;
+    }
 }
 .title--about {
     max-width: 370px;
     margin: 0;
+
+    @media screen and (max-width: $mobile) {
+        max-width: 100%;
+    }
 }
 .about__text {
     color: $color-dark-xl;
     margin: 0;
+
+    @media screen and (max-width: $mobile) {
+        text-align: justify;
+        padding: 0 15px;
+    }
 }
 /* about styles end*/
 
@@ -81,6 +150,10 @@
     padding-top: 80px;
     padding-bottom: 100px;
     text-align: center;
+
+    @media screen and (max-width: $mobile) {
+        padding: 42px 10px;
+    }
 }
 .title--pets {
     max-width: 400px;
@@ -91,7 +164,27 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @media screen and (max-width: $tablet) {
+        max-width: 768px;
+        .pets__card:nth-child(4) {
+            display: none;
+        }
+    }
+    @media screen and (max-width: $mobile) {
+        max-width: 320px;
+        margin: 42px auto;
+        flex-wrap: wrap;
+        row-gap: 20px;
+        column-gap: 80px;
+        
+        .pets__card:nth-child(3) {
+            display: none;
+        }
+    }
 }
+
+
 .pets__link {
     display: inline-block;
     text-decoration: none;
@@ -107,9 +200,18 @@
     padding-top: 80px;
     padding-bottom: 100px;
     text-align: center;
+
+    @media screen and (max-width: $mobile) {
+        padding: 42px 15px;
+    }
 }
 .title--help {
     padding-bottom: 60px;
+
+    @media screen and (max-width: $mobile) {
+        font-size: 25px;
+        padding-bottom: 42px;
+    }
 }
 .help__list {
     margin: 0 auto;
@@ -118,10 +220,38 @@
     flex-wrap: wrap;
     column-gap: 120px;
     row-gap: 55px;
+
+    @media screen and (max-width: $tablet) {
+        column-gap: 60px;
+        row-gap: 55px;
+    }
+    @media screen and (max-width: $mobile) {
+        justify-content: space-between;
+        gap: 30px;
+    }
 }
+
+.help__item {
+    @media screen and (max-width: $tablet) {
+        width: 25%;
+    }
+    @media screen and (max-width: $mobile) {
+        width: 43%;
+
+        &:last-child {
+            margin-right: auto;
+        }
+    }
+}
+
 .help__img {
     height: 60px;
     margin-bottom: 30px;
+
+    @media screen and (max-width: $mobile) {
+        height: 50px;
+        margin-bottom: 20px;
+    }
 }
 .help__text {
     font-family: 'Georgia';
@@ -132,6 +262,11 @@
     letter-spacing: 0.06em;
     margin: 0;
     color: $color-dark-l;
+
+    @media screen and (max-width: $mobile) {
+        font-size: 15px;
+        line-height: 110%;
+    }
 }
 /* help styles end*/
 
@@ -145,19 +280,51 @@
     display: flex;
     justify-content: center;
     column-gap: 30px;
+
+    @media screen and (max-width: $tablet) {
+        flex-direction: column;
+        align-items: center;
+        row-gap: 60px;
+    }
+    @media screen and (max-width: $mobile) {
+        padding: 42px 10px;
+        row-gap: 42px;
+    }
 }
 .donation__img {
     max-width: 505px;
+
+    @media screen and (max-width: $tablet) {
+        order: 2;
+    }
+    @media screen and (max-width: $mobile) {
+        max-width: 87%;
+    }  
 }
 .title--donation {
     margin: 0 auto 20px 0;
     padding: 0;
+
+    @media screen and (max-width: $mobile) {
+        margin: 0 auto 20px;
+        text-align: center;
+    }  
 }
 .donation__content {
     max-width: 380px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+
+    @media screen and (max-width: $tablet) {
+        max-width: 54%;
+    } 
+    @media screen and (max-width: $mobile) {
+        max-width: 100%;
+        align-items: center;
+        text-align: justify;
+        letter-spacing: 0;
+    }
 }
 .donation__subtitle {
     margin: 0 0 20px 0;
@@ -168,6 +335,11 @@
     line-height: 110%;
     letter-spacing: 0.06em;
     color: $color-dark-l;
+
+    @media screen and (max-width: $mobile) {
+        letter-spacing: 0;
+        line-height: 160%;
+    }
 }
 .card {
     margin-bottom: 20px;
@@ -180,6 +352,7 @@
     font-weight: 400;
     font-size: 20px;
     line-height: 115%;
+    white-space: nowrap;
     letter-spacing: 0.06em;
     color: $color-dark-l;
     background-color: $color-primary;
@@ -193,6 +366,11 @@
     &:hover {
         background-color: $color-primary-light;
     }
+
+    @media screen and (max-width: $mobile) {
+        font-size: 15px;
+        line-height: 23px;
+    }
 }
 .donation__text {
     margin: 0;
@@ -200,6 +378,10 @@
     font-size: 12px;
     line-height: 18px;
     color: $color-dark-m;
+
+    @media screen and (max-width: $mobile) {
+        padding: 0 10px;
+    }
 }
 
 /* donation styles end*/
