@@ -12,12 +12,24 @@
 } 
 
 /* logo styles start*/
+.header__logo {
+    &.hidden {
+        transition: all 0.5s;
+        flex-grow: 1;
+        z-index: 2;
+
+        .logo__link {
+            align-items: flex-end;
+        }
+    }
+}
+
 .logo__link {
     text-decoration: none;
     display: flex;
     flex-direction: column;
     align-items: center;
-    transition: all 0.3s;
+    padding-right: 40px;
 
     &:hover {
         filter: brightness(120%);
@@ -47,12 +59,46 @@
 /* logo styles end*/
 
 /* nav styles start*/
+@keyframes slideIn {
+    from {
+      transform: translateX(100%);
+    }
+  
+    to {
+      transform: translateX(0%);
+    }
+}
+
+
 .header__nav {
     margin-left: auto;
     display: flex;
 
     @media screen and (max-width: $mobile) {
-        display: none;
+        display: flex;
+        width: 320px;
+        height: 100vh;
+        flex-direction: column;
+        position: fixed;
+        align-items: center;
+        row-gap: 40px;
+        right: -150%;
+        top: 0;
+        padding-top: 248px;
+        background-color: $color-dark-3xl;
+        transition: all 0.5s;
+
+        &.open {
+            right: 0;
+            animation-name: slideIn;
+            animation-duration: 0.5s;
+        }
+
+        .nav__link {
+            margin-right: 0;
+            font-size: 32px;
+            line-height: 160%;
+        }
     }
 }
 .nav__link {
@@ -112,6 +158,21 @@
 
     &.open  {
         transform: rotate(90deg);
+    }
+
+}
+.back {
+    display: none;
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vh;
+    height: 100vh;
+    background-color: rgba(41, 41, 41, 0.6);
+
+    &.visible {
+        display: block;
     }
 }
 
