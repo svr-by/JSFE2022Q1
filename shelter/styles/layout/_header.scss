@@ -82,12 +82,11 @@
         position: fixed;
         align-items: center;
         row-gap: 40px;
-        right: -100%;
+        right: -150%;
         top: 0;
         padding-top: 248px;
         background-color: $color-dark-3xl;
         transition: all 0.5s;
-
 
         &.open {
             right: 0;

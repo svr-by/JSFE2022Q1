@@ -1,4 +1,5 @@
 "use strict"
+
 // Burger menu
 const BURGER = document.querySelector('.burger');
 const LOGO = document.querySelector('.header__logo');
@@ -27,8 +28,5 @@ BACK.addEventListener('click', closeMenu);
 NAV.addEventListener('click', (event) => {if(event.target.classList.contains('nav__link')) closeMenu()});
 
 
-const PETS = [];
-fetch("../../js/pets.json")
-.then(response => response.json())
-.then(data => data.forEach(pet => PETS.push(pet)));
+
 
