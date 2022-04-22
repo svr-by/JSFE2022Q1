@@ -41,9 +41,9 @@
         border: 2px solid $color-primary-light;
     }
 
-    @media screen and (max-width: $mobile) {
-        order: 2;
-    }
+    // @media screen and (max-width: $mobile) {
+    //     order: 2;
+    // }
 }
 .btn__round--arr-right {
     background-image: url(../assets/icons/Arrow.svg);
@@ -72,4 +72,18 @@
 .btn__round--last {
     border: 2px solid $color-dark-3xl;
     filter: invert(91%) sepia(0%) saturate(437%) hue-rotate(144deg) brightness(96%) contrast(81%);;
+}
+
+/*popup*/
+.btn__remove {
+    position: absolute;
+    top: -52px;
+    right: -52px;
+}
+
+/*slider*/
+.slider__btn {
+    @media screen and (max-width: $mobile) {
+        order: 2;
+    }
 }
