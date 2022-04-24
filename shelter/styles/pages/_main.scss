@@ -158,63 +158,12 @@
 .title--pets {
     max-width: 400px;
 }
-.pets__slider {
-    width: 100%;
-    margin: 60px auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    @media screen and (max-width: $tablet) {
-        max-width: 768px;
-    }
-    @media screen and (max-width: $mobile) {
-        max-width: 320px;
-        margin: 42px auto;
-        flex-wrap: wrap;
-        row-gap: 20px;
-        column-gap: 80px;
-        justify-content: center;
-    }
-}
-.slider__container {
-    display: flex;
-    column-gap: 90px;
-
-    @media screen and (max-width: $tablet) {
-        column-gap: 40px;
-
-        .pets__card:nth-child(3) {
-            display: none;
-        }
-    }
-
-    @media screen and (max-width: $mobile) {
-        order: 1;
-
-        .pets__card:nth-child(2) {
-            display: none;
-        }
-    }
-}
 
 .pets__link {
     display: inline-block;
     text-decoration: none;
 }
 
-.btn__round--arr-right {
-    background-image: url(../assets/icons/Arrow.svg);
-    transform: rotate(180deg);
-}
-.btn__round--arr-left {
-    background-image: url(../assets/icons/Arrow.svg);
-}
-.slider__btn {
-    @media screen and (max-width: $mobile) {
-        order: 2;
-    }
-}
 /* pets styles end*/
 
 

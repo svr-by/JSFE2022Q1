@@ -40,7 +40,7 @@ let petCards = document.querySelectorAll('.pets__card');
 function createPopup(event) {
     let name = event.target.closest('.pets__card').querySelector('.card__name').textContent;
     let pet = PETS.find(obj => obj.name === name);
-    console.log(pet.name);
+    // console.log(pet.name);
 
     let popup = document.createElement('div');
     popup.classList.add('popup');
@@ -70,45 +70,56 @@ function createPopup(event) {
 }
 
 function removePopup(event) {
-    if (!event.target.classList.contains('btn__remove')) return;
-    let popup = document.querySelector('.popup');
-    popup.remove();
-    document.body.classList.remove('noscroll');
+    // console.log(event.target.classList.contains('btn__remove'), (event.target.classList.value === 'popup'));
+    if (event.target.classList.contains('btn__remove')||(event.target.classList.value === 'popup')) {
+        let popup = document.querySelector('.popup');
+        popup.remove();
+        document.body.classList.remove('noscroll');
+    };
 };
 
 petCards.forEach(card => card.addEventListener('click', createPopup));
 
 //Slider
 
-let sliderBtn = document.querySelectorAll('.slider__btn');
-let sliderContainer = document.querySelector('.slider__container');
-let currentSlideIndex = [4, 0, 2];
+const BTN_LEFT = document.querySelector('.btn__round--arr-left');
+const BTN_RIGHT = document.querySelector('.btn__round--arr-right');
+const SLIDE_LEFT = document.querySelector('#slide-left');
+const SLIDE_RIGHT = document.querySelector('#slide-right');
+const SLIDE_ACTIVE = document.querySelector('#slide-active');
+const SLIDER = document.querySelector('#slider');
 
-sliderBtn.forEach(btn => btn.addEventListener('click', showNextSlide));
+function moveLeft() {
+    SLIDER.classList.add('transition-left');
+    BTN_LEFT.removeEventListener('click', moveLeft);
+    BTN_RIGHT.removeEventListener('click', moveRight);
+} 
+function moveRight() {
+    SLIDER.classList.add('transition-right');
+    BTN_RIGHT.removeEventListener('click', moveRight);
+    BTN_LEFT.removeEventListener('click', moveLeft);
+} 
 
-function showNextSlide() {
-	sliderContainer.innerHTML = '';
-	let nextSlideIndex = randimizeCard();
-	createSlide(nextSlideIndex, sliderContainer);
-}
-
-function randimizeCard() {
-    let nextArr = [];
-    while (nextArr.length < currentSlideIndex.length) {
+function getRandomIndex(container) {
+    let newInd = [];
+    let containerInd = Array.from(container.querySelectorAll('.card__name'))
+                    .map(selsector => selsector.textContent)
+                    .map(name => PETS.findIndex(pet => (pet.name === name)));
+    while (newInd.length < containerInd.length) {
         let randomIndex = Math.floor(Math.random() * 8);
-        if (!currentSlideIndex.includes(randomIndex) && !nextArr.includes(randomIndex)) {
-            nextArr.push(randomIndex)
+        if (!containerInd.includes(randomIndex) && !newInd.includes(randomIndex)) {
+            newInd.push(randomIndex);
         }
     }
-    currentSlideIndex = [...nextArr];
-	return nextArr;
-};
+    console.log(containerInd, newInd);
+    return newInd;
+}
 
 function createSlide(arr, container){
 
 	for(let i=0; i < arr.length; i++){
 		let petObj = PETS[arr[i]];
-        console.log(arr[i], petObj.name);
+        // console.log(arr[i], petObj.name);
 		let petCard = document.createElement("div");
 		petCard.className = "pets__card";
 		petCard.innerHTML = `
@@ -122,3 +133,30 @@ function createSlide(arr, container){
 		container.append(petCard);
 	}
 }
+
+BTN_LEFT.addEventListener('click', moveLeft);
+BTN_RIGHT.addEventListener('click', moveRight);
+
+SLIDER.addEventListener('animationend', (animationEvent) => {
+    if(animationEvent.animationName === 'move-left') {
+        // console.log(animationEvent.animationName);
+        SLIDE_RIGHT.innerHTML = SLIDE_ACTIVE.innerHTML;
+        SLIDE_ACTIVE.innerHTML = SLIDE_LEFT.innerHTML;
+        let newPets = getRandomIndex(SLIDE_ACTIVE);
+        SLIDE_LEFT.innerHTML = '';
+        createSlide(newPets, SLIDE_LEFT);
+        
+    } else if(animationEvent.animationName === 'move-right') {
+        // console.log(animationEvent.animationName);
+        SLIDE_LEFT.innerHTML = SLIDE_ACTIVE.innerHTML;
+        SLIDE_ACTIVE.innerHTML = SLIDE_RIGHT.innerHTML;
+        let newPets = getRandomIndex(SLIDE_ACTIVE);
+        SLIDE_RIGHT.innerHTML = '';
+        createSlide(newPets, SLIDE_RIGHT);
+    }
+    SLIDER.classList.remove('transition-left');
+    SLIDER.classList.remove('transition-right');
+    BTN_LEFT.addEventListener('click', moveLeft);
+    BTN_RIGHT.addEventListener('click', moveRight);
+    document.querySelectorAll('.pets__card').forEach(card => card.addEventListener('click', createPopup));
+});

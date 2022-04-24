@@ -70,10 +70,12 @@ function createPopup(event) {
 }
 
 function removePopup(event) {
-    if (!event.target.classList.contains('btn__remove')) return;
-    let popup = document.querySelector('.popup');
-    popup.remove();
-    document.body.classList.remove('noscroll');
+    // console.log(event.target.classList.contains('btn__remove'), (event.target.classList.value === 'popup'));
+    if (event.target.classList.contains('btn__remove')||(event.target.classList.value === 'popup')) {
+        let popup = document.querySelector('.popup');
+        popup.remove();
+        document.body.classList.remove('noscroll');
+    };
 };
 
 petCards.forEach(card => card.addEventListener('click', createPopup));
