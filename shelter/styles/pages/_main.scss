@@ -202,6 +202,19 @@
     display: inline-block;
     text-decoration: none;
 }
+
+.btn__round--arr-right {
+    background-image: url(../assets/icons/Arrow.svg);
+    transform: rotate(180deg);
+}
+.btn__round--arr-left {
+    background-image: url(../assets/icons/Arrow.svg);
+}
+.slider__btn {
+    @media screen and (max-width: $mobile) {
+        order: 2;
+    }
+}
 /* pets styles end*/
 
 

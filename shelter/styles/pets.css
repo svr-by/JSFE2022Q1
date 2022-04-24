@@ -440,7 +440,7 @@ body.noscroll {
   cursor: pointer;
   transition: all 0.3s;
 }
-.button:not(.nohover):hover {
+.button:not(.btn__round--last, .btn__round--active):hover {
   background-color: #FDDCC4;
 }
 
@@ -448,7 +448,7 @@ body.noscroll {
   background: none;
   border: 2px solid #F1CDB3;
 }
-.btn__clear:not(.nohover):hover {
+.btn__clear:not(.btn__round--last):hover {
   border: 2px solid #FDDCC4;
 }
 
@@ -461,58 +461,8 @@ body.noscroll {
   background-position: center;
   border: 2px solid #F1CDB3;
 }
-.btn__round:not(.nohover):hover {
+.btn__round:not(.btn__round--last):hover {
   border: 2px solid #FDDCC4;
-}
-
-.btn__round--arr-right {
-  background-image: url(../assets/icons/Arrow.svg);
-  transform: rotate(180deg);
-}
-
-.btn__round--arr-left {
-  background-image: url(../assets/icons/Arrow.svg);
-}
-
-.btn__round--dbab-left {
-  background-image: url(../assets/icons/Double_angled_bracket.svg);
-  transform: rotate(180deg);
-}
-
-.btn__round--ab-left {
-  background-image: url(../assets/icons/Angled_bracket.svg);
-  transform: rotate(180deg);
-}
-
-.btn__round--dbab-right {
-  background-image: url(../assets/icons/Double_angled_bracket.svg);
-}
-
-.btn__round--ab-right {
-  background-image: url(../assets/icons/Angled_bracket.svg);
-}
-
-.btn__round--active {
-  background-color: #F1CDB3;
-}
-
-.btn__round--last {
-  border: 2px solid #292929;
-  filter: invert(91%) sepia(0%) saturate(437%) hue-rotate(144deg) brightness(96%) contrast(81%);
-}
-
-/*popup*/
-.btn__remove {
-  position: absolute;
-  top: -52px;
-  right: -52px;
-}
-
-/*slider*/
-@media screen and (max-width: 767px) {
-  .slider__btn {
-    order: 2;
-  }
 }
 
 .pets__card {
@@ -540,6 +490,9 @@ body.noscroll {
 .card__img {
   margin-bottom: 30px;
 }
+.card__img .image {
+  border-radius: 9px 9px 0 0;
+}
 
 .card__name {
   font-family: "Georgia";
@@ -566,9 +519,6 @@ body.noscroll {
   align-items: center;
   background: rgba(41, 41, 41, 0.6);
 }
-.popup h3, .popup h4, .popup h5 {
-  margin: 0;
-}
 
 .popup__wrapper {
   position: relative;
@@ -582,6 +532,10 @@ body.noscroll {
 
 .popup__img {
   width: 500px;
+  border-radius: 9px;
+}
+.popup__img .image {
+  border-radius: 9px 0 0 9px;
 }
 @media screen and (max-width: 767px) {
   .popup__img {
@@ -607,19 +561,45 @@ body.noscroll {
 }
 
 .popup__title {
-  margin: 0;
+  margin: 0 0 10px 0;
   font-size: 35px;
   line-height: 130%;
+  font-weight: 400;
 }
 
 .popup__subtitle {
+  margin: 0 0 40px 0;
   font-size: 20px;
   line-height: 115%;
+  font-weight: 400;
 }
 
 .popup__text {
+  margin: 0 0 40px 0;
   font-size: 15px;
   line-height: 110%;
+  font-weight: 400;
+}
+
+.popup__list {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.popup__item {
+  margin: 0;
+  color: #F1CDB3;
+}
+.popup__item h5 {
+  color: #000000;
+  margin: 0;
+  font-weight: 400;
+}
+
+.btn__remove {
+  position: absolute;
+  top: -52px;
+  right: -52px;
 }
 
 .header__wrapper {
@@ -1003,7 +983,7 @@ body.noscroll {
   max-width: 400px;
 }
 
-.pets__slider {
+.pets__page {
   width: 100%;
   margin: 45px auto;
   padding: 15px 0;
@@ -1014,26 +994,26 @@ body.noscroll {
   row-gap: 30px;
 }
 @media screen and (max-width: 1279px) {
-  .pets__slider {
+  .pets__page {
     width: 82%;
     margin: 30px auto 40px;
     padding: 0;
     grid-template-columns: repeat(2, 1fr);
   }
-  .pets__slider .pets__card:nth-child(8),
-.pets__slider .pets__card:nth-child(7) {
+  .pets__page .pets__card:nth-child(8),
+.pets__page .pets__card:nth-child(7) {
     display: none;
   }
 }
 @media screen and (max-width: 767px) {
-  .pets__slider {
+  .pets__page {
     margin: 42px auto;
     padding: 0;
     grid-template-columns: 1fr;
   }
-  .pets__slider .pets__card:nth-child(6),
-.pets__slider .pets__card:nth-child(5),
-.pets__slider .pets__card:nth-child(4) {
+  .pets__page .pets__card:nth-child(6),
+.pets__page .pets__card:nth-child(5),
+.pets__page .pets__card:nth-child(4) {
     display: none;
   }
 }
@@ -1051,6 +1031,17 @@ body.noscroll {
     -moz-column-gap: 10px;
          column-gap: 10px;
   }
+}
+
+.btn__round--active {
+  background-color: #F1CDB3;
+  cursor: auto;
+}
+
+.btn__round--last {
+  border: 2px solid #CDCDCD;
+  color: #CDCDCD;
+  cursor: auto;
 }
 
 /* pets styles end*//*# sourceMappingURL=pets.css.map */

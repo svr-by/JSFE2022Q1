@@ -38,7 +38,7 @@ fetch("../../js/pets.json")
 let petCards = document.querySelectorAll('.pets__card');
 
 function createPopup(event) {
-    let name = event.target.previousElementSibling.textContent;
+    let name = event.target.closest('.pets__card').querySelector('.card__name').textContent;
     let pet = PETS.find(obj => obj.name === name);
     console.log(pet.name);
 
@@ -55,10 +55,10 @@ function createPopup(event) {
             <h4 class="popup__subtitle">${pet.type} - ${pet.breed}</h4>
             <h5 class="popup__text">${pet.description}</h5>
             <ul class="popup__list">
-                <li><h5><b>Age:</b> ${pet.age}</h5></li>
-                <li><h5><b>Inoculations:</b> ${pet.inoculations.join(", ")}</h5></li>
-                <li><h5><b>Diseases:</b> ${pet.diseases.join(", ")}</h5></li>
-                <li><h5><b>Parasites:</b> ${pet.parasites.join(", ")}</h5></li>
+                <li class="popup__item"><h5><b>Age:</b> ${pet.age}</h5></li>
+                <li class="popup__item"><h5><b>Inoculations:</b> ${pet.inoculations.join(", ")}</h5></li>
+                <li class="popup__item"><h5><b>Diseases:</b> ${pet.diseases.join(", ")}</h5></li>
+                <li class="popup__item"><h5><b>Parasites:</b> ${pet.parasites.join(", ")}</h5></li>
             </ul>
         </div>
         <button class='button btn__round btn__remove'>✖</button>
@@ -76,7 +76,7 @@ function removePopup(event) {
     document.body.classList.remove('noscroll');
 };
 
-petCards.forEach(card => card.querySelector('.button').addEventListener('click', createPopup));
+petCards.forEach(card => card.addEventListener('click', createPopup));
 
 //Slider
 
@@ -118,7 +118,7 @@ function createSlide(arr, container){
 			<p class="card__name">${petObj.name || ""}</p>
 			<button class="button btn__clear">Learn more</button>
 		`;
-        petCard.querySelector('.button').addEventListener('click', createPopup);
+        petCard.addEventListener('click', createPopup);
 		container.append(petCard);
 	}
 }

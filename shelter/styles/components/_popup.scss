@@ -9,10 +9,6 @@
     justify-content: center;
     align-items: center;
     background: rgba(41, 41, 41, 0.6);;
-
-    h3, h4, h5 {
-        margin: 0;
-    }
 }
 
 .popup__wrapper {
@@ -26,6 +22,11 @@
 }
 .popup__img {
     width: 500px;
+    border-radius: 9px;
+
+    & .image {
+        border-radius: 9px 0 0 9px;
+    }
 
     @media screen and (max-width: $mobile) {
         display: none;
@@ -47,15 +48,39 @@
     }
 }
 .popup__title {
-    margin: 0;
+    margin: 0 0 10px 0;
     font-size: 35px;
     line-height: 130%;
+    font-weight: 400;
 }
 .popup__subtitle {
+    margin: 0 0 40px 0;
     font-size: 20px;
     line-height: 115%;
+    font-weight: 400;
 }
 .popup__text {
+    margin: 0 0 40px 0;
     font-size: 15px;
     line-height: 110%;
+    font-weight: 400;
+}
+.popup__list {
+    margin: 0;
+    padding-left: 20px;
+}
+.popup__item {
+    margin: 0;
+    color: $color-primary;
+
+    & h5 {
+        color: $color-dark;
+        margin: 0;
+        font-weight: 400;
+    }
+}
+.btn__remove {
+    position: absolute;
+    top: -52px;
+    right: -52px;
 }
