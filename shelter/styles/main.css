@@ -518,27 +518,23 @@ body.noscroll {
   justify-content: center;
   align-items: center;
   background: rgba(41, 41, 41, 0.6);
-  -webkit-animation-name: popup-show;
-          animation-name: popup-show;
-  -webkit-animation-duration: 1s;
-          animation-duration: 1s;
 }
 
 @-webkit-keyframes popup-show {
   0% {
-    opacity: 0;
+    transform: scale(0);
   }
   100% {
-    opacity: 1;
+    transform: scale(1);
   }
 }
 
 @keyframes popup-show {
   0% {
-    opacity: 0;
+    transform: scale(0);
   }
   100% {
-    opacity: 1;
+    transform: scale(1);
   }
 }
 .popup__wrapper {
@@ -549,6 +545,10 @@ body.noscroll {
   background-color: #FAFAFA;
   border-radius: 9px;
   box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
+  -webkit-animation-name: popup-show;
+          animation-name: popup-show;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
 }
 .popup__wrapper:not(:hover) .btn__remove {
   background-color: #FDDCC4;
