@@ -1,5 +1,5 @@
 .pets__card {
-    max-width: 270px;
+    width: 270px;
     min-height: 435px;
     margin: 0 auto;
     display: flex;
@@ -23,6 +23,10 @@
 }
 .card__img {
     margin-bottom: 30px;
+    
+    & .image {
+    border-radius: 9px 9px 0 0;
+    }
 }
 .card__name {
     font-family: 'Georgia';
