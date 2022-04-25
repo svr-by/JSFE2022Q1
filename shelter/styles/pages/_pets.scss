@@ -54,7 +54,7 @@
 .title--pets {
     max-width: 400px;
 }
-.pets__slider {
+.pets__page {
     width: 100%;
     margin: 45px auto;
     padding: 15px 0;
@@ -62,6 +62,8 @@
     grid-template-columns: repeat(4, 1fr);
     column-gap: 40px;
     row-gap: 30px;
+    animation-name: page-show;
+    animation-duration: 1s;
 
     @media screen and (max-width: $tablet) {
         width: 82%;
@@ -86,6 +88,13 @@
         }
     } 
 }
+
+@keyframes page-show {
+    0%   {opacity: 0;}
+    80%  {opacity: 0;}
+    100% {opacity: 1;}
+}
+
 .pagination {
     margin: 0 auto;
     display: flex;
@@ -96,5 +105,15 @@
     @media screen and (max-width: $mobile) {
         column-gap: 10px;
     }
+}
+
+.btn__round--active {
+    background-color: $color-primary;
+    cursor: auto;
+}
+.btn__round--last {
+    border: 2px solid $color-dark-s;
+    color: $color-dark-s;
+    cursor: auto;
 }
 /* pets styles end*/
