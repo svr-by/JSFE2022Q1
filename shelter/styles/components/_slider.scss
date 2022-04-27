@@ -21,6 +21,8 @@
 .slider__container {
     width: 990px;
     overflow: hidden;
+    animation-name: slider-show;
+    animation-duration: 1s;
 
     @media screen and (max-width: $tablet) {
         width: 580px;
@@ -31,6 +33,13 @@
         order: 1;
     }
 }
+
+@keyframes slider-show {
+    0%   {opacity: 0;}
+    80%  {opacity: 0;}
+    100% {opacity: 1;}
+}
+
 .slider {
     position: relative;
     left: -1080px;
@@ -97,11 +106,11 @@
 
 .transition-left {
     animation-name: move-left;
-    animation-duration: 1s;
+    animation-duration: 0.5s;
 }
 .transition-right {
     animation-name: move-right;
-    animation-duration: 1s;
+    animation-duration: 0.5s;
 }
 
 .btn__round--arr-right {
