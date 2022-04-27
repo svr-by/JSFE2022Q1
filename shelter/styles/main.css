@@ -520,23 +520,6 @@ body.noscroll {
   background: rgba(41, 41, 41, 0.6);
 }
 
-@-webkit-keyframes popup-show {
-  0% {
-    transform: scale(0);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-@keyframes popup-show {
-  0% {
-    transform: scale(0);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
 .popup__wrapper {
   position: relative;
   max-width: 900px;
@@ -555,6 +538,23 @@ body.noscroll {
   border-color: #FDDCC4;
 }
 
+@-webkit-keyframes popup-show {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes popup-show {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 .popup__img {
   width: 500px;
   border-radius: 9px;
@@ -654,6 +654,10 @@ body.noscroll {
 .slider__container {
   width: 990px;
   overflow: hidden;
+  -webkit-animation-name: slider-show;
+          animation-name: slider-show;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
 }
 @media screen and (max-width: 1279px) {
   .slider__container {
@@ -667,6 +671,29 @@ body.noscroll {
   }
 }
 
+@-webkit-keyframes slider-show {
+  0% {
+    opacity: 0;
+  }
+  80% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes slider-show {
+  0% {
+    opacity: 0;
+  }
+  80% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 .slider {
   position: relative;
   left: -1080px;
@@ -811,15 +838,15 @@ body.noscroll {
 .transition-left {
   -webkit-animation-name: move-left;
           animation-name: move-left;
-  -webkit-animation-duration: 1s;
-          animation-duration: 1s;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
 }
 
 .transition-right {
   -webkit-animation-name: move-right;
           animation-name: move-right;
-  -webkit-animation-duration: 1s;
-          animation-duration: 1s;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
 }
 
 .btn__round--arr-right {
@@ -921,16 +948,15 @@ body.noscroll {
 }
 @media screen and (max-width: 767px) {
   .header__nav {
-    display: flex;
+    position: fixed;
     width: 320px;
     height: 100vh;
     flex-direction: column;
-    position: fixed;
     align-items: center;
+    justify-content: center;
     row-gap: 40px;
     right: -150%;
     top: 0;
-    padding-top: 248px;
     background-color: #292929;
     transition: all 0.5s;
   }
