@@ -75,16 +75,15 @@
     display: flex;
 
     @media screen and (max-width: $mobile) {
-        display: flex;
+        position: fixed;
         width: 320px;
         height: 100vh;
         flex-direction: column;
-        position: fixed;
         align-items: center;
+        justify-content: center;
         row-gap: 40px;
         right: -150%;
         top: 0;
-        padding-top: 248px;
         background-color: $color-dark-3xl;
         transition: all 0.5s;
 

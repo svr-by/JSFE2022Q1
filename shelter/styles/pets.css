@@ -520,23 +520,6 @@ body.noscroll {
   background: rgba(41, 41, 41, 0.6);
 }
 
-@-webkit-keyframes popup-show {
-  0% {
-    transform: scale(0);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-@keyframes popup-show {
-  0% {
-    transform: scale(0);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
 .popup__wrapper {
   position: relative;
   max-width: 900px;
@@ -555,6 +538,23 @@ body.noscroll {
   border-color: #FDDCC4;
 }
 
+@-webkit-keyframes popup-show {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes popup-show {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 .popup__img {
   width: 500px;
   border-radius: 9px;
@@ -711,16 +711,15 @@ body.noscroll {
 }
 @media screen and (max-width: 767px) {
   .header__nav {
-    display: flex;
+    position: fixed;
     width: 320px;
     height: 100vh;
     flex-direction: column;
-    position: fixed;
     align-items: center;
+    justify-content: center;
     row-gap: 40px;
     right: -150%;
     top: 0;
-    padding-top: 248px;
     background-color: #292929;
     transition: all 0.5s;
   }

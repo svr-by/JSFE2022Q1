@@ -81,82 +81,92 @@ function removePopup(event) {
 petCards.forEach(card => card.addEventListener('click', createPopup));
 
 //Slider
+setTimeout(() => {
+    const BTN_LEFT = document.querySelector('.btn__round--arr-left');
+    const BTN_RIGHT = document.querySelector('.btn__round--arr-right');
+    const SLIDE_LEFT = document.querySelector('#slide-left');
+    const SLIDE_RIGHT = document.querySelector('#slide-right');
+    const SLIDE_ACTIVE = document.querySelector('#slide-active');
+    const SLIDER = document.querySelector('#slider');
 
-const BTN_LEFT = document.querySelector('.btn__round--arr-left');
-const BTN_RIGHT = document.querySelector('.btn__round--arr-right');
-const SLIDE_LEFT = document.querySelector('#slide-left');
-const SLIDE_RIGHT = document.querySelector('#slide-right');
-const SLIDE_ACTIVE = document.querySelector('#slide-active');
-const SLIDER = document.querySelector('#slider');
+    function moveLeft() {
+        SLIDER.classList.add('transition-left');
+        BTN_LEFT.removeEventListener('click', moveLeft);
+        BTN_RIGHT.removeEventListener('click', moveRight);
+    } 
+    function moveRight() {
+        SLIDER.classList.add('transition-right');
+        BTN_RIGHT.removeEventListener('click', moveRight);
+        BTN_LEFT.removeEventListener('click', moveLeft);
+    } 
 
-function moveLeft() {
-    SLIDER.classList.add('transition-left');
-    BTN_LEFT.removeEventListener('click', moveLeft);
-    BTN_RIGHT.removeEventListener('click', moveRight);
-} 
-function moveRight() {
-    SLIDER.classList.add('transition-right');
-    BTN_RIGHT.removeEventListener('click', moveRight);
-    BTN_LEFT.removeEventListener('click', moveLeft);
-} 
+    function getRandomIndex(container) {
+        let newInd = [];
+        let containerInd = Array.from(container.querySelectorAll('.card__name'))
+                        .map(selsector => selsector.textContent)
+                        .map(name => PETS.findIndex(pet => (pet.name === name)));
+        while (newInd.length < containerInd.length) {
+            let randomIndex = Math.floor(Math.random() * 8);
+            if (!containerInd.includes(randomIndex) && !newInd.includes(randomIndex)) {
+                newInd.push(randomIndex);
+            }
+        }
+        console.log(containerInd, newInd);
+        return newInd;
+    }
 
-function getRandomIndex(container) {
-    let newInd = [];
-    let containerInd = Array.from(container.querySelectorAll('.card__name'))
-                    .map(selsector => selsector.textContent)
-                    .map(name => PETS.findIndex(pet => (pet.name === name)));
-    while (newInd.length < containerInd.length) {
-        let randomIndex = Math.floor(Math.random() * 8);
-        if (!containerInd.includes(randomIndex) && !newInd.includes(randomIndex)) {
-            newInd.push(randomIndex);
+    function createSlide(arr, container){
+
+        for(let i=0; i < arr.length; i++){
+            let petObj = PETS[arr[i]];
+            // console.log(arr[i], petObj.name);
+            let petCard = document.createElement("div");
+            petCard.className = "pets__card";
+            petCard.innerHTML = `
+                <div class="card__img">
+                    <img src=${petObj.img || ""} alt=${petObj.name || ""} class="image">
+                </div>
+                <p class="card__name">${petObj.name || ""}</p>
+                <button class="button btn__clear">Learn more</button>
+            `;
+            petCard.addEventListener('click', createPopup);
+            container.append(petCard);
         }
     }
-    console.log(containerInd, newInd);
-    return newInd;
-}
 
-function createSlide(arr, container){
 
-	for(let i=0; i < arr.length; i++){
-		let petObj = PETS[arr[i]];
-        // console.log(arr[i], petObj.name);
-		let petCard = document.createElement("div");
-		petCard.className = "pets__card";
-		petCard.innerHTML = `
-			<div class="card__img">
-				<img src=${petObj.img || ""} alt=${petObj.name || ""} class="image">
-			</div>
-			<p class="card__name">${petObj.name || ""}</p>
-			<button class="button btn__clear">Learn more</button>
-		`;
-        petCard.addEventListener('click', createPopup);
-		container.append(petCard);
-	}
-}
+    let initialSlide = getRandomIndex(SLIDE_ACTIVE);
+    SLIDE_ACTIVE.innerHTML = '';
+    createSlide(initialSlide, SLIDE_ACTIVE);
+    SLIDE_LEFT.innerHTML = '';
+    createSlide(getRandomIndex(SLIDE_ACTIVE), SLIDE_LEFT);
+    SLIDE_RIGHT.innerHTML = '';
+    createSlide(getRandomIndex(SLIDE_ACTIVE), SLIDE_RIGHT);
 
-BTN_LEFT.addEventListener('click', moveLeft);
-BTN_RIGHT.addEventListener('click', moveRight);
-
-SLIDER.addEventListener('animationend', (animationEvent) => {
-    if(animationEvent.animationName === 'move-left') {
-        // console.log(animationEvent.animationName);
-        SLIDE_RIGHT.innerHTML = SLIDE_ACTIVE.innerHTML;
-        SLIDE_ACTIVE.innerHTML = SLIDE_LEFT.innerHTML;
-        let newPets = getRandomIndex(SLIDE_ACTIVE);
-        SLIDE_LEFT.innerHTML = '';
-        createSlide(newPets, SLIDE_LEFT);
-        
-    } else if(animationEvent.animationName === 'move-right') {
-        // console.log(animationEvent.animationName);
-        SLIDE_LEFT.innerHTML = SLIDE_ACTIVE.innerHTML;
-        SLIDE_ACTIVE.innerHTML = SLIDE_RIGHT.innerHTML;
-        let newPets = getRandomIndex(SLIDE_ACTIVE);
-        SLIDE_RIGHT.innerHTML = '';
-        createSlide(newPets, SLIDE_RIGHT);
-    }
-    SLIDER.classList.remove('transition-left');
-    SLIDER.classList.remove('transition-right');
     BTN_LEFT.addEventListener('click', moveLeft);
     BTN_RIGHT.addEventListener('click', moveRight);
-    document.querySelectorAll('.pets__card').forEach(card => card.addEventListener('click', createPopup));
-});
+
+    SLIDER.addEventListener('animationend', (animationEvent) => {
+        if(animationEvent.animationName === 'move-left') {
+            // console.log(animationEvent.animationName);
+            SLIDE_RIGHT.innerHTML = SLIDE_ACTIVE.innerHTML;
+            SLIDE_ACTIVE.innerHTML = SLIDE_LEFT.innerHTML;
+            let newPets = getRandomIndex(SLIDE_ACTIVE);
+            SLIDE_LEFT.innerHTML = '';
+            createSlide(newPets, SLIDE_LEFT);
+            
+        } else if(animationEvent.animationName === 'move-right') {
+            // console.log(animationEvent.animationName);
+            SLIDE_LEFT.innerHTML = SLIDE_ACTIVE.innerHTML;
+            SLIDE_ACTIVE.innerHTML = SLIDE_RIGHT.innerHTML;
+            let newPets = getRandomIndex(SLIDE_ACTIVE);
+            SLIDE_RIGHT.innerHTML = '';
+            createSlide(newPets, SLIDE_RIGHT);
+        }
+        SLIDER.classList.remove('transition-left');
+        SLIDER.classList.remove('transition-right');
+        BTN_LEFT.addEventListener('click', moveLeft);
+        BTN_RIGHT.addEventListener('click', moveRight);
+        document.querySelectorAll('.pets__card').forEach(card => card.addEventListener('click', createPopup));
+    });
+}, 500);
