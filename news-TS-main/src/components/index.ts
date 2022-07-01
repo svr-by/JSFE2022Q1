@@ -22,4 +22,15 @@ interface Source {
     country: string;
 }
 
-export { Article, Source };
+interface DataSources {
+    status: string;
+    sources: Source[];
+}
+
+interface DataNews {
+    status: string;
+    totalResults: number;
+    articles: Article[];
+}
+
+export { Article, Source, DataSources, DataNews };
