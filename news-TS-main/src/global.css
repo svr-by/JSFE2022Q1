@@ -44,3 +44,51 @@ footer .rss-img{
 footer .rss-img:hover {
     filter: invert(100%) brightness(40%);
 }
+
+.dd-button,
+.dd-input {
+    display: none;
+}
+
+@media (max-width: 640px) {
+    .dd-button {
+        display: block;
+        background: #5c5c5c;
+        color: #ffffff;
+        margin: 0.5em 0;
+        padding: 1em 2em;
+        transition: 0.25s;
+        cursor: pointer;
+        text-align: center;
+        font-weight: 800;
+        text-transform: uppercase;
+    }
+
+    .dd-button:hover {
+        background-color: #30c5ff;
+    }
+        
+    .dd-input ~ .sources {
+        display: none;
+    } 
+    .dd-input ~ .news {
+        display: block;
+    } 
+    
+    .dd-input:checked ~ .sources {
+        display: block;
+    } 
+    .dd-input:checked ~ .news {
+        display: none;
+    } 
+
+    .sources {
+        height: 70vh;
+    }
+
+    footer {
+        justify-content: space-around;
+        flex-wrap: wrap;
+        column-gap: 30px;
+    }
+}
