@@ -40,6 +40,7 @@ interface Options {
     category: string;
     language: string;
     country: string;
+    sources: string;
 }
 
 type LoaderOptions = Pick<Options, 'apiKey'>;
@@ -48,7 +49,7 @@ type PartialOptions = Partial<Options>;
 
 type GetRespOptions = {
     endpoint: string;
-    options?: PartialOptions | Record<string, never>;
+    options?: PartialOptions;
 };
 
 type MakeUrlOptions = { [key: string]: string };
