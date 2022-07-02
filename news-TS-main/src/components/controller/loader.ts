@@ -1,4 +1,14 @@
-import { LoaderOptions, GetRespOptions, PartialOptions, MakeUrlOptions, Callback, Data, Status } from '../types';
+import {
+    LoaderOptions,
+    GetRespOptions,
+    PartialOptions,
+    MakeUrlOptions,
+    Callback,
+    Data,
+    Status,
+    Method,
+    Endpoint,
+} from '../types';
 
 class Loader {
     baseLink: string;
@@ -28,7 +38,7 @@ class Loader {
         return res;
     }
 
-    private makeUrl(options: PartialOptions, endpoint: string) {
+    private makeUrl(options: PartialOptions, endpoint: Endpoint) {
         const urlOptions: MakeUrlOptions = { ...this.options, ...options };
         let url = `${this.baseLink}${endpoint}?`;
 
@@ -39,7 +49,7 @@ class Loader {
         return url.slice(0, -1);
     }
 
-    private load(method: string, endpoint: string, callback: Callback<Data>, options: PartialOptions = {}) {
+    private load(method: Method, endpoint: Endpoint, callback: Callback<Data>, options: PartialOptions = {}) {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
             .then((res: Response) => res.json())

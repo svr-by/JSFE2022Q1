@@ -48,13 +48,17 @@ type LoaderOptions = Pick<Options, 'apiKey'>;
 type PartialOptions = Partial<Options>;
 
 type GetRespOptions = {
-    endpoint: string;
+    endpoint: Endpoint;
     options?: PartialOptions;
 };
 
 type MakeUrlOptions = { [key: string]: string };
 
 type Callback<T> = (data: T) => void;
+
+type Method = 'GET' | 'POST';
+
+type Endpoint = 'sources' | 'everything';
 
 enum Status {
     Unauthorized = 401,
@@ -73,4 +77,6 @@ export {
     Callback,
     Data,
     Status,
+    Method,
+    Endpoint,
 };
