@@ -1,4 +1,4 @@
-import { LoaderOptions, GetRespOptions, PartialOptions, MakeUrlOptions, Callback, Data, Status } from '../index';
+import { LoaderOptions, GetRespOptions, PartialOptions, MakeUrlOptions, Callback, Data, Status } from '../types';
 
 class Loader {
     baseLink: string;

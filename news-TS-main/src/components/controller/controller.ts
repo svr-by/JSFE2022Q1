@@ -1,5 +1,5 @@
 import AppLoader from './appLoader';
-import { Callback, DataSources, DataNews } from '../index';
+import { Callback, DataSources, DataNews } from '../types';
 
 class AppController extends AppLoader {
     getSources(callback: Callback<DataSources>) {

@@ -1,5 +1,5 @@
 import './news.css';
-import { Article } from '../../index';
+import { Article } from '../../types';
 
 class News {
     draw(data: Article[]) {
