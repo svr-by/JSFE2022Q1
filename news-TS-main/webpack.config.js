@@ -36,10 +36,7 @@ const baseConfig = {
         new CleanWebpackPlugin(),
         new EslingPlugin({ extensions: 'ts' }),
         new CopyPlugin({
-            patterns: [{
-                from: './src/assets/img',
-                noErrorOnMissing: true,
-            }],
+            patterns: [{ from: './src/assets/img', to: './img', noErrorOnMissing: true }],
         }),
     ],
 };
