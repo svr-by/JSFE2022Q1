@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>NewsPortal</title>
+    </head>
+    <body>
+        <header class="header">
+            <h1 class="header__title">News Portal</h1>
+        </header>
+        <main class="main">
+                <div class="filter">
+                    <div class="filter__button" id="sourceBtn">Sources</div>
+                    <div class="filter__button" id="langBtn">Language</div>
+                </div>
+                <div class="container">
+                    <div class="source__list sources"></div>
+                    <div class="source__list langs"></div>
+                </div>
+                <div class="news"></div>
+        </main>
+        <footer class="footer">
+            <p class="footer__item">
+                2022 <a href="https://github.com/svr-by" class="footer__link">svr-by</a>
+            </p>
+            <p class="footer__item copyright">
+                Copyright <a href="https://newsapi.org" class="footer__link">NewsAPI</a>
+            </p>
+            <p class="footer__item">
+                <a href="https://rs.school/js/">
+                    <img src="./img/rs_school_js.svg" alt="RSSchool"  class="footer__img">
+                </a>
+            </p>
+        </footer>
+
+        <template id="sourceItemTemp">
+            <div class="source__item">
+                <span class="source__item-name"></span>
+            </div>
+        </template>
+
+        <template id="newsItemTemp">
+            <div class="news__item">
+                <div class="news__meta">
+                    <div class="news__meta-photo"></div>
+                    <ul class="news__meta-details">
+                        <li class="news__meta-author"></li>
+                        <li class="news__meta-date"></li>
+                    </ul>
+                </div>
+                <div class="news__description">
+                    <h2 class="news__description-title"></h2>
+                    <h3 class="news__description-source"></h3>
+                    <p class="news__description-content"></p>
+                    <p class="news__read-more">
+                        <a href="#">Read More</a>
+                    </p>
+                </div>
+            </div>
+        </template>
+
+    </body>
+</html>
