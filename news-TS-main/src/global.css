@@ -1,92 +1,89 @@
 body {
+    box-sizing: border-box;
     color: #fff;
     background: #17181c;
     font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    padding: 10px;
 }
 
-header {
+.header {
     padding: 10px 30px;
 }
 
-header h1 {
+.header__title {
     font-size: 40px;
     font-weight: 800;
 }
 
-footer {
+.main {
+    flex-grow: 1;
+}
+
+.footer {
     height: 100px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 20px;
 }
-footer .copyright,
-footer .github {
+.footer__item {
     font-size: 14px;
     color: #333;
     text-align: center;
 }
-footer a {
+.footer__link {
     color: #444;
 }
-footer a:hover {
+.footer__link:hover {
     color: #555;
 }
-footer .copyright:before {
+.copyright:before {
     content: '©';
 }
 
-footer .rss-img{
+.footer__img{
     display: block;
     width: 100px;
     filter: invert(100%) brightness(20%);
 }
-footer .rss-img:hover {
+.footer__img:hover {
     filter: invert(100%) brightness(40%);
 }
 
-.dd-button,
-.dd-input {
-    display: none;
+.filter {
+    display: flex;
+    column-gap: 10px;
+}
+
+.filter__button {
+    display: block;
+    background: #5c5c5c;
+    color: #ffffff;
+    margin: 0.5em 0;
+    padding: 1em 2em;
+    transition: 0.25s;
+    cursor: pointer;
+    text-align: center;
+    font-weight: 800;
+    text-transform: uppercase;
+    flex-grow: 1;
+}
+
+.filter__button.active,
+.filter__button:hover {
+    background-color: #30c5ff;
 }
 
 @media (max-width: 640px) {
-    .dd-button {
-        display: block;
-        background: #5c5c5c;
-        color: #ffffff;
-        margin: 0.5em 0;
-        padding: 1em 2em;
-        transition: 0.25s;
-        cursor: pointer;
-        text-align: center;
-        font-weight: 800;
-        text-transform: uppercase;
+    .filter {
+        flex-direction: column;
     }
 
-    .dd-button:hover {
-        background-color: #30c5ff;
-    }
-        
-    .dd-input ~ .sources {
-        display: none;
-    } 
-    .dd-input ~ .news {
-        display: block;
-    } 
-    
-    .dd-input:checked ~ .sources {
-        display: block;
-    } 
-    .dd-input:checked ~ .news {
-        display: none;
-    } 
-
-    .sources {
-        height: 70vh;
-    }
-
-    footer {
+    .footer {
         justify-content: space-around;
         flex-wrap: wrap;
         column-gap: 30px;

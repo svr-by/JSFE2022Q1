@@ -7,27 +7,30 @@
         <title>NewsPortal</title>
     </head>
     <body>
-        <header>
-            <h1>News Portal</h1>
+        <header class="header">
+            <h1 class="header__title">News Portal</h1>
         </header>
-        <main>
-            <label>
-                <div class="dd-button">Sources</div>
-                <input type="checkbox" class="dd-input">
-                <div class="sources buttons"></div>
+        <main class="main">
+                <div class="filter">
+                    <div class="filter__button" id="sourceBtn">Sources</div>
+                    <div class="filter__button" id="langBtn">Language</div>
+                </div>
+                <div class="container">
+                    <div class="source__list sources"></div>
+                    <div class="source__list langs"></div>
+                </div>
                 <div class="news"></div>
-            </label>
         </main>
-        <footer>
-            <p class="github">
-                2022 <a href="https://github.com/svr-by">svr-by</a>
+        <footer class="footer">
+            <p class="footer__item">
+                2022 <a href="https://github.com/svr-by" class="footer__link">svr-by</a>
             </p>
-            <p class="copyright">
-                Copyright <a href="https://newsapi.org">NewsAPI</a>
+            <p class="footer__item copyright">
+                Copyright <a href="https://newsapi.org" class="footer__link">NewsAPI</a>
             </p>
-            <p>
+            <p class="footer__item">
                 <a href="https://rs.school/js/">
-                    <img src="./img/rs_school_js.svg" alt="RSSchool"  class="rss-img">
+                    <img src="./img/rs_school_js.svg" alt="RSSchool"  class="footer__img">
                 </a>
             </p>
         </footer>
