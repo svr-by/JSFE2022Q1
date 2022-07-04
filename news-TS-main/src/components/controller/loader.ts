@@ -1,20 +1,10 @@
-import {
-    LoaderOptions,
-    GetRespOptions,
-    PartialOptions,
-    MakeUrlOptions,
-    Callback,
-    Data,
-    Status,
-    Method,
-    Endpoint,
-} from '../types';
+import { GetRespOptions, Options, MakeUrlOptions, Callback, Data, Status, Method, Endpoint } from '../types';
 
 class Loader {
     baseLink: string;
-    options: LoaderOptions;
+    options: Partial<Options>;
 
-    constructor(baseLink: string, options: LoaderOptions) {
+    constructor(baseLink: string, options: Partial<Options>) {
         this.baseLink = baseLink;
         this.options = options;
     }
@@ -38,18 +28,18 @@ class Loader {
         return res;
     }
 
-    private makeUrl(options: PartialOptions, endpoint: Endpoint) {
-        const urlOptions: MakeUrlOptions = { ...this.options, ...options };
+    private makeUrl(options: Partial<Options>, endpoint: Endpoint) {
+        const urlOptions: Partial<MakeUrlOptions> = { ...this.options, ...options };
         let url = `${this.baseLink}${endpoint}?`;
 
         Object.keys(urlOptions).forEach((key) => {
-            url += `${key}=${urlOptions[key]}&`;
+            url += `${key}=${urlOptions[key as keyof MakeUrlOptions]}&`;
         });
 
         return url.slice(0, -1);
     }
 
-    private load(method: Method, endpoint: Endpoint, callback: Callback<Data>, options: PartialOptions = {}) {
+    private load(method: Method, endpoint: Endpoint, callback: Callback<Data>, options: Partial<Options> = {}) {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
             .then((res: Response) => res.json())

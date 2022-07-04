@@ -15,17 +15,17 @@ class AppController extends AppLoader {
     }
 
     getNews(e: Event, callback: Callback<DataNews>) {
-        let target = e.target;
-        const newsContainer = e.currentTarget;
+        let target = e.target as HTMLElement;
+        const newsContainer = e.currentTarget as HTMLElement;
 
         while (target !== newsContainer) {
-            if ((target as HTMLElement).classList.contains('source__item')) {
+            if (target.classList.contains('source__item')) {
                 // highlights the active button in Sources
                 if (this.activeSource !== undefined) {
                     this.activeSource.classList.remove('active');
                 }
-                (target as HTMLElement).classList.add('active');
-                this.activeSource = target as HTMLElement;
+                target.classList.add('active');
+                this.activeSource = target;
                 // closes the list sources when one is selected
                 (document.querySelector('.sources') as HTMLElement).classList.remove('active');
                 const sourceBtn = document.querySelector('#sourceBtn') as HTMLElement;
@@ -33,9 +33,9 @@ class AppController extends AppLoader {
                 // adds the name of the source to the filter button
                 sourceBtn.textContent = `Sourses (${this.activeSource.getAttribute('data-source-id')})`;
 
-                const sourceId = (target as HTMLElement).getAttribute('data-source-id') as string;
-                if ((newsContainer as HTMLElement).getAttribute('data-source') !== sourceId) {
-                    (newsContainer as HTMLElement).setAttribute('data-source', sourceId as string);
+                const sourceId = target.getAttribute('data-source-id') as string;
+                if (newsContainer.getAttribute('data-source') !== sourceId) {
+                    newsContainer.setAttribute('data-source', sourceId as string);
                     super.getResp(
                         {
                             endpoint: 'everything',
@@ -48,7 +48,7 @@ class AppController extends AppLoader {
                 }
                 return;
             }
-            target = (target as HTMLElement).parentNode;
+            target = target.parentNode as HTMLElement;
         }
     }
 }

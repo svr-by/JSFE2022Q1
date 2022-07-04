@@ -1,4 +1,4 @@
-interface Article {
+export interface Article {
     source: {
         id: string;
         name: string;
@@ -12,7 +12,7 @@ interface Article {
     content: string;
 }
 
-interface Source {
+export interface Source {
     id: string;
     name: string;
     description: string;
@@ -22,20 +22,20 @@ interface Source {
     country: string;
 }
 
-interface DataSources {
+export interface DataSources {
     status: string;
     sources: Source[];
 }
 
-interface DataNews {
+export interface DataNews {
     status: string;
     totalResults: number;
     articles: Article[];
 }
 
-interface Data extends DataSources, DataNews {}
+export type Data = DataSources & DataNews;
 
-interface Options {
+export interface Options {
     apiKey: string;
     category: string;
     language: string;
@@ -43,40 +43,20 @@ interface Options {
     sources: string;
 }
 
-type LoaderOptions = Pick<Options, 'apiKey'>;
-
-type PartialOptions = Partial<Options>;
-
-type GetRespOptions = {
+export type GetRespOptions = {
     endpoint: Endpoint;
-    options?: PartialOptions;
+    options?: Partial<Options>;
 };
 
-type MakeUrlOptions = { [key: string]: string };
+export type MakeUrlOptions = Record<keyof Options, string>;
 
-type Callback<T> = (data: T) => void;
+export type Callback<T> = (data: T) => void;
 
-type Method = 'GET' | 'POST';
+export type Method = 'GET' | 'POST';
 
-type Endpoint = 'sources' | 'everything';
+export type Endpoint = 'sources' | 'everything';
 
-enum Status {
+export enum Status {
     Unauthorized = 401,
     NotFound = 404,
 }
-
-export {
-    Article,
-    Source,
-    DataSources,
-    DataNews,
-    LoaderOptions,
-    GetRespOptions,
-    PartialOptions,
-    MakeUrlOptions,
-    Callback,
-    Data,
-    Status,
-    Method,
-    Endpoint,
-};
