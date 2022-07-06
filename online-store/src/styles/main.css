@@ -80,7 +80,7 @@ body {
   background-color: #EFC58B;
 }
 
-.start-wrapper {
+.start__wrapper {
   background-color: #ffffff;
   height: 100vh;
   display: grid;
@@ -206,4 +206,61 @@ body {
   letter-spacing: 0.03em;
   color: #EFC58B;
 }
+.categories__wrapper{
+  display: flex;
+  gap: 20px;
+  padding: 20px 0;
+  background-color: #ffffff;
+}
+.category {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 587px;
+  background-blend-mode: multiply;
+  background-color: rgba(39, 39, 39, 0.4);
+  transition: all 0.3s;
+}
+.category:hover {
+  background-color: rgba(39, 39, 39, 0.0);;
+}
+.category--men {
+  background-image: url(../assets/men.png);
+}
+.category--women {
+  background-image: url(../assets/women.png);
+}
+
+.category__link {
+  margin: 0;
+  text-align: center;
+  font-family: 'Futura PT';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 24px;
+  line-height: 31px;
+  color: #FFFFFF;
+  text-decoration: none;
+}
+.category__title {
+  margin: 0;
+  font-family: 'Forum';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 64px;
+  line-height: 71px;
+  letter-spacing: 0.03em;
+  color: #FFFFFF;
+}
+.category__title::after {
+  content: '';
+  display: block;
+  margin: 23px auto;
+  width: 130px;
+  height: 1px;
+  background-color: #FFFFFF;
+}
+
 
