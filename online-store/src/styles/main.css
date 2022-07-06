@@ -1,4 +1,26 @@
-html {
+/* Futura PT */
+@font-face {
+  font-family: "Futura PT";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../assets/fonts/FuturaPT-Light.ttf") format('truetype');
+}
+/* Forum */
+@font-face {
+  font-family: "Forum";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../assets/fonts/Forum-Regular.ttf") format('truetype');
+}
+/* Segoe UI */
+@font-face {
+  font-family: "Segoe UI";
+  font-style: italic;
+  font-weight: 400;
+  src: url("../assets/fonts/Segoe-UI-Italic.ttf") format('truetype');
+}
+
+html {  
   box-sizing: border-box;
   scroll-behavior: smooth;
 }
@@ -224,7 +246,8 @@ body {
   transition: all 0.3s;
 }
 .category:hover {
-  background-color: rgba(39, 39, 39, 0.0);;
+  background-color: rgba(39, 39, 39, 0.0);
+
 }
 .category--men {
   background-image: url(../assets/men.png);
