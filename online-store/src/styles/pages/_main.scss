@@ -1,4 +1,4 @@
-/* start styles start*/
+/* start styles of start section */
 .start__wrapper {
   background-color: $color-white;
   height: 100vh;
@@ -124,15 +124,88 @@
   letter-spacing: 0.03em;
   color: $color-yell;
 }
-/* start styles end*/
+/* end styles of start section */
 
 
-/* categories styles start*/
+/* start styles of categories section */
 .categories__wrapper{
   display: flex;
   gap: 20px;
-  padding: 20px 0;
+  padding: 20px 0 0;
   background-color: $color-white;
 }
 
-/* categories styles end*/
+/* end styles of categories section */
+
+
+/* start styles of location section*/
+.location__wrapper{
+  display: flex;
+  padding: 20px 0 0;
+  background-color: $color-white;
+}
+.location__field {
+  width: 50%;
+  padding: 0 11%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  color: $color-white;
+  background-color: $color-dark-l;
+}
+.location__title {
+  margin: 0 0 16px 0;
+  font-family: 'Forum';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 48px;
+  line-height: 53px;
+  letter-spacing: 0.03em;
+}
+.location__text {
+  margin: 0 0 60px 0;
+  font-family: 'Futura PT';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 23px;
+}
+.location__search {
+  display: flex;
+  width: 100%;
+  border-bottom: 1.8px solid $color-white;
+  padding-bottom: 10px;
+}
+.location__input {
+  width: 100%;
+  background: none;
+  border: none;
+  outline: none;
+  font-family: 'Futura PT';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 23px;
+  display: flex;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.4);
+}
+.location__btn {
+  width: 30px;
+  background-color: Transparent;
+  border: none;
+  background-image: url(../assets/img/arrow.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+
+}
+.location__map {
+  width: 50%;
+  height: 604px;
+  background-image: url(../assets/img/map.png);
+  cursor: pointer;
+}
+
+/* end styles of location section*/
