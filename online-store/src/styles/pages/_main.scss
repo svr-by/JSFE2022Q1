@@ -209,3 +209,50 @@
 }
 
 /* end styles of location section*/
+
+
+/* start styles of catalog section*/
+.catalog__wrapper {
+  display: grid;
+  grid-template-columns: 25% 1fr;
+  grid-template-rows: 60px auto;
+  gap: 20px;
+  padding: 20px 0 0;
+  background-color: $color-white;
+}
+.filter {
+  grid-column: 1 / 2;
+  grid-row: 1 / 3;
+  color: $color-white;
+  background-color: $color-dark-l;
+  padding: 0 20px;
+}
+.sorting{
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  background-color: $color-grey-xl;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+}
+.sorting__name {
+  font-family: 'Futura PT';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 23px;
+  color: $color-dark-l;
+  text-transform: uppercase;
+}
+.sorting__select {
+  margin-left: 20px;
+  height: 25px;
+  background: none;
+  border: 1px solid $color-grey-l;
+  outline: none;
+  color: $color-dark-xl;
+  text-transform: uppercase;
+}
+
+
+/* end styles of catalog section*/
