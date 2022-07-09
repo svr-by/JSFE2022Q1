@@ -9,6 +9,20 @@ export class AppView {
       const productElement = document.createElement("div") as HTMLElement;
       productElement.className = "product";
 
+      const productLabel = document.createElement("div") as HTMLElement;
+      productLabel.className = "product__labels";
+      if (productObj.isPopular) {
+        const labelPopular = document.createElement("div") as HTMLElement;
+        labelPopular.className = "label--popular";
+        productLabel.append(labelPopular);
+      }
+      productElement.append(productLabel);
+
+      const productStock = document.createElement("div") as HTMLElement;
+      productStock.className = "product__stock";
+      productStock.innerHTML = `Остаток: ${productObj.stock} шт`;
+      productElement.append(productStock);
+
       const imgWrapper = document.createElement("a") as HTMLAnchorElement;
       imgWrapper.className = "product__img-wrapper";
       imgWrapper.href = `${productObj.url}`;
@@ -38,16 +52,6 @@ export class AppView {
       productLink.append(productPrice);
 
       productElement.append(productLink);
-
-      const productLabel = document.createElement("div") as HTMLElement;
-      productLabel.className = "product__labels";
-      if (productObj.isPopular) {
-        const labelPopular = document.createElement("div") as HTMLElement;
-        labelPopular.className = "label--popular";
-        productLabel.append(labelPopular);
-      }
-
-      productElement.append(productLabel);
 
       productList.append(productElement);
     });

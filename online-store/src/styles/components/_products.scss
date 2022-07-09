@@ -12,6 +12,8 @@
   padding: 30px 30px 20px;
   flex-direction: column;
   background-color: $color-grey-xl;
+  font-family: 'Futura PT';
+  font-style: normal;
   
   &:hover {
     filter: drop-shadow(0px 0px 30px rgba(0, 0, 0, 0.25));
@@ -41,10 +43,7 @@
 }
 .product__title {
   margin: 0 0 9px 0;
-  font-family: 'Futura PT';
-  font-style: normal;
   font-weight: 600;
-  font-size: 16px;
   line-height: 21px;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -52,8 +51,6 @@
 }
 .product__desc {
   margin: 0 0 9px 0;
-  font-family: 'Futura PT';
-  font-style: normal;
   font-weight: 300;
   font-size: 18px;
   line-height: 23px;
@@ -83,4 +80,12 @@
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center;
+}
+.product__stock {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 5;
+  font-size: 14px;
+  text-transform: uppercase;
 }
