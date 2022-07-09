@@ -39,6 +39,16 @@ export class AppView {
 
       productElement.append(productLink);
 
+      const productLabel = document.createElement("div") as HTMLElement;
+      productLabel.className = "product__labels";
+      if (productObj.isPopular) {
+        const labelPopular = document.createElement("div") as HTMLElement;
+        labelPopular.className = "label--popular";
+        productLabel.append(labelPopular);
+      }
+
+      productElement.append(productLabel);
+
       productList.append(productElement);
     });
   }
