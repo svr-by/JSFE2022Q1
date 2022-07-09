@@ -13,6 +13,12 @@ class App {
 
   start() {
     this.view.drawProducts(data);
+
+    const sort = document.querySelector("#sortParams") as HTMLSelectElement;
+    sort.addEventListener("change", (e) => {
+      const sortParams = (e.target as HTMLOptionElement).value;
+      this.view.sortProducts(data, sortParams);
+    });
   }
 }
 

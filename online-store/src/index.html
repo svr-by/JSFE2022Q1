@@ -88,11 +88,12 @@
         <div class="filter"></div>
         <div class="sorting">
           <div class="sorting__name">Сортировка:</div>
-          <select name="sortFields" id="selectSortParams" class="sorting__select">
-            <option value="" class="sorting__option">Уменьшение цены</option>
-            <option value="">Увеличение цены</option>
-            <option value="">Название по возрастанию</option>
-            <option value="">Название по убыванию</option>
+          <select id="sortParams" class="sorting__select">
+            <option value="default">По умолчанию</option>
+            <option value="increasingPrice">Увеличение цены</option>
+            <option value="decreasingPrice">Уменьшение цены</option>
+            <option value="increasingName">Название по возрастанию</option>
+            <option value="decreasingName">Название по убыванию</option>
           </select>
         </div>
         <div class="product-list">
@@ -141,7 +142,7 @@
               <img src="assets/img/necklace-0005.png" alt="ring" class="product__img">
             </a>
             <a href="" class="product__link">
-              <h4 class="product__title">Колье FLY, HUBLOT</h4>
+              <h4 class="product__title">Подвеска FLY, HUBLOT</h4>
               <p class="product__desc">Белое золото, бриллианты</p>
               <p class="product__price">598 000 ₽</p>
             </a>

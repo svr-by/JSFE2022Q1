@@ -52,4 +52,24 @@ export class AppView {
       .join("")
       .concat(cur);
   }
+
+  sortProducts(data: Product[], sortParams: string) {
+    const newData = [...data];
+    switch (sortParams) {
+      case "increasingPrice":
+        newData.sort((a, b) => a.price - b.price);
+        break;
+      case "decreasingPrice":
+        newData.sort((a, b) => b.price - a.price);
+        break;
+      case "increasingName":
+        newData.sort((a, b) => (a.name > b.name ? 1 : -1));
+        break;
+      case "decreasingName":
+        newData.sort((a, b) => (a.name > b.name ? -1 : 1));
+        break;
+    }
+
+    this.drawProducts(newData);
+  }
 }
