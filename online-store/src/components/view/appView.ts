@@ -86,4 +86,81 @@ export class AppView {
 
     this.drawProducts(newData);
   }
+
+  drawFilters(data: Product[]) {
+    const brands: Set<string> = new Set();
+    const types: Set<string> = new Set();
+    const materials: Set<string> = new Set();
+
+    data.forEach((productObj) => {
+      brands.add(productObj.brand);
+      types.add(productObj.type);
+      productObj.materials.forEach((material) =>
+        materials.add(material.toLowerCase())
+      );
+    });
+
+    const filterContainer = document.querySelector(".filter") as HTMLElement;
+    filterContainer.innerHTML = "";
+
+    const filterTitle = document.createElement("h3") as HTMLElement;
+    filterTitle.className = "filter__title";
+    filterTitle.innerHTML = "Фильтр";
+    filterContainer.append(filterTitle);
+
+    const searchsBox = this.drawFilterBox("Поиск");
+    const searchInput = document.createElement("input") as HTMLInputElement;
+    searchInput.type = "search";
+    searchInput.placeholder = "Введите текст";
+    searchInput.autocomplete = "off";
+    searchInput.className = "f-box__search";
+    searchInput.name = "";
+    searchsBox.append(searchInput);
+    filterContainer.append(searchsBox);
+
+    const priceBox = this.drawFilterBox("Цена");
+    filterContainer.append(priceBox);
+
+    const brandsBox = this.drawFilterBox("Бренд", brands);
+    filterContainer.append(brandsBox);
+
+    const typesBox = this.drawFilterBox("Тип украшения", types);
+    filterContainer.append(typesBox);
+
+    const materialsBox = this.drawFilterBox("Материал", materials);
+    filterContainer.append(materialsBox);
+
+    const labels: Set<string> = new Set();
+    labels.add("Популярные товары");
+    const labelsBox = this.drawFilterBox("Особые категории", labels);
+    filterContainer.append(labelsBox);
+
+    const resetBtn = document.createElement("button") as HTMLButtonElement;
+    resetBtn.className = "f-box__btn";
+    resetBtn.innerHTML = "Сброс фильтров";
+    filterContainer.append(resetBtn);
+  }
+
+  drawFilterBox(title: string, data: Set<string> = new Set()) {
+    const filterBox = document.createElement("div") as HTMLElement;
+    filterBox.className = "f-box";
+    const filterBoxName = document.createElement("h4") as HTMLElement;
+    filterBoxName.className = "f-box__name";
+    filterBoxName.innerHTML = title;
+    filterBox.append(filterBoxName);
+    data.forEach((option) => {
+      const label = document.createElement("label") as HTMLLabelElement;
+      const input = document.createElement("input") as HTMLInputElement;
+      input.type = "checkbox";
+      input.name = "";
+      label.append(input);
+      const filterBoxOption = document.createElement("span") as HTMLSpanElement;
+      filterBoxOption.className = "f-box__option";
+      const capOption = option[0].toUpperCase() + option.slice(1).toLowerCase();
+      filterBoxOption.innerHTML = capOption;
+      label.append(filterBoxOption);
+      filterBox.append(label);
+    });
+    return filterBox;
+  }
 }
