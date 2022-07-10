@@ -3,20 +3,10 @@ import { AppView } from "../view/appView";
 import { data } from "../data";
 
 class App {
-  // controller: AppController;
-  view: AppView;
-
-  constructor() {
-    // this.controller = new AppController();
-    this.view = new AppView();
-  }
+  view: AppView = new AppView();
 
   start() {
-    this.view.drawProducts(data);
-
-    this.view.drawFilters(data);
-
-    this.view.drawSorting(data);
+    this.view.drawPage(data);
   }
 }
 
