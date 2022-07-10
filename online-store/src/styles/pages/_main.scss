@@ -257,11 +257,7 @@
 .f-box__option {
   margin-left: 10px;
 }
-// .f-box__search {
-//   width: 100%;
-//   display: flex;
 
-// }
 .f-box__search {
   width: 100%;
   outline: none;
@@ -275,6 +271,11 @@
   text-transform: uppercase;
   background-color: $color-dark-xl;
   cursor: pointer;
+  transition: all 0.3s;
+
+  &:hover {
+    background-color: $color-dark-l;
+  }
 }
 .sorting{
   grid-column: 2 / 3;

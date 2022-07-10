@@ -16,11 +16,7 @@ class App {
 
     this.view.drawFilters(data);
 
-    const sort = document.querySelector("#sortParams") as HTMLSelectElement;
-    sort.addEventListener("change", (e) => {
-      const sortParams = (e.target as HTMLOptionElement).value;
-      this.view.sortProducts(data, sortParams);
-    });
+    this.view.drawSorting(data);
   }
 }
 

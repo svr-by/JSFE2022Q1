@@ -67,6 +67,30 @@ export class AppView {
       .concat(cur);
   }
 
+  drawSorting(data: Product[]) {
+    const sortContainer = document.querySelector(".sorting") as HTMLElement;
+    sortContainer.innerHTML = `
+    <div class="sorting__name">Сортировка:</div>
+    <select id="sortParams" class="sorting__select">
+      <option value="default">По новизне</option>
+      <option value="increasingPrice">Цена, по возрастанию</option>
+      <option value="decreasingPrice">Цена, по убыванию</option>
+      <option value="increasingStock">Количество, по возрастанию</option>
+      <option value="decreasingStock">Количество, по убыванию</option>
+      <option value="increasingName">Название, от А до Я</option>
+      <option value="decreasingName">Название, от Я до А</option>
+    </select>
+    `;
+
+    const sortSelect = sortContainer.querySelector(
+      "#sortParams"
+    ) as HTMLSelectElement;
+    sortSelect.addEventListener("change", (e) => {
+      const sortParams = (e.target as HTMLOptionElement).value;
+      this.sortProducts(data, sortParams);
+    });
+  }
+
   sortProducts(data: Product[], sortParams: string) {
     const newData = [...data];
     switch (sortParams) {
@@ -75,6 +99,12 @@ export class AppView {
         break;
       case "decreasingPrice":
         newData.sort((a, b) => b.price - a.price);
+        break;
+      case "increasingStock":
+        newData.sort((a, b) => a.stock - b.stock);
+        break;
+      case "decreasingStock":
+        newData.sort((a, b) => b.stock - a.stock);
         break;
       case "increasingName":
         newData.sort((a, b) => (a.name > b.name ? 1 : -1));
