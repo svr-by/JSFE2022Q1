@@ -21,6 +21,13 @@ export class AppView {
       ".sorting__select"
     ) as HTMLSelectElement;
     sortSelect.addEventListener("change", () => this.filterProducts(data));
+
+    const checkboxes = document.querySelectorAll(".f-box__checkbox");
+    checkboxes.forEach((checkboxElement) =>
+      checkboxElement.addEventListener("change", () =>
+        this.filterProducts(data)
+      )
+    );
   }
 
   filterProducts(products: Product[]) {
@@ -41,6 +48,15 @@ export class AppView {
           });
         });
       });
+    }
+
+    const popularCheckbox = document.querySelector(
+      ".poular"
+    ) as HTMLInputElement;
+    if (popularCheckbox.checked) {
+      filteredProducts = filteredProducts.filter(
+        (product) => product.isPopular === true
+      );
     }
 
     const sortParams = (

@@ -53,7 +53,6 @@ export class Renderer {
     searchInput.name = "";
     searchsBox.append(searchInput);
     filterContainer.append(searchsBox);
-    // searchInput.addEventListener("input", () => this.searchFilter(data));
 
     const priceBox = this.drawFilterBox("Цена");
     filterContainer.append(priceBox);
@@ -69,7 +68,7 @@ export class Renderer {
 
     const labels: Set<string> = new Set();
     labels.add("Популярные товары");
-    const labelsBox = this.drawFilterBox("Особые категории", labels);
+    const labelsBox = this.drawFilterBox("Особые категории", labels, "poular");
     filterContainer.append(labelsBox);
 
     const resetBtn = document.createElement("button") as HTMLButtonElement;
@@ -78,7 +77,11 @@ export class Renderer {
     filterContainer.append(resetBtn);
   }
 
-  private drawFilterBox(title: string, data: Set<string> = new Set()) {
+  private drawFilterBox(
+    title: string,
+    data: Set<string> = new Set(),
+    filterClass = ""
+  ) {
     const filterBox = document.createElement("div") as HTMLElement;
     filterBox.className = "f-box";
     const filterBoxName = document.createElement("h4") as HTMLElement;
@@ -89,6 +92,8 @@ export class Renderer {
       const label = document.createElement("label") as HTMLLabelElement;
       const input = document.createElement("input") as HTMLInputElement;
       input.type = "checkbox";
+      input.className =
+        "f-box__checkbox" + (filterClass ? ` ${filterClass}` : "");
       input.name = "";
       label.append(input);
       const filterBoxOption = document.createElement("span") as HTMLSpanElement;
@@ -120,6 +125,7 @@ export class Renderer {
     if (productObj.isPopular) {
       const labelPopular = document.createElement("div") as HTMLElement;
       labelPopular.className = "label--popular";
+      labelPopular.title = "Популярный товар";
       productLabel.append(labelPopular);
     }
     productElement.append(productLabel);
