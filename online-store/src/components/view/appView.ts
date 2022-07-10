@@ -147,6 +147,7 @@ export class AppView {
     searchInput.name = "";
     searchsBox.append(searchInput);
     filterContainer.append(searchsBox);
+    searchInput.addEventListener("input", () => this.searchFilter(data));
 
     const priceBox = this.drawFilterBox("Цена");
     filterContainer.append(priceBox);
@@ -192,5 +193,27 @@ export class AppView {
       filterBox.append(label);
     });
     return filterBox;
+  }
+
+  searchFilter(data: Product[]) {
+    const searchInputValue = (
+      document.querySelector(".f-box__search") as HTMLInputElement
+    ).value;
+
+    const targetWords = searchInputValue.trim().toLowerCase().split(/\s+/);
+
+    const searchedProducts = data.filter((product) => {
+      const description = product.name
+        .concat(product.brand)
+        .toLowerCase()
+        .split(/\s+/);
+      return targetWords.every((targetWord) => {
+        return description.some((word) => {
+          return word.includes(targetWord);
+        });
+      });
+    });
+
+    this.drawProducts(searchedProducts);
   }
 }
