@@ -110,6 +110,11 @@ export class Renderer {
     const productList = document.querySelector(".product-list") as HTMLElement;
     productList.innerHTML = "";
 
+    if (data.length === 0) {
+      productList.innerHTML = "Извините, совпадений не обнаружено";
+      return;
+    }
+
     data.forEach((productObj) => {
       const productElement = this.drawProduct(productObj);
       productList.append(productElement);
