@@ -10,3 +10,5 @@ export interface Product {
   inCart: number;
   stock: number;
 }
+
+export type FilterParams = { popular?: boolean };

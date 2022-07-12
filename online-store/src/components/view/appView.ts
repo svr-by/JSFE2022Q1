@@ -1,17 +1,22 @@
 import { Product } from "../types";
-import { Renderer } from "./renderer";
+import { Layouts } from "./layouts/layouts";
+import { SortService } from "./services/SortService";
+import { SearchService } from "./services/SearchService";
+import { FilterService } from "./services/FilterService";
 
 export class AppView {
-  renderer: Renderer = new Renderer();
+  layouts = new Layouts();
+  sortService = new SortService();
+  searchService = new SearchService();
+  filterService = new FilterService();
 
-  drawPage(data: Product[]) {
-    this.renderer.drawLayout();
-    this.renderer.drawFilters(data);
-    this.renderer.drawProducts(data);
-    this.addFilterListeners(data);
+  createCatalog(data: Product[]) {
+    this.layouts.renderCatalog(data);
+    this.filterProducts(data);
+    this.addListeners(data);
   }
 
-  addFilterListeners(data: Product[]) {
+  addListeners(data: Product[]) {
     const searchInput = document.querySelector(
       ".f-box__search"
     ) as HTMLInputElement;
@@ -31,59 +36,79 @@ export class AppView {
   }
 
   filterProducts(products: Product[]) {
-    const searchInputValue = (
+    // let filteredProducts = [...products];
+
+    const searchedValue = (
       document.querySelector(".f-box__search") as HTMLInputElement
     ).value;
-    let filteredProducts = [...products];
-    if (searchInputValue) {
-      const targetWords = searchInputValue.trim().toLowerCase().split(/\s+/);
-      filteredProducts = products.filter((product) => {
-        const description = product.name
-          .concat(product.brand)
-          .toLowerCase()
-          .split(/\s+/);
-        return targetWords.every((targetWord) => {
-          return description.some((word) => {
-            return word.includes(targetWord);
-          });
-        });
-      });
-    }
+    let filteredProducts = this.searchService.search(products, searchedValue);
 
-    const popularCheckbox = document.querySelector(
-      ".poular"
-    ) as HTMLInputElement;
-    if (popularCheckbox.checked) {
-      filteredProducts = filteredProducts.filter(
-        (product) => product.isPopular === true
-      );
-    }
+    // localStorage.setItem("searchInputValue", searchInputValue);
+    // if (searchInputValue) {
+    //   const targetWords = searchInputValue.trim().toLowerCase().split(/\s+/);
+    //   filteredProducts = products.filter((product) => {
+    //     const description = product.name
+    //       .concat(product.brand)
+    //       .toLowerCase()
+    //       .split(/\s+/);
+    //     return targetWords.every((targetWord) => {
+    //       return description.some((word) => {
+    //         return word.includes(targetWord);
+    //       });
+    //     });
+    //   });
+    // }
+
+    // const filterParams: FilterParams = {};
+
+    const popularStatus = (
+      document.querySelector(".poular") as HTMLInputElement
+    ).checked;
+    filteredProducts = this.filterService.choosePopular(
+      filteredProducts,
+      popularStatus
+    );
+
+    // filterParams.popular = popularCheckbox.checked;
+
+    // localStorage.setItem(
+    // "filterParams",
+    // JSON.stringify({ popular: filterParams.popular })
+    // );
+
+    // if (popularStatus) {
+    //   filteredProducts = filteredProducts.filter(
+    //     (product) => product.isPopular === true
+    //   );
+    // }
 
     const sortParams = (
       document.querySelector(".sorting__select") as HTMLSelectElement
     ).value;
+    filteredProducts = this.sortService.sort(filteredProducts, sortParams);
 
-    switch (sortParams) {
-      case "increasingPrice":
-        filteredProducts.sort((a, b) => a.price - b.price);
-        break;
-      case "decreasingPrice":
-        filteredProducts.sort((a, b) => b.price - a.price);
-        break;
-      case "increasingStock":
-        filteredProducts.sort((a, b) => a.stock - b.stock);
-        break;
-      case "decreasingStock":
-        filteredProducts.sort((a, b) => b.stock - a.stock);
-        break;
-      case "increasingName":
-        filteredProducts.sort((a, b) => (a.name > b.name ? 1 : -1));
-        break;
-      case "decreasingName":
-        filteredProducts.sort((a, b) => (a.name > b.name ? -1 : 1));
-        break;
-    }
+    // localStorage.setItem("sortParams", sortParams);
+    // switch (sortParams) {
+    //   case "increasingPrice":
+    //     filteredProducts.sort((a, b) => a.price - b.price);
+    //     break;
+    //   case "decreasingPrice":
+    //     filteredProducts.sort((a, b) => b.price - a.price);
+    //     break;
+    //   case "increasingStock":
+    //     filteredProducts.sort((a, b) => a.stock - b.stock);
+    //     break;
+    //   case "decreasingStock":
+    //     filteredProducts.sort((a, b) => b.stock - a.stock);
+    //     break;
+    //   case "increasingName":
+    //     filteredProducts.sort((a, b) => (a.name > b.name ? 1 : -1));
+    //     break;
+    //   case "decreasingName":
+    //     filteredProducts.sort((a, b) => (a.name > b.name ? -1 : 1));
+    //     break;
+    // }
 
-    this.renderer.drawProducts(filteredProducts);
+    this.layouts.updateProducts(filteredProducts);
   }
 }
