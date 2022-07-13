@@ -1,10 +1,11 @@
-import { Product } from "../types";
+import { Product, ActiveElements } from "../types";
 import { Layouts } from "./layouts/layouts";
 import { SortService } from "./services/SortService";
 import { SearchService } from "./services/SearchService";
 import { FilterService } from "./services/FilterService";
 
 export class AppView {
+  elements: Partial<ActiveElements> = {};
   layouts = new Layouts();
   sortService = new SortService();
   searchService = new SearchService();
@@ -12,103 +13,50 @@ export class AppView {
 
   createCatalog(data: Product[]) {
     this.layouts.renderCatalog(data);
-    this.filterProducts(data);
-    this.addListeners(data);
+    this.init(data);
+    this.updateProducts(data);
   }
 
-  addListeners(data: Product[]) {
-    const searchInput = document.querySelector(
+  init(data: Product[]) {
+    this.elements.search = document.querySelector(
       ".f-box__search"
     ) as HTMLInputElement;
-    searchInput.addEventListener("input", () => this.filterProducts(data));
 
-    const sortSelect = document.querySelector(
+    this.elements.search.addEventListener("input", () =>
+      this.updateProducts(data)
+    );
+
+    this.elements.sort = document.querySelector(
       ".sorting__select"
     ) as HTMLSelectElement;
-    sortSelect.addEventListener("change", () => this.filterProducts(data));
+    this.elements.sort.addEventListener("change", () =>
+      this.updateProducts(data)
+    );
 
-    const checkboxes = document.querySelectorAll(".f-box__checkbox");
-    checkboxes.forEach((checkboxElement) =>
+    this.elements.checkboxes = document.querySelectorAll(".f-box__checkbox");
+    this.elements.checkboxes.forEach((checkboxElement) =>
       checkboxElement.addEventListener("change", () =>
-        this.filterProducts(data)
+        this.updateProducts(data)
       )
     );
   }
 
-  filterProducts(products: Product[]) {
-    // let filteredProducts = [...products];
-
-    const searchedValue = (
-      document.querySelector(".f-box__search") as HTMLInputElement
-    ).value;
-    let filteredProducts = this.searchService.search(products, searchedValue);
-
-    // localStorage.setItem("searchInputValue", searchInputValue);
-    // if (searchInputValue) {
-    //   const targetWords = searchInputValue.trim().toLowerCase().split(/\s+/);
-    //   filteredProducts = products.filter((product) => {
-    //     const description = product.name
-    //       .concat(product.brand)
-    //       .toLowerCase()
-    //       .split(/\s+/);
-    //     return targetWords.every((targetWord) => {
-    //       return description.some((word) => {
-    //         return word.includes(targetWord);
-    //       });
-    //     });
-    //   });
-    // }
-
-    // const filterParams: FilterParams = {};
-
-    const popularStatus = (
-      document.querySelector(".poular") as HTMLInputElement
-    ).checked;
-    filteredProducts = this.filterService.choosePopular(
-      filteredProducts,
-      popularStatus
+  updateProducts(products: Product[]) {
+    const searchedProducts = this.searchService.search(
+      products,
+      this.elements.search?.value || ""
     );
 
-    // filterParams.popular = popularCheckbox.checked;
+    const filteredProducts = this.filterService.filter(
+      searchedProducts,
+      this.elements.checkboxes as NodeListOf<HTMLInputElement>
+    );
 
-    // localStorage.setItem(
-    // "filterParams",
-    // JSON.stringify({ popular: filterParams.popular })
-    // );
+    const sortedProducts = this.sortService.sort(
+      filteredProducts,
+      this.elements.sort?.value || "default"
+    );
 
-    // if (popularStatus) {
-    //   filteredProducts = filteredProducts.filter(
-    //     (product) => product.isPopular === true
-    //   );
-    // }
-
-    const sortParams = (
-      document.querySelector(".sorting__select") as HTMLSelectElement
-    ).value;
-    filteredProducts = this.sortService.sort(filteredProducts, sortParams);
-
-    // localStorage.setItem("sortParams", sortParams);
-    // switch (sortParams) {
-    //   case "increasingPrice":
-    //     filteredProducts.sort((a, b) => a.price - b.price);
-    //     break;
-    //   case "decreasingPrice":
-    //     filteredProducts.sort((a, b) => b.price - a.price);
-    //     break;
-    //   case "increasingStock":
-    //     filteredProducts.sort((a, b) => a.stock - b.stock);
-    //     break;
-    //   case "decreasingStock":
-    //     filteredProducts.sort((a, b) => b.stock - a.stock);
-    //     break;
-    //   case "increasingName":
-    //     filteredProducts.sort((a, b) => (a.name > b.name ? 1 : -1));
-    //     break;
-    //   case "decreasingName":
-    //     filteredProducts.sort((a, b) => (a.name > b.name ? -1 : 1));
-    //     break;
-    // }
-
-    this.layouts.updateProducts(filteredProducts);
+    this.layouts.renderProducts(sortedProducts);
   }
 }

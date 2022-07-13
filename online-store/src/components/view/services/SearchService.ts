@@ -9,11 +9,9 @@ export class SearchService {
           .concat(product.brand)
           .toLowerCase()
           .split(/\s+/);
-        return targetWords.every((targetWord) => {
-          return description.some((word) => {
-            return word.includes(targetWord);
-          });
-        });
+        return targetWords.every((targetWord) =>
+          description.some((word) => word.includes(targetWord))
+        );
       });
     } else {
       return data;

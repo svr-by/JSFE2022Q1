@@ -11,4 +11,10 @@ export interface Product {
   stock: number;
 }
 
+export type ActiveElements = {
+  search: HTMLInputElement;
+  sort: HTMLSelectElement;
+  checkboxes: NodeListOf<HTMLInputElement>;
+};
+
 export type FilterParams = { popular?: boolean };

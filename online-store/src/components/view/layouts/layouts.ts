@@ -31,7 +31,7 @@ export class Layouts {
     filter.append(...this.filterLayouts.renderFilters(data));
   }
 
-  updateProducts(data: Product[]) {
+  renderProducts(data: Product[]) {
     const productList = document.querySelector(".product-list") as HTMLElement;
     productList.innerHTML = "";
 
@@ -39,6 +39,9 @@ export class Layouts {
       productList.innerHTML = "Извините, совпадений не обнаружено";
       return;
     }
-    productList.append(...this.productLayouts.renderProducts(data));
+    data.forEach((productObj) => {
+      const productElement = this.productLayouts.renderProduct(productObj);
+      productList.append(productElement);
+    });
   }
 }

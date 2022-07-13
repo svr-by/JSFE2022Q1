@@ -26,10 +26,10 @@ export class FilterLayouts {
     const priceBox = this.renderFilter("Цена");
     result.push(priceBox);
 
-    const brandsBox = this.renderFilter("Бренд", brands, "brands");
+    const brandsBox = this.renderFilter("Бренд", brands, "brand");
     result.push(brandsBox);
 
-    const typesBox = this.renderFilter("Тип украшения", types, "types");
+    const typesBox = this.renderFilter("Тип украшения", types, "type");
     result.push(typesBox);
 
     const materialsBox = this.renderFilter("Материал", materials, "materials");

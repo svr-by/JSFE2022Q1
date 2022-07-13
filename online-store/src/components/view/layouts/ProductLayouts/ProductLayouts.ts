@@ -1,16 +1,7 @@
 import { Product } from "../../../types";
 
 export class ProductLayouts {
-  renderProducts(data: Product[]) {
-    const result: Array<HTMLElement> = [];
-    data.forEach((productObj) => {
-      const productElement = this.renderProduct(productObj);
-      result.push(productElement);
-    });
-    return result;
-  }
-
-  private renderProduct(productObj: Product) {
+  renderProduct(productObj: Product) {
     const productElement = document.createElement("div") as HTMLElement;
     productElement.className = "product";
 
