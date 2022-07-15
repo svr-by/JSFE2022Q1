@@ -23,8 +23,11 @@ export class FilterLayouts {
     const searchs = this.renderSearch();
     result.push(searchs);
 
-    const priceBox = this.renderFilter("Цена");
-    result.push(priceBox);
+    const priceSlider = this.renderRangeFilter("Цена", "price");
+    result.push(priceSlider);
+
+    const stockSlider = this.renderRangeFilter("Количество", "stock");
+    result.push(stockSlider);
 
     const brandsBox = this.renderFilter("Бренд", brands, "brand");
     result.push(brandsBox);
@@ -86,5 +89,29 @@ export class FilterLayouts {
       filterBox.append(label);
     });
     return filterBox;
+  }
+
+  private renderRangeFilter(title: string, prop: keyof Product) {
+    const sliderBox = this.renderFilter(title);
+    const srangeSlider = document.createElement("div") as HTMLElement;
+    srangeSlider.className = "range__slider";
+    const range = document.createElement("div") as HTMLElement;
+    range.id = `${prop}Range`;
+    srangeSlider.append(range);
+    sliderBox.append(srangeSlider);
+    const sliderInputs = document.createElement("div") as HTMLElement;
+    sliderInputs.className = "range__values";
+    const inputMin = document.createElement("input") as HTMLInputElement;
+    inputMin.className = "range__input";
+    inputMin.type = "number";
+    inputMin.id = `${prop}Min`;
+    sliderInputs.append(inputMin);
+    const inputMax = document.createElement("input") as HTMLInputElement;
+    inputMax.className = "range__input";
+    inputMax.type = "number";
+    inputMax.id = `${prop}Max`;
+    sliderInputs.append(inputMax);
+    sliderBox.append(sliderInputs);
+    return sliderBox;
   }
 }

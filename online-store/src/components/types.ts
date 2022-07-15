@@ -15,6 +15,10 @@ export type ActiveElements = {
   search: HTMLInputElement;
   sort: HTMLSelectElement;
   checkboxes: NodeListOf<HTMLInputElement>;
+  priceSlider: HTMLElement;
+  priceInputs: HTMLInputElement[];
+  stockSlider: HTMLElement;
+  stockInputs: HTMLInputElement[];
 };
 
 export type FilterParams = { popular?: boolean };
