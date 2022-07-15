@@ -1,10 +1,19 @@
-import { Product } from "../../types";
+import { Product, ActiveElements } from "../../types";
 
 export class FilterService {
-  filter(products: Product[], checkboxes: NodeListOf<HTMLInputElement>) {
-    if (checkboxes.length !== 0 && checkboxes !== undefined) {
+  filter(products: Product[], elements: Partial<ActiveElements>) {
+    const priceInputs = elements.priceInputs;
+    const productsByPrice = this.filterRange(products, priceInputs, "price");
+    const stockInputs = elements.stockInputs;
+    const productsByStock = this.filterRange(
+      productsByPrice,
+      stockInputs,
+      "stock"
+    );
+    const checkboxes = elements.checkboxes;
+    if (checkboxes?.length !== 0 && checkboxes !== undefined) {
       const arrayNodes = Array.from(checkboxes);
-      const brands = this.filterGroup(products, arrayNodes, "brand");
+      const brands = this.filterGroup(productsByStock, arrayNodes, "brand");
       const types = this.filterGroup(brands, arrayNodes, "type");
       const material = this.filterGroup(types, arrayNodes, "materials");
       const result = this.filterPopular(material, arrayNodes);
@@ -34,6 +43,23 @@ export class FilterService {
           targetOptions.includes((word as string).toLowerCase())
         );
       });
+    } else {
+      return data;
+    }
+  }
+
+  filterRange(
+    data: Product[],
+    inputs: Array<HTMLInputElement> | undefined,
+    prop: keyof Product
+  ) {
+    if (inputs) {
+      const [minInput, maxInput] = inputs;
+      return data.filter(
+        (product) =>
+          product[prop] >= parseInt(minInput.value) &&
+          product[prop] <= parseInt(maxInput.value)
+      );
     } else {
       return data;
     }

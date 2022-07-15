@@ -1,6 +1,7 @@
 import { Product, ActiveElements } from "../types";
 import { Layouts } from "./layouts/layouts";
-import { Services } from "./services/services";
+import { Services } from "./services/Services";
+import * as noUiSlider from "nouislider";
 
 export class AppView {
   elements: Partial<ActiveElements> = {};
@@ -26,6 +27,10 @@ export class AppView {
       this.elements.priceSlider,
       this.elements.priceInputs
     );
+    (this.elements.priceSlider as noUiSlider.target).noUiSlider?.on(
+      "change",
+      () => this.updateProducts(data)
+    );
 
     this.elements.stockSlider = document.getElementById(
       "stockRange"
@@ -39,11 +44,14 @@ export class AppView {
       this.elements.stockSlider,
       this.elements.stockInputs
     );
+    (this.elements.stockSlider as noUiSlider.target).noUiSlider?.on(
+      "change",
+      () => this.updateProducts(data)
+    );
 
     this.elements.search = document.querySelector(
       ".f-box__search"
     ) as HTMLInputElement;
-
     this.elements.search.addEventListener("input", () =>
       this.updateProducts(data)
     );
@@ -56,10 +64,11 @@ export class AppView {
     );
 
     this.elements.checkboxes = document.querySelectorAll(".f-box__checkbox");
-    this.elements.checkboxes.forEach((checkboxElement) =>
-      checkboxElement.addEventListener("change", () =>
-        this.updateProducts(data)
-      )
+
+    const filter = document.querySelector(".filter");
+    const inpust = filter?.querySelectorAll("input:not(.f-box__search)");
+    inpust?.forEach((input) =>
+      input.addEventListener("change", () => this.updateProducts(data))
     );
   }
 
@@ -71,7 +80,7 @@ export class AppView {
 
     const filteredProducts = this.services.filterService.filter(
       searchedProducts,
-      this.elements.checkboxes as NodeListOf<HTMLInputElement>
+      this.elements
     );
 
     const sortedProducts = this.services.sortService.sort(
