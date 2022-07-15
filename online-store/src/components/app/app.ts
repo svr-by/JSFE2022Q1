@@ -1,6 +1,6 @@
 // import AppController from "../controller/controller";
-import { AppView } from "../view/appView";
-import { data } from "../data/data";
+import { AppView } from '../view/appView';
+import { data } from '../data/data';
 
 class App {
   view: AppView = new AppView();

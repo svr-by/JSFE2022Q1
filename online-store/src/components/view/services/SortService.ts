@@ -1,24 +1,24 @@
-import { Product } from "../../types";
+import { Product } from '../../types';
 
 export class SortService {
   sort(data: Product[], param: string) {
     switch (param) {
-      case "increasingPrice":
+      case 'increasingPrice':
         data.sort((a, b) => a.price - b.price);
         break;
-      case "decreasingPrice":
+      case 'decreasingPrice':
         data.sort((a, b) => b.price - a.price);
         break;
-      case "increasingStock":
+      case 'increasingStock':
         data.sort((a, b) => a.stock - b.stock);
         break;
-      case "decreasingStock":
+      case 'decreasingStock':
         data.sort((a, b) => b.stock - a.stock);
         break;
-      case "increasingName":
+      case 'increasingName':
         data.sort((a, b) => (a.name > b.name ? 1 : -1));
         break;
-      case "decreasingName":
+      case 'decreasingName':
         data.sort((a, b) => (a.name > b.name ? -1 : 1));
         break;
     }

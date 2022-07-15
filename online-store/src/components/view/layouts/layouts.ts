@@ -1,13 +1,13 @@
-import { Product } from "../../types";
-import { ProductLayouts } from "./ProductLayouts/ProductLayouts";
-import { FilterLayouts } from "./FilterLayouts/FilterLayouts";
+import { Product } from '../../types';
+import { ProductLayouts } from './ProductLayouts/ProductLayouts';
+import { FilterLayouts } from './FilterLayouts/FilterLayouts';
 
 export class Layouts {
   productLayouts: ProductLayouts = new ProductLayouts();
   filterLayouts: FilterLayouts = new FilterLayouts();
 
   renderCatalog(data: Product[]) {
-    const page = document.querySelector(".catalog") as HTMLElement;
+    const page = document.querySelector('.catalog') as HTMLElement;
     page.innerHTML = `
     <div class="wrapper catalog__wrapper">
       <div class="filter"></div>
@@ -27,16 +27,16 @@ export class Layouts {
     </div>
     `;
 
-    const filter = document.querySelector(".filter") as HTMLElement;
+    const filter = document.querySelector('.filter') as HTMLElement;
     filter.append(...this.filterLayouts.renderFilters(data));
   }
 
   renderProducts(data: Product[]) {
-    const productList = document.querySelector(".product-list") as HTMLElement;
-    productList.innerHTML = "";
+    const productList = document.querySelector('.product-list') as HTMLElement;
+    productList.innerHTML = '';
 
     if (data.length === 0) {
-      productList.innerHTML = "Извините, совпадений не обнаружено";
+      productList.innerHTML = 'Извините, совпадений не обнаружено';
       return;
     }
     data.forEach((productObj) => {

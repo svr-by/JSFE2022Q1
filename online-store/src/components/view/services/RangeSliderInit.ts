@@ -1,14 +1,9 @@
-import { Product } from "../../types";
-import * as noUiSlider from "nouislider";
-import "nouislider/dist/nouislider.css";
+import { Product } from '../../types';
+import * as noUiSlider from 'nouislider';
+import 'nouislider/dist/nouislider.css';
 
 export class RangeSliderInit {
-  init(
-    data: Product[],
-    prop: keyof Product,
-    range: noUiSlider.target,
-    inputs: HTMLInputElement[]
-  ) {
+  init(data: Product[], prop: keyof Product, range: noUiSlider.target, inputs: HTMLInputElement[]) {
     const [inputMin, inputMax] = inputs;
     if (!range || !inputMin || !inputMax) return;
 
@@ -25,14 +20,14 @@ export class RangeSliderInit {
       step: 1,
     });
 
-    range.noUiSlider?.on("update", (values, handle) => {
+    range.noUiSlider?.on('update', (values, handle) => {
       inputs[handle].value = values[handle] as string;
     });
-    inputMin.addEventListener("change", function () {
+    inputMin.addEventListener('change', function () {
       range.noUiSlider?.set([this.value]);
     });
-    inputMax.addEventListener("change", function () {
-      range.noUiSlider?.set(["", this.value]);
+    inputMax.addEventListener('change', function () {
+      range.noUiSlider?.set(['', this.value]);
     });
   }
 }
