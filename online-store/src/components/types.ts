@@ -10,7 +10,6 @@ export interface Product {
   inCart: number;
   stock: number;
 }
-
 export type ActiveElements = {
   search: HTMLInputElement;
   sort: HTMLSelectElement;
@@ -20,5 +19,12 @@ export type ActiveElements = {
   stockSlider: HTMLElement;
   stockInputs: HTMLInputElement[];
 };
-
-export type FilterParams = { popular?: boolean };
+export enum Sorting {
+  increasingPrice = 'increasingPrice',
+  decreasingPrice = 'decreasingPrice',
+  increasingStock = 'increasingStock',
+  decreasingStock = 'decreasingStock',
+  increasingName = 'increasingName',
+  decreasingName = 'decreasingName',
+}
+export type FilterOptions = Record<keyof Product, string[] | boolean>;

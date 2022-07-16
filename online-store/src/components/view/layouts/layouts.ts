@@ -27,7 +27,7 @@ export class Layouts {
     </div>
     `;
 
-    const filter = document.querySelector('.filter') as HTMLElement;
+    const filter = page.querySelector('.filter') as HTMLElement;
     filter.append(...this.filterLayouts.renderFilters(data));
   }
 
