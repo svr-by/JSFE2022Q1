@@ -8,7 +8,7 @@ export class RangeSliderInit {
     const [inputMin, inputMax] = inputs;
     if (!range || !inputMin || !inputMax) return;
     // Determine the maximum and minimum values
-    const props = data.map((product) => product[prop] as number).sort();
+    const props = data.map((product) => product[prop] as number).sort((a, b) => a - b);
     const [minProp, maxProp] = [props[0], props[props.length - 1]];
     // Create slider
     noUiSlider.create(range, {

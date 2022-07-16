@@ -25,7 +25,7 @@ export class ProductLayouts {
     imgWrapper.href = `javascript:void(0)`;
     const productImg = document.createElement('img') as HTMLElement;
     productImg.className = 'product__img';
-    productImg.setAttribute('src', `${productObj.urlToImage}`);
+    productImg.setAttribute('src', `assets/img/${productObj.fileName}`);
     productImg.setAttribute('alt', `${productObj.type}`);
     imgWrapper.append(productImg);
     productElement.append(imgWrapper);

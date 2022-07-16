@@ -4,10 +4,10 @@ export interface Product {
   materials: string[];
   price: number;
   url: string;
-  urlToImage: string;
+  fileName: string;
   type: string;
   isPopular: boolean;
-  inCart: number;
+  id: string;
   stock: number;
 }
 export type ActiveElements = {
