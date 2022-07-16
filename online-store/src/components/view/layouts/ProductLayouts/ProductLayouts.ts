@@ -22,7 +22,7 @@ export class ProductLayouts {
 
     const imgWrapper = document.createElement('a') as HTMLAnchorElement;
     imgWrapper.className = 'product__img-wrapper';
-    imgWrapper.href = `${productObj.url}`;
+    imgWrapper.href = `javascript:void(0)`;
     const productImg = document.createElement('img') as HTMLElement;
     productImg.className = 'product__img';
     productImg.setAttribute('src', `${productObj.urlToImage}`);
@@ -32,7 +32,7 @@ export class ProductLayouts {
 
     const productLink = document.createElement('a') as HTMLAnchorElement;
     productLink.className = 'product__link';
-    productLink.href = `${productObj.url}`;
+    productLink.href = `javascript:void(0)`;
     const productTitle = document.createElement('h4') as HTMLElement;
     productTitle.className = 'product__title';
     productTitle.innerHTML = `${productObj.name}, ${productObj.brand}`;
