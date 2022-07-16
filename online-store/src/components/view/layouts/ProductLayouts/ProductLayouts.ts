@@ -45,7 +45,7 @@ export class ProductLayouts {
 
     const productPrice = document.createElement('p') as HTMLElement;
     productPrice.className = 'product__price';
-    productPrice.innerHTML = `${this.formatPrice(productObj.price, '₽')}`;
+    productPrice.innerHTML = `${this.formatPrice(productObj.price, 'руб.')}`;
     productLink.append(productPrice);
 
     productElement.append(productLink);

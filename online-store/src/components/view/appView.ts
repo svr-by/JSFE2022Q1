@@ -29,15 +29,15 @@ export class AppView {
     const filter = document.querySelector('.filter') as HTMLSelectElement;
     const inpust = filter.querySelectorAll('input:not(.f-box__search)');
     const resetFiltersBtn = document.getElementById('resetFilters') as HTMLInputElement;
-    this.getLocalParams();
     this.services.rangeSliderInit.init(data, 'price', this.elements.priceSlider, this.elements.priceInputs);
-    (this.elements.priceSlider as noUiSlider.target).noUiSlider?.on('change', () => this.updateProducts(data));
     this.services.rangeSliderInit.init(data, 'stock', this.elements.stockSlider, this.elements.stockInputs);
+    this.getLocalParams();
+    (this.elements.priceSlider as noUiSlider.target).noUiSlider?.on('change', () => this.updateProducts(data));
     (this.elements.stockSlider as noUiSlider.target).noUiSlider?.on('change', () => this.updateProducts(data));
     this.elements.search.addEventListener('input', () => this.updateProducts(data));
     this.elements.sort.addEventListener('change', () => this.updateProducts(data));
     inpust.forEach((input) => input.addEventListener('change', () => this.updateProducts(data)));
-    resetFiltersBtn.addEventListener('click', () => this.resetFilters(data, this.elements));
+    resetFiltersBtn.addEventListener('click', () => this.resetFilters(data));
   }
 
   updateProducts(products: Product[]) {
@@ -55,13 +55,15 @@ export class AppView {
     const filterOptions: FilterOptions = storageOptions ? JSON.parse(storageOptions) : null;
     if (filterOptions) {
       const props = Object.keys(filterOptions);
-      if (this.elements.priceInputs) {
-        this.elements.priceInputs[0].value = (filterOptions.price as string[])[0];
-        this.elements.priceInputs[1].value = (filterOptions.price as string[])[1];
+      if (this.elements.priceInputs && this.elements.priceSlider) {
+        const minValue = (filterOptions.price as string[])[0];
+        const maxValue = (filterOptions.price as string[])[1];
+        (this.elements.priceSlider as noUiSlider.target).noUiSlider?.set([minValue, maxValue]);
       }
-      if (this.elements.stockInputs) {
-        this.elements.stockInputs[0].value = (filterOptions.stock as string[])[0];
-        this.elements.stockInputs[1].value = (filterOptions.stock as string[])[1];
+      if (this.elements.stockInputs && this.elements.stockSlider) {
+        const minValue = (filterOptions.stock as string[])[0];
+        const maxValue = (filterOptions.stock as string[])[1];
+        (this.elements.stockSlider as noUiSlider.target).noUiSlider?.set([minValue, maxValue]);
       }
       this.elements.checkboxes?.forEach((checkbox) => {
         const checkboxProp = props.find((prop) => checkbox.classList.contains(prop)) as keyof Product;
@@ -75,8 +77,8 @@ export class AppView {
     }
   }
 
-  private resetFilters(products: Product[], elements: Partial<ActiveElements>) {
-    this.services.resetService.clearFilters(elements);
+  private resetFilters(products: Product[]) {
+    this.services.resetService.clearFilters(this.elements);
     this.updateProducts(products);
   }
 }
