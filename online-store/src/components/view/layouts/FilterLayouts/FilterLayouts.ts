@@ -34,6 +34,7 @@ export class FilterLayouts {
     const labelsBox = this.renderFilter('Особые категории', labels, 'poular');
     result.push(labelsBox);
     const resetBtn = document.createElement('button') as HTMLButtonElement;
+    resetBtn.id = 'resetFilters';
     resetBtn.className = 'f-box__btn';
     resetBtn.innerHTML = 'Сброс фильтров';
     result.push(resetBtn);

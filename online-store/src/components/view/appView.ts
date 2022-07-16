@@ -28,9 +28,8 @@ export class AppView {
     this.elements.checkboxes = document.querySelectorAll('.f-box__checkbox');
     const filter = document.querySelector('.filter') as HTMLSelectElement;
     const inpust = filter.querySelectorAll('input:not(.f-box__search)');
-
-    this.getLocalStorageParams();
-
+    const resetFiltersBtn = document.getElementById('resetFilters') as HTMLInputElement;
+    this.getLocalParams();
     this.services.rangeSliderInit.init(data, 'price', this.elements.priceSlider, this.elements.priceInputs);
     (this.elements.priceSlider as noUiSlider.target).noUiSlider?.on('change', () => this.updateProducts(data));
     this.services.rangeSliderInit.init(data, 'stock', this.elements.stockSlider, this.elements.stockInputs);
@@ -38,6 +37,7 @@ export class AppView {
     this.elements.search.addEventListener('input', () => this.updateProducts(data));
     this.elements.sort.addEventListener('change', () => this.updateProducts(data));
     inpust.forEach((input) => input.addEventListener('change', () => this.updateProducts(data)));
+    resetFiltersBtn.addEventListener('click', () => this.resetFilters(data, this.elements));
   }
 
   updateProducts(products: Product[]) {
@@ -47,7 +47,7 @@ export class AppView {
     this.layouts.renderProducts(sortedProducts);
   }
 
-  private getLocalStorageParams() {
+  private getLocalParams() {
     if (this.elements.search) this.elements.search.value = localStorage.getItem('searchValue') || '';
     if (this.elements.sort) this.elements.sort.value = localStorage.getItem('sortOption') || 'default';
 
@@ -73,5 +73,10 @@ export class AppView {
         }
       });
     }
+  }
+
+  private resetFilters(products: Product[], elements: Partial<ActiveElements>) {
+    this.services.resetService.clearFilters(elements);
+    this.updateProducts(products);
   }
 }
