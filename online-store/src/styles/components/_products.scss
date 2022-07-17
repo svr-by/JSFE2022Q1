@@ -14,7 +14,7 @@
   position: relative;
   display: flex;
   height: 400px;
-  padding: 30px 30px 20px;
+  padding: 30px 15px 20px;
   flex-direction: column;
   background-color: $color-grey-xl;
     
@@ -61,14 +61,34 @@
   color: $color-dark-xl;
 }
 .product__price {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
   margin: 0;
   font-family: 'Segoe UI';
   font-style: italic;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 24px;
   letter-spacing: 0.03em;
+}
+.price {
   color: $color-yell;
+}
+.product__btn {
+  margin: 0;
+  border: none;
+  font-size: 14px;
+  line-height: 24px;
+  text-transform: uppercase;
+  color: $color-white;
+  background-color: $color-grey;
+  cursor: pointer;
+
+  &.active {
+    background-color: $color-yell;
+  }
 }
 .product__labels {
   position: absolute;
@@ -80,7 +100,7 @@
 .label--popular {
   width: 40px;
   height: 30px;
-  background-image: url(../assets/img/label-popular.png);
+  background-image: url(../assets/img/best-seller.png);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center;

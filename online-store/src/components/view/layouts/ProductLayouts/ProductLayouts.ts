@@ -37,18 +37,24 @@ export class ProductLayouts {
     productTitle.className = 'product__title';
     productTitle.innerHTML = `${productObj.name}, ${productObj.brand}`;
     productLink.append(productTitle);
-
     const productDesc = document.createElement('p') as HTMLElement;
     productDesc.className = 'product__desc';
-    productDesc.innerHTML = `${productObj.materials.join(', ')}`;
+    productDesc.innerHTML = `${productObj.materials.join(', ').toLowerCase()}`;
     productLink.append(productDesc);
-
-    const productPrice = document.createElement('p') as HTMLElement;
-    productPrice.className = 'product__price';
-    productPrice.innerHTML = `${this.formatPrice(productObj.price, 'руб.')}`;
-    productLink.append(productPrice);
-
     productElement.append(productLink);
+
+    const productPrice = document.createElement('div') as HTMLElement;
+    productPrice.className = 'product__price';
+    const price = document.createElement('span') as HTMLElement;
+    price.className = 'price';
+    price.innerHTML = `${this.formatPrice(productObj.price, 'руб.')}`;
+    productPrice.append(price);
+    const cart = document.createElement('button') as HTMLElement;
+    cart.className = 'product__btn ';
+    cart.innerHTML = `В корзину`;
+    productPrice.append(cart);
+
+    productElement.append(productPrice);
 
     return productElement;
   }
@@ -60,6 +66,7 @@ export class ProductLayouts {
       .map((char, ind) => (ind % 3 === 0 ? char + ' ' : char))
       .reverse()
       .join('')
-      .concat(cur);
+      .trim()
+      .concat(',00 ', cur);
   }
 }
