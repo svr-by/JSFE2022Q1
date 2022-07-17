@@ -33,15 +33,17 @@ export class AppView {
   }
 
   private addHandlers(data: Product[]) {
-    const filter = document.querySelector('.filter') as HTMLSelectElement;
-    const inpust = filter.querySelectorAll('input:not(.f-box__search)');
-    const resetFiltersBtn = document.getElementById('resetFilters') as HTMLInputElement;
     (this.elements.priceSlider as noUiSlider.target).noUiSlider?.on('change', () => this.updateProducts(data));
     (this.elements.stockSlider as noUiSlider.target).noUiSlider?.on('change', () => this.updateProducts(data));
     (this.elements.search as HTMLInputElement).addEventListener('input', () => this.updateProducts(data));
     (this.elements.sort as HTMLSelectElement).addEventListener('change', () => this.updateProducts(data));
+    const filter = document.querySelector('.filter') as HTMLSelectElement;
+    const inpust = filter.querySelectorAll('input:not(.f-box__search)');
     inpust.forEach((input) => input.addEventListener('change', () => this.updateProducts(data)));
+    const resetFiltersBtn = document.getElementById('resetFilters') as HTMLInputElement;
     resetFiltersBtn.addEventListener('click', () => this.resetFilters(data));
+    const cartBtn = document.querySelector('.cart') as HTMLElement;
+    cartBtn.addEventListener('click', () => this.services.modalService.showModal());
   }
 
   private updateProducts(products: Product[]) {

@@ -21,6 +21,7 @@ export type ActiveElements = {
 };
 export type ProductInCart = {
   name: string;
+  price: string;
   qty: number;
 };
 export enum Sorting {

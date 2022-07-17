@@ -5,6 +5,7 @@ import { FilterService } from './FilterService';
 import { RangeSliderInit } from './RangeSliderInit';
 import { ResetService } from './ResetService';
 import { CartService } from './CartService';
+import { ModalService } from './ModalService';
 
 export class Services {
   sortService = new SortService();
@@ -13,4 +14,5 @@ export class Services {
   rangeSliderInit = new RangeSliderInit();
   resetService = new ResetService();
   cartService = new CartService();
+  modalService = new ModalService();
 }

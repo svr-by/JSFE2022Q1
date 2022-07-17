@@ -1,0 +1,89 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(41, 41, 41, 0.6);
+}
+
+.modal__wrapper {
+  position: relative;
+  max-width: 90vw;
+  display: flex;
+  margin: 55px;
+  background-color: $color-white;
+  font-family: 'Futura PT';
+  font-style: normal;
+  color: $color-dark-l;
+  box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
+  animation-name: modal-show;
+  animation-duration: 0.5s;
+  
+  &:not(:hover) .btn__remove {
+      background-color: $color-grey;
+      border-color: $color-grey;
+  }
+}
+@keyframes modal-show {
+  0%   {transform: scale(0)}
+  100% {transform: scale(1)}
+}
+
+.modal__desc {
+  margin: 50px 20px;
+  display: flex;
+  flex-direction: column;
+}
+.modal__title {
+  margin: 0 0 10px 0;
+  font-size: 35px;
+  line-height: 130%;
+  font-weight: 400;
+}
+.modal__table {
+  font-family: 'Futura PT';
+  font-style: normal;
+  color: $color-dark-l;
+  font-size: 20px;
+  line-height: 115%;
+  font-weight: 400;
+  text-align: start;
+}
+.table__head {
+  text-align: start;
+  color: $color-dark-l;
+  background-color: $color-grey-xl;
+  line-height: 30px;
+}
+.table__body {
+  text-align: start;
+  color: $color-dark-xl;
+  line-height: 30px;
+}
+.prod__name {
+  text-align: start;
+  padding: 5px 25px 5px 0;
+}
+.prod__price {
+  text-align: center;
+  padding: 5px 15px;
+}
+
+.btn__remove {
+  position: absolute;
+  top: -35px;
+  right: -35px;
+  width: 30px;
+  height: 30px;
+  color: $color-dark;
+  background: none;
+  padding: 0;
+  border: 2px solid $color-dark;
+  cursor: pointer;
+  transition: all 0.3s;
+}

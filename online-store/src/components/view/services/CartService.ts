@@ -4,6 +4,7 @@ export class CartService {
   addInCart(event: Event) {
     const product = (event?.target as HTMLElement).closest('.product');
     const productTitle = product?.querySelector('.product__title') as HTMLElement;
+    const productPrice = product?.querySelector('.price') as HTMLElement;
     const productBtn = (event?.target as HTMLElement).closest('.product__btn');
 
     if (product !== null && productBtn !== null) {
@@ -17,6 +18,7 @@ export class CartService {
         productBtn.innerHTML = `В корзине`;
         cart.push({
           name: productTitle.innerText,
+          price: productPrice.innerText,
           qty: 1,
         });
       } else {
