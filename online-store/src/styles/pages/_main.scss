@@ -171,36 +171,6 @@
   font-size: 18px;
   line-height: 23px;
 }
-.location__search {
-  display: flex;
-  width: 100%;
-  border-bottom: 1.8px solid $color-white;
-  padding-bottom: 10px;
-}
-.location__input {
-  width: 100%;
-  background: none;
-  border: none;
-  outline: none;
-  font-family: 'Futura PT';
-  font-style: normal;
-  font-weight: 300;
-  font-size: 18px;
-  line-height: 23px;
-  display: flex;
-  align-items: center;
-  color: rgba(255, 255, 255, 0.4);
-}
-.location__btn {
-  width: 30px;
-  background-color: Transparent;
-  border: none;
-  background-image: url(../assets/img/arrow.png);
-  background-repeat: no-repeat;
-  background-position: center;
-  cursor: pointer;
-
-}
 .location__map {
   width: 50%;
   height: 604px;
@@ -227,6 +197,7 @@
   background-color: $color-grey-xl;
   font-family: "Futura PT";
   font-style: normal;
+  padding-bottom: 20px;
 }
 .filter__title {
   margin: 0 0 25px 0;

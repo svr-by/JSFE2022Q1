@@ -1,0 +1,30 @@
+.form {
+  display: flex;
+  width: 100%;
+  border-bottom: 1.8px solid $color-white;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+}
+.form__input {
+  width: 100%;
+  background: none;
+  border: none;
+  outline: none;
+  font-family: 'Futura PT';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 23px;
+  display: flex;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.4);
+}
+.form__btn {
+  width: 30px;
+  background-color: Transparent;
+  border: none;
+  background-image: url(../assets/img/arrow.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+}
