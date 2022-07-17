@@ -1,7 +1,7 @@
 import { Product } from '../../../types';
 
 export class ProductLayouts {
-  renderProduct(productObj: Product) {
+  renderProduct(productObj: Product, flag: boolean, handler: (event: Event) => void) {
     const productElement = document.createElement('div') as HTMLElement;
     productElement.className = 'product';
 
@@ -49,13 +49,13 @@ export class ProductLayouts {
     price.className = 'price';
     price.innerHTML = `${this.formatPrice(productObj.price, 'руб.')}`;
     productPrice.append(price);
-    const cart = document.createElement('button') as HTMLElement;
-    cart.className = 'product__btn ';
-    cart.innerHTML = `В корзину`;
-    productPrice.append(cart);
+    const cartBtn = document.createElement('button') as HTMLElement;
+    cartBtn.className = flag ? 'product__btn active' : 'product__btn';
+    cartBtn.innerHTML = flag ? 'В корзине' : 'В корзину';
+    cartBtn.addEventListener('click', handler);
+    productPrice.append(cartBtn);
 
     productElement.append(productPrice);
-
     return productElement;
   }
 

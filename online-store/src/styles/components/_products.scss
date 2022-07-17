@@ -69,7 +69,7 @@
   font-family: 'Segoe UI';
   font-style: italic;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 24px;
   letter-spacing: 0.03em;
 }
@@ -78,6 +78,7 @@
 }
 .product__btn {
   margin: 0;
+  padding: 5px 10px;
   border: none;
   font-size: 14px;
   line-height: 24px;
@@ -85,6 +86,10 @@
   color: $color-white;
   background-color: $color-grey;
   cursor: pointer;
+
+  &:hover {
+    background-color: $color-dark-xl;
+  }
 
   &.active {
     background-color: $color-yell;

@@ -19,6 +19,10 @@ export type ActiveElements = {
   stockSlider: HTMLElement;
   stockInputs: HTMLInputElement[];
 };
+export type ProductInCart = {
+  name: string;
+  qty: number;
+};
 export enum Sorting {
   increasingPrice = 'increasingPrice',
   decreasingPrice = 'decreasingPrice',
