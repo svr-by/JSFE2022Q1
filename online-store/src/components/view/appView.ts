@@ -11,10 +11,12 @@ export class AppView {
   createCatalog(data: Product[]) {
     this.layouts.renderCatalog(data);
     this.init(data);
+    this.getLocalParams();
+    this.addHandlers(data);
     this.updateProducts(data);
   }
 
-  init(data: Product[]) {
+  private init(data: Product[]) {
     this.elements.priceSlider = document.getElementById('priceRange') as HTMLElement;
     const priceMin = document.getElementById('priceMin') as HTMLInputElement;
     const priceMax = document.getElementById('priceMax') as HTMLInputElement;
@@ -23,24 +25,26 @@ export class AppView {
     const stockMin = document.getElementById('stockMin') as HTMLInputElement;
     const stockMax = document.getElementById('stockMax') as HTMLInputElement;
     this.elements.stockInputs = [stockMin, stockMax];
+    this.services.rangeSliderInit.init(data, 'price', this.elements.priceSlider, this.elements.priceInputs);
+    this.services.rangeSliderInit.init(data, 'stock', this.elements.stockSlider, this.elements.stockInputs);
     this.elements.search = document.querySelector('.f-box__search') as HTMLInputElement;
     this.elements.sort = document.querySelector('.sorting__select') as HTMLSelectElement;
     this.elements.checkboxes = document.querySelectorAll('.f-box__checkbox');
+  }
+
+  private addHandlers(data: Product[]) {
     const filter = document.querySelector('.filter') as HTMLSelectElement;
     const inpust = filter.querySelectorAll('input:not(.f-box__search)');
     const resetFiltersBtn = document.getElementById('resetFilters') as HTMLInputElement;
-    this.services.rangeSliderInit.init(data, 'price', this.elements.priceSlider, this.elements.priceInputs);
-    this.services.rangeSliderInit.init(data, 'stock', this.elements.stockSlider, this.elements.stockInputs);
-    this.getLocalParams();
     (this.elements.priceSlider as noUiSlider.target).noUiSlider?.on('change', () => this.updateProducts(data));
     (this.elements.stockSlider as noUiSlider.target).noUiSlider?.on('change', () => this.updateProducts(data));
-    this.elements.search.addEventListener('input', () => this.updateProducts(data));
-    this.elements.sort.addEventListener('change', () => this.updateProducts(data));
+    (this.elements.search as HTMLInputElement).addEventListener('input', () => this.updateProducts(data));
+    (this.elements.sort as HTMLSelectElement).addEventListener('change', () => this.updateProducts(data));
     inpust.forEach((input) => input.addEventListener('change', () => this.updateProducts(data)));
     resetFiltersBtn.addEventListener('click', () => this.resetFilters(data));
   }
 
-  updateProducts(products: Product[]) {
+  private updateProducts(products: Product[]) {
     const searchedProducts = this.services.searchService.search(products, this.elements.search);
     const filteredProducts = this.services.filterService.filter(searchedProducts, this.elements);
     const sortedProducts = this.services.sortService.sort(filteredProducts, this.elements.sort);
