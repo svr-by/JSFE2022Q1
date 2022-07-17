@@ -190,32 +190,44 @@
   padding: 20px 0;
   background-color: $color-white;
 }
-.sorting{
-  grid-column: 2 / 3;
-  grid-row: 1 / 2;
-  background-color: $color-grey-xl;
-  display: flex;
-  align-items: center;
-  padding: 0 20px;
-}
-.sorting__name {
-  font-family: 'Futura PT';
-  font-style: normal;
-  font-weight: 300;
-  font-size: 18px;
-  line-height: 23px;
-  color: $color-dark-l;
-  text-transform: uppercase;
-}
-.sorting__select {
-  margin-left: 20px;
-  height: 25px;
-  background: none;
-  border: 1px solid $color-grey-l;
-  outline: none;
-  color: $color-dark-xl;
-  text-transform: uppercase;
-}
-
 
 /* end styles of catalog section*/
+
+/* start styles of subscription section*/
+.subscription__wrapper {
+  display: flex;
+  background-color: $color-white;
+}
+.subscription__img {
+  width: 50%;
+  background-image: url(../assets/img/subs-img.png);
+  background-repeat: no-repeat;
+}
+.subscription__info {
+  margin: 0 auto;
+  padding: 180px 0;
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Futura PT';
+  font-style: normal;
+  align-items: flex-start;
+}
+.subscription__text {
+  margin: 0 0 30px 0;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 23px;
+  text-align: right;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: $color-dark-l;
+}
+.subscription__tel {
+  margin: 0 0 90px 0;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 28px;
+  color: $color-dark-xxl;
+}
+/* end styles of subscription section*/
