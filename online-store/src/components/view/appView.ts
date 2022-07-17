@@ -42,6 +42,8 @@ export class AppView {
     inpust.forEach((input) => input.addEventListener('change', () => this.updateProducts(data)));
     const resetFiltersBtn = document.getElementById('resetFilters') as HTMLInputElement;
     resetFiltersBtn.addEventListener('click', () => this.resetFilters(data));
+    const resetParamsBtn = document.getElementById('resetParams') as HTMLInputElement;
+    resetParamsBtn.addEventListener('click', () => this.resetParams(data));
     const cartBtn = document.querySelector('.cart') as HTMLElement;
     cartBtn.addEventListener('click', () => this.services.modalService.showModal());
   }
@@ -85,6 +87,13 @@ export class AppView {
 
   private resetFilters(products: Product[]) {
     this.services.resetService.clearFilters(this.elements);
+    this.updateProducts(products);
+  }
+
+  private resetParams(products: Product[]) {
+    this.services.resetService.clearFilters(this.elements);
+    localStorage.clear();
+    this.services.cartService.updateTotalQty();
     this.updateProducts(products);
   }
 }

@@ -1,0 +1,15 @@
+.button {
+  width: 90%;
+  height: 30px;
+  margin: 10px;
+  border: none;
+  color: $color-white;
+  text-transform: uppercase;
+  background-color: $color-dark-xl;
+  cursor: pointer;
+  transition: all 0.3s;
+
+  &:hover {
+    background-color: $color-dark-l;
+  }
+}

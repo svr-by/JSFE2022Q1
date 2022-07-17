@@ -1,0 +1,26 @@
+.sorting{
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  background-color: $color-grey-xl;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+}
+.sorting__name {
+  font-family: 'Futura PT';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 23px;
+  color: $color-dark-l;
+  text-transform: uppercase;
+}
+.sorting__select {
+  margin-left: 20px;
+  height: 25px;
+  background: none;
+  border: 1px solid $color-grey-l;
+  outline: none;
+  color: $color-dark-xl;
+  text-transform: uppercase;
+}

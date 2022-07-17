@@ -35,9 +35,14 @@ export class FilterLayouts {
     result.push(labelsBox);
     const resetBtn = document.createElement('button') as HTMLButtonElement;
     resetBtn.id = 'resetFilters';
-    resetBtn.className = 'f-box__btn';
+    resetBtn.className = 'button';
     resetBtn.innerHTML = 'Сброс фильтров';
     result.push(resetBtn);
+    const resetParams = document.createElement('button') as HTMLButtonElement;
+    resetParams.id = 'resetParams';
+    resetParams.className = 'button';
+    resetParams.innerHTML = 'Сбросить настройки';
+    result.push(resetParams);
     return result;
   }
   private renderSearch() {
