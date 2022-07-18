@@ -1,0 +1,233 @@
+/* start styles of start section */
+.start__wrapper {
+  background-color: $color-white;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 50% 147px 175px 1fr;
+  grid-template-rows: 1fr 170px 1fr;
+}
+.left {
+  width: 61%;
+  height: 100%;
+}
+.right {
+  background-color: $color-dark-l;
+  height: 100%;
+  grid-column: 3 / 5;
+  grid-row: 1 / 4;
+}
+
+.promo {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.promo__title {
+  margin: 0 0 50px 0;
+  font-family: 'Forum';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 64px;
+  line-height: 71px;
+  letter-spacing: 0.03em;
+  color: $color-dark-l;
+}
+.promo__text {
+  font-family: 'Segoe UI';
+  font-style: italic;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 24px;
+  margin: 0;
+  margin-right: -50px;
+}
+.promo__text::before {
+  content: '';
+  display: inline-block;
+  margin: 5px 38px 5px 0;
+  width: 130px;
+  height: 1px;
+  background-color: $color-dark-l;
+}
+.promo__link {
+  text-decoration: none;
+  color: $color-dark-l;
+}
+.promo-img {
+  grid-column: 2 / 4;
+  grid-row: 2 / 3;
+  width: 322px;
+}
+.languages {
+  grid-column: 1 / 2;
+  grid-row: 3 / 4;
+  place-self: end start;
+  padding: 0 0 80px 22%;
+
+}
+.languages__link {
+  margin-right: 10px;
+  text-decoration: none;
+  font-family: 'Futura PT';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 21px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: $color-grey-l;
+}
+.languages__link.active {
+  color: $color-dark-l;
+}
+.languages__link:hover {
+  text-decoration: underline;
+}
+.description {
+  grid-column: 3 / 5;
+  grid-row: 3 / 4;
+  place-self: end start;
+  padding: 0 0 60px 36%;
+}
+.description__link {
+  text-decoration: none;
+}
+.description__title {
+  font-family: 'Futura PT';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 21px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: $color-white;
+}
+
+.description__text {
+  font-family: 'Futura PT';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 23px;
+  color: $color-grey;
+}
+
+.description__price {
+  font-family: 'Segoe UI';
+  font-style: italic;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: 0.03em;
+  color: $color-yell;
+}
+/* end styles of start section */
+
+
+/* start styles of categories section */
+.categories__wrapper{
+  display: flex;
+  gap: 20px;
+  padding: 20px 0 0;
+  background-color: $color-white;
+}
+
+/* end styles of categories section */
+
+
+/* start styles of location section*/
+.location__wrapper{
+  display: flex;
+  padding: 20px 0 0;
+  background-color: $color-white;
+}
+.location__field {
+  width: 50%;
+  padding: 0 11%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  color: $color-white;
+  background-color: $color-dark-l;
+}
+.location__title {
+  margin: 0 0 16px 0;
+  font-family: 'Forum';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 48px;
+  line-height: 53px;
+  letter-spacing: 0.03em;
+}
+.location__text {
+  margin: 0 0 60px 0;
+  font-family: 'Futura PT';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 23px;
+}
+.location__map {
+  width: 50%;
+  height: 604px;
+  background-image: url(../assets/img/map.png);
+  cursor: pointer;
+}
+
+/* end styles of location section*/
+
+
+/* start styles of catalog section*/
+.catalog__wrapper {
+  display: grid;
+  grid-template-columns: 25% 1fr;
+  grid-template-rows: 60px auto;
+  gap: 20px;
+  padding: 20px 0;
+  background-color: $color-white;
+}
+
+/* end styles of catalog section*/
+
+/* start styles of subscription section*/
+.subscription__wrapper {
+  display: flex;
+  background-color: $color-white;
+}
+.subscription__img {
+  width: 50%;
+  background-image: url(../assets/img/subs-img.png);
+  background-repeat: no-repeat;
+}
+.subscription__info {
+  margin: 0 auto;
+  padding: 180px 0;
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Futura PT';
+  font-style: normal;
+  align-items: flex-start;
+}
+.subscription__text {
+  margin: 0 0 30px 0;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 23px;
+  text-align: right;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: $color-dark-l;
+}
+.subscription__tel {
+  margin: 0 0 90px 0;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 28px;
+  color: $color-dark-xxl;
+}
+/* end styles of subscription section*/

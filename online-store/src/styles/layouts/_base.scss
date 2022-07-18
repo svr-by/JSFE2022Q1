@@ -1,0 +1,28 @@
+html {  
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+* {
+  box-sizing: inherit;
+}
+
+body {
+  background-color: $color-dark;
+  margin: 0;
+  font-family: 'Arial';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 160%;
+
+  &.noscroll {
+    overflow-y: hidden;
+  }
+}
+
+.wrapper {
+  max-width: 1440px;
+  min-width: 300px;
+  margin: 0 auto;
+}
