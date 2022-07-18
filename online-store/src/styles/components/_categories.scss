@@ -40,6 +40,10 @@
   line-height: 71px;
   letter-spacing: 0.03em;
   color: $color-white;
+
+  @media screen and (max-width: $tablet) {
+    font-size: 48px;
+  }
 }
 .category__title::after {
   content: '';
