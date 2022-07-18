@@ -28,6 +28,7 @@ export class AppView {
     this.services.rangeSliderInit.init(data, 'price', this.elements.priceSlider, this.elements.priceInputs);
     this.services.rangeSliderInit.init(data, 'stock', this.elements.stockSlider, this.elements.stockInputs);
     this.elements.search = document.querySelector('.f-box__search') as HTMLInputElement;
+    this.elements.search.focus();
     this.elements.sort = document.querySelector('.sorting__select') as HTMLSelectElement;
     this.elements.checkboxes = document.querySelectorAll('.f-box__checkbox');
   }

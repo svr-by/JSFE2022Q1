@@ -9,7 +9,16 @@
   font-style: normal;
   color: $color-dark-l;
   font-size: 20px;
+
+  @media screen and (max-width: $tablet) {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  @media screen and (max-width: $mobile) {
+    grid-template-columns: 1fr;
+  }
 }
+
 .product {
   position: relative;
   display: flex;
