@@ -227,6 +227,28 @@
 
 /* end styles of catalog section*/
 
+
+/* start styles of socials section*/
+.socials__wrapper {
+  background-color: $color-dark-l;
+  padding: 100px 0 80px;
+}
+.socials__title {
+  margin: 0 0 80px 0;
+  padding: 0 10%;
+  font-family: 'Forum';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 48px;
+  line-height: 53px;
+  letter-spacing: 0.03em;
+  color: $color-white;
+}
+.btn-container {
+  padding: 0 10%;
+}
+/* end styles of socials section*/
+
 /* start styles of subscription section*/
 .subscription__wrapper {
   display: flex;
@@ -239,7 +261,7 @@
 }
 .subscription__info {
   margin: 0 auto;
-  padding: 180px 20px;
+  padding: 170px 20px;
   width: 350px;
   display: flex;
   flex-direction: column;
