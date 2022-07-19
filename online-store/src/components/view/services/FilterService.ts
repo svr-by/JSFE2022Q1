@@ -41,7 +41,8 @@ export class FilterService {
       const [minInput, maxInput] = inputs;
       (this.filterOptions[prop] as string[]) = [minInput.value, maxInput.value];
       return data.filter(
-        (product) => product[prop] >= parseInt(minInput.value) && product[prop] <= parseInt(maxInput.value)
+        (product) =>
+          (product[prop] as number) >= parseInt(minInput.value) && (product[prop] as number) <= parseInt(maxInput.value)
       );
     } else {
       return data;

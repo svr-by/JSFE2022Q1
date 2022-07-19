@@ -1,4 +1,3 @@
-// import { Product } from "../../types";
 import { SortService } from './SortService';
 import { SearchService } from './SearchService';
 import { FilterService } from './FilterService';

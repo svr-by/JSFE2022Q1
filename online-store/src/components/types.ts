@@ -3,7 +3,7 @@ export interface Product {
   brand: string;
   materials: string[];
   price: number;
-  url: string;
+  url?: string;
   fileName: string;
   type: string;
   isPopular: boolean;

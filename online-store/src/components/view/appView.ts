@@ -39,8 +39,8 @@ export class AppView {
     (this.elements.search as HTMLInputElement).addEventListener('input', () => this.updateProducts(data));
     (this.elements.sort as HTMLSelectElement).addEventListener('change', () => this.updateProducts(data));
     const filter = document.querySelector('.filter') as HTMLSelectElement;
-    const inpust = filter.querySelectorAll('input:not(.f-box__search)');
-    inpust.forEach((input) => input.addEventListener('change', () => this.updateProducts(data)));
+    const inputs = filter.querySelectorAll('input:not(.f-box__search)');
+    inputs.forEach((input) => input.addEventListener('change', () => this.updateProducts(data)));
     const resetFiltersBtn = document.getElementById('resetFilters') as HTMLInputElement;
     resetFiltersBtn.addEventListener('click', () => this.resetFilters(data));
     const resetParamsBtn = document.getElementById('resetParams') as HTMLInputElement;

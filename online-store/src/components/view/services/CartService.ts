@@ -7,11 +7,11 @@ export class CartService {
     const productPrice = product?.querySelector('.price') as HTMLElement;
     const productBtn = (event?.target as HTMLElement).closest('.product__btn');
 
-    if (product !== null && productBtn !== null) {
+    if (product && productBtn) {
       productBtn.classList.toggle('active');
       let cart: ProductInCart[] = [];
       const localCart = localStorage.getItem('cart');
-      if (localCart !== null) {
+      if (localCart) {
         cart = JSON.parse(localCart);
       }
       if (productBtn.classList.contains('active')) {
@@ -28,7 +28,7 @@ export class CartService {
       }
 
       const cartNumber = document.getElementById('cartNumber') as HTMLElement;
-      if (cartNumber !== null) {
+      if (cartNumber) {
         const totalQty = cart.reduce((sum, prod) => sum + prod.qty, 0);
         cartNumber.innerHTML = totalQty ? String(totalQty) : '';
       }
@@ -40,11 +40,11 @@ export class CartService {
   updateTotalQty() {
     let cart: ProductInCart[] = [];
     const localCart = localStorage.getItem('cart');
-    if (localCart !== null) {
+    if (localCart) {
       cart = JSON.parse(localCart);
     }
     const cartNumber = document.getElementById('cartNumber') as HTMLElement;
-    if (cartNumber !== null) {
+    if (cartNumber) {
       const totalQty = cart.reduce((sum, prod) => sum + prod.qty, 0);
       cartNumber.innerHTML = totalQty ? String(totalQty) : '';
     }
