@@ -7,10 +7,10 @@ export class FilterLayouts {
     const types: Set<string> = new Set();
     const materials: Set<string> = new Set();
 
-    data.forEach((productObj) => {
-      brands.add(productObj.brand);
-      types.add(productObj.type);
-      productObj.materials.forEach((material) => materials.add(material.toLowerCase()));
+    data.forEach((product) => {
+      brands.add(product.brand);
+      types.add(product.type);
+      product.materials.forEach((material) => materials.add(material.toLowerCase()));
     });
 
     const filterTitle = document.createElement('h3') as HTMLElement;

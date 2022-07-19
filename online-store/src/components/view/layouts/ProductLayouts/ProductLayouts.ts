@@ -32,7 +32,7 @@ export class ProductLayouts {
 
     const productLink = document.createElement('a') as HTMLAnchorElement;
     productLink.className = 'product__link';
-    productLink.href = `javascript:void(0)`;
+    productLink.href = productObj?.url ? `${productObj?.url}` : `javascript:void(0)`;
     const productTitle = document.createElement('h4') as HTMLElement;
     productTitle.className = 'product__title';
     productTitle.innerHTML = `${productObj.name}, ${productObj.brand}`;

@@ -8,9 +8,28 @@ const EslingPlugin = require('eslint-webpack-plugin');
 
 const baseConfig = {
   entry: path.resolve(__dirname, './src/index.ts'),
+  output: {
+    filename: 'index.js',
+    path: path.resolve(__dirname, './dist'),
+    assetModuleFilename: '[name][ext]',
+  },
   mode: 'development',
   module: {
     rules: [
+      {
+        test: /\.(png|svg|jpg|jpeg|gif|ico)$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: 'assets/img/[name][ext]',
+        },
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: 'assets/fonts/[name][ext]',
+        },
+      },
       {
         test: /\.css$/i,
         use: [MiniCssExtractPlugin.loader, 'css-loader'],
@@ -28,10 +47,6 @@ const baseConfig = {
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
-  },
-  output: {
-    filename: 'index.js',
-    path: path.resolve(__dirname, './dist'),
   },
   plugins: [
     new CleanWebpackPlugin(),

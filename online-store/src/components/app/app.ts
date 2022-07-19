@@ -1,4 +1,3 @@
-// import AppController from "../controller/controller";
 import { AppView } from '../view/appView';
 import { data } from '../data/data';
 
