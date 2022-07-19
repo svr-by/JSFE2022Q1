@@ -46,7 +46,7 @@ export class AppView {
     const resetParamsBtn = document.getElementById('resetParams') as HTMLInputElement;
     resetParamsBtn.addEventListener('click', () => this.resetParams(data));
     const cartBtn = document.querySelector('.cart') as HTMLElement;
-    cartBtn.addEventListener('click', () => this.services.modalService.showModal());
+    cartBtn.addEventListener('click', () => this.services.modalService.showCart());
   }
 
   private updateProducts(products: Product[]) {
