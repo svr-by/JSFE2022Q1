@@ -16,4 +16,7 @@ export class ResetService {
       checkboxes.forEach((checkbox) => (checkbox.checked = false));
     }
   }
+  resetSort(elements: Partial<ActiveElements>) {
+    if (elements.sort) elements.sort.value = 'default';
+  }
 }
