@@ -93,6 +93,7 @@ export class AppView {
 
   private resetParams(products: Product[]) {
     this.services.resetService.clearFilters(this.elements);
+    this.services.resetService.resetSort(this.elements);
     localStorage.clear();
     this.services.cartService.updateTotalQty();
     this.updateProducts(products);
