@@ -9,7 +9,11 @@
   cursor: pointer;
   transition: all 0.3s;
 
-  &:hover {
+  &:not(.disabled):hover {
     background-color: $color-dark-l;
+  }
+
+  &.disabled {
+    color: $color-dark-xxl;
   }
 }

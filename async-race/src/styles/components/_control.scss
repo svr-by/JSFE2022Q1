@@ -1,0 +1,24 @@
+.control {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 400px;
+  margin: 0 auto;
+  padding: 10px;
+  border: 2px solid $color-dark-xxl;
+  border-radius: 5%;
+}
+.control__title {
+  margin: 0;
+  color: $color-white;
+  text-align: center;
+  text-transform: uppercase;
+}
+.control__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+.control__btn {
+  font-size: 14px;
+}
