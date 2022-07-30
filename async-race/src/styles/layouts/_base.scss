@@ -18,10 +18,14 @@ body {
 }
 
 .wrapper {
+  width: 100%;
   max-width: 1440px;
   min-width: 320px;
   margin: 0 auto;
+  padding: 0 10px;
 }
+
+
 
 .title {
   color: $color-white;
