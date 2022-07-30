@@ -3,7 +3,7 @@
   flex-direction: column;
   gap: 10px;
   width: 400px;
-  margin: 0 auto;
+  margin: 0 auto 40px;
   padding: 10px;
   border: 2px solid $color-dark-xxl;
   border-radius: 5%;
@@ -18,7 +18,4 @@
   display: flex;
   justify-content: space-between;
   gap: 10px;
-}
-.control__btn {
-  font-size: 14px;
 }
