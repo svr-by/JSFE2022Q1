@@ -19,6 +19,14 @@ body {
 
 .wrapper {
   max-width: 1440px;
-  min-width: 300px;
+  min-width: 320px;
   margin: 0 auto;
+}
+
+.title {
+  color: $color-white;
+}
+
+.input-num {
+  width: 100px;
 }
