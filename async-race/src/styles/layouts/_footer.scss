@@ -1,0 +1,30 @@
+.footer__wrapper {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  color: $color-dark-xl;
+}
+
+.footer__link {
+  font-size: 14px;
+  text-decoration: none;
+  color: $color-dark-xl;
+  transition: all 0.3s;
+  
+  &:hover {
+    color: $color-grey;
+  }
+}
+
+.footer__img{
+  display: block;
+  width: 100px;
+  filter: invert(100%) brightness(30%);
+  transition: all 0.3s;
+  
+  &:hover {
+    filter: invert(100%) brightness(70%);
+  }
+}
