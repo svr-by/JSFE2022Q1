@@ -1,48 +1,19 @@
+import {
+  car,
+  getCarsData,
+  createCarBody,
+  raceParams,
+  raceStatus,
+  engineStatus,
+  winner,
+  getWinnersData,
+  updateWinnerBody,
+} from '../types/types';
+
 const base = 'http://127.0.0.1:3000';
 const garage = `${base}/garage`;
 const engine = `${base}/engine`;
 const winners = `${base}/winners`;
-
-type car = {
-  name: string;
-  color: string;
-  id: number;
-};
-
-type getCarsData = {
-  items: car[];
-  count: string | null;
-};
-
-type createCarBody = Pick<car, 'name' | 'color'>;
-
-type raceParams = {
-  velocity: number;
-  distance: number;
-};
-
-type raceStatus = {
-  success: boolean;
-};
-
-enum engineStatus {
-  started = 'started',
-  stopped = 'stopped',
-  drive = 'drive',
-}
-
-type winner = {
-  wins: number;
-  time: number;
-  id: number;
-};
-
-type getWinnersData = {
-  items: winner[];
-  count: string | null;
-};
-
-type updateWinnerBody = Pick<winner, 'wins' | 'time'>;
 
 export const getCars = async (page: number, limit = 10): Promise<getCarsData> => {
   const response = await fetch(`${garage}?_page=${page}&_limit=${limit}`);
