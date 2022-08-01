@@ -1,0 +1,19 @@
+.winners-page {
+  display: none;
+  padding-top: 40px;
+  color: $color-white;
+}
+
+.winners {
+  margin: 0 auto;
+  padding: 10px;
+  font-size: 18px;
+  border: 2px solid $color-dark-xxl;
+  border-radius: 5%;
+}
+
+.winners thead th {
+  padding: 0 10px;
+  text-transform: uppercase;
+  border-bottom: 2px dashed $color-white;
+}

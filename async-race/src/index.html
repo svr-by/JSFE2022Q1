@@ -21,33 +21,29 @@
     </div>
   </header>
   <main class="main">
-    <section>
-      <div class="wrapper">
+    <div class="wrapper">
+      <section class="garage-page">
         <div class="control">
           <h3 class="control__title">Control panel</h3>
           <div class="control__row">
-            <input type="text" class="control__input">
+            <input type="text" class="control__input" placeholder="car's name">
             <input type="color" class="control__color">
             <button class="button control__btn">Create</button>
           </div>
           <div class="control__row">
-            <input type="text" class="control__input">
-            <input type="color" class="control__color">
-            <button class="button control__btn disabled">Update</button>
+            <input type="text" class="control__input" disabled>
+            <input type="color" class="control__color" disabled>
+            <button class="button control__btn" disabled>Update</button>
           </div>
           <div class="control__row">
             <button class="button control__btn">Race</button>
-            <button class="button control__btn disabled">Reset</button>
+            <button class="button control__btn" disabled>Reset</button>
             <button class="button control__btn">Generate Cars</button>
           </div>
         </div>
-      </div>
-    </section>
-    <section>
-      <div class="wrapper">
         <div class="garage">
-          <h2 class="garage__title">Garage (4)</h2>
-          <h3 class="garage__page-num">Page #1</h3>
+          <h2 class="page-title">Garage (4)</h2>
+          <h3 class="page-num">Page #1</h3>
           <div class="race-track">
             <div class="track">
               <div class="track__control">
@@ -58,10 +54,10 @@
               <div class="track__road">
                 <div class="launcher">
                   <button class="track__btn">A</button>
-                  <button class="track__btn disabled">B</button>
+                  <button class="track__btn" disabled>B</button>
                 </div>
                 <div class="car"></div>
-                <div class="track__finish"></div>
+                <div class="finish"></div>
               </div>
             </div>
             <div class="track">
@@ -73,10 +69,10 @@
               <div class="track__road">
                 <div class="launcher">
                   <button class="track__btn">A</button>
-                  <button class="track__btn disabled">B</button>
+                  <button class="track__btn" disabled>B</button>
                 </div>
                 <div class="car"></div>
-                <div class="track__finish"></div>
+                <div class="finish"></div>
               </div>
             </div>
             <div class="track">
@@ -88,10 +84,10 @@
               <div class="track__road">
                 <div class="launcher">
                   <button class="track__btn">A</button>
-                  <button class="track__btn disabled">B</button>
+                  <button class="track__btn" disabled>B</button>
                 </div>
                 <div class="car"></div>
-                <div class="track__finish"></div>
+                <div class="finish"></div>
               </div>
             </div>
             <div class="track">
@@ -103,20 +99,46 @@
               <div class="track__road">
                 <div class="launcher">
                   <button class="track__btn">A</button>
-                  <button class="track__btn disabled">B</button>
+                  <button class="track__btn" disabled>B</button>
                 </div>
                 <div class="car"></div>
-                <div class="track__finish"></div>
+                <div class="finish"></div>
               </div>
             </div>
           </div>
-          <div class="garage__pagination">
-            <button class="button disabled">Prev</button>
-            <button class="button disabled">Next</button>
+          <div class="pagination">
+            <button class="button" disabled>Prev</button>
+            <button class="button" disabled>Next</button>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+      <section class="winners-page">
+        <h2 class="page-title page-title--winners">Winners (1)</h2>
+        <h3 class="page-num page-num--winners">Page #1</h3>
+        <table class="winners">
+          <thead class="winners__th">
+            <th>Number</th>
+            <th>Car</th>
+            <th>Name</th>
+            <th class="winners__btn">Wins</th>
+            <th class="winners__btn">Best time, s</th>
+          </thead>
+          <tbody>
+            <tr>
+              <th>1</th>
+              <th><div class="car"></div></th>
+              <th>Tesla</th>
+              <th>1</th>
+              <th>10</th>
+            </tr>
+          </tbody>
+        </table>
+        <div class="pagination pagination-winnners">
+          <button class="button" disabled>Prev</button>
+          <button class="button" disabled>Next</button>
+        </div>
+      </section>
+    </div>
   </main>
   <footer class="footer">
     <div class="wrapper footer__wrapper">

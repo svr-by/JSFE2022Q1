@@ -33,11 +33,25 @@ body {
   flex-grow: 1;
 }
 
+.page-title {
+  margin: 0 0 20px 0;
+  font-size: 32px;
+  color: $color-white;
+  text-transform: uppercase;
 
-// .title {
-//   color: $color-white;
-// }
+  &.page-title--winners {
+    text-align: center;
+  }
+}
 
-// .input-num {
-//   width: 100px;
-// }
+
+.page-num {
+  margin: 0 0 20px 0;
+  font-size: 24px;
+  color: $color-white;
+  text-transform: uppercase;
+
+  &.page-num--winners {
+    text-align: center;
+  }
+}
