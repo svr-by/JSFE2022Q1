@@ -1,12 +1,18 @@
+import { Button } from '../button/button';
+
 export class Pagination {
   elem: HTMLDivElement;
+  btnPrev: Button;
+  btnNext: Button;
 
   constructor() {
     this.elem = document.createElement('div');
     this.elem.classList.add('pagination');
-    this.elem.innerHTML = `
-      <button class="button" disabled>Prev</button>
-      <button class="button" disabled>Next</button>
-    `;
+    this.btnPrev = new Button('Prev', undefined, ['button']);
+    this.btnPrev.elem.disabled = true;
+    this.elem.append(this.btnPrev.elem);
+    this.btnNext = new Button('Next', undefined, ['button']);
+    this.btnNext.elem.disabled = true;
+    this.elem.append(this.btnNext.elem);
   }
 }

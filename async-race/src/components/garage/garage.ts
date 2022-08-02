@@ -3,11 +3,14 @@ import { Pagination } from '../pagination/paginstion';
 import { state } from '../../state/state';
 
 export class Garage {
-  elem = document.createElement('div');
-  track = new Track();
-  pagination = new Pagination();
+  elem: HTMLElement;
+  track: Track;
+  pagination: Pagination;
 
-  render = () => {
+  constructor() {
+    this.elem = document.createElement('div');
+    this.track = new Track();
+    this.pagination = new Pagination();
     this.elem.classList.add('garage');
     this.elem.innerHTML = `
       <h2 class="page-title">Garage (${state.garageTotalCars})</h2>
@@ -17,6 +20,9 @@ export class Garage {
       </div>
     `;
     this.elem.append(this.pagination.elem);
+  }
+
+  render = () => {
     const gargePage = document.querySelector('.garage-page');
     if (gargePage) gargePage.append(this.elem);
   };

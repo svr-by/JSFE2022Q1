@@ -2,7 +2,7 @@ import { car, extWinner } from '../types/types';
 
 class State {
   garagePage = 1;
-  garageTotalCars = 0;
+  garageTotalCars = 4;
   garageCars: car[] = [
     {
       name: 'Tesla',

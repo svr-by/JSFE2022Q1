@@ -4,11 +4,13 @@ import { Car } from '../garage/car';
 import { state } from '../../state/state';
 
 export class Winners {
-  elem = document.createElement('div');
-  pagination = new Pagination();
-  car = new Car();
+  elem: HTMLElement;
+  pagination: Pagination;
+  car: Car;
 
-  render = () => {
+  constructor() {
+    this.car = new Car();
+    this.elem = document.createElement('div');
     this.elem.classList.add('winners');
     this.elem.innerHTML = `
       <h2 class="page-title page-title--winners">Winners (${state.winnersTotalCars})</h2>
@@ -26,7 +28,11 @@ export class Winners {
         </tbody>
       </table>
     `;
+    this.pagination = new Pagination();
     this.elem.append(this.pagination.elem);
+  }
+
+  render = () => {
     const winnersPage = document.querySelector('.winners-page');
     if (winnersPage) winnersPage.append(this.elem);
   };
