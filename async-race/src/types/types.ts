@@ -32,8 +32,15 @@ export type winner = {
   id: number;
 };
 
+export type extWinner = {
+  wins: number;
+  time: number;
+  id: number;
+  car: car;
+};
+
 export type getWinnersData = {
-  items: winner[];
+  items: extWinner[];
   count: string | null;
 };
 

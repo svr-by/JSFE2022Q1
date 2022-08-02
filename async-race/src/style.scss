@@ -1,10 +1,10 @@
 @import 'scss/variables';
 @import 'scss/normalize';
 @import 'scss/base';
-@import 'components/button';
-@import 'components/control';
-@import 'components/garage';
-@import 'components/winners';
-@import 'components/header';
-@import 'components/pagination';
-@import 'components/footer';
+@import 'components/button/button';
+@import 'components/control/control';
+@import 'components/garage/garage';
+@import 'components/winners/winners';
+@import 'components/header/header';
+@import 'components/pagination/pagination';
+@import 'components/footer/footer';

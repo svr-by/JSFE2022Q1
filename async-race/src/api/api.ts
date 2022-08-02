@@ -82,8 +82,9 @@ const getSortOrder = (sort?: string, order?: string) => {
 
 export const getWinners = async (page: number, limit = 10, sort?: string, order?: string): Promise<getWinnersData> => {
   const response = await fetch(`${winners}?_page=${page}&_limit=${limit}${getSortOrder(sort, order)}`);
+  const winnersArr: winner[] = await response.json();
   return {
-    items: await response.json(),
+    items: await Promise.all(winnersArr.map(async (winner) => ({ ...winner, car: await getCar(winner.id) }))),
     count: response.headers.get('X-Total-Count'),
   };
 };
