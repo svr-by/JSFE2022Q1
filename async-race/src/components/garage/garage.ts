@@ -12,6 +12,9 @@ export class Garage {
     this.track = new Track();
     this.pagination = new Pagination();
     this.elem.classList.add('garage');
+  }
+
+  render = () => {
     this.elem.innerHTML = `
       <h2 class="page-title">Garage (${state.garageTotalCars})</h2>
       <h3 class="page-num">Page #${state.garagePage}</h3>
@@ -20,10 +23,9 @@ export class Garage {
       </div>
     `;
     this.elem.append(this.pagination.elem);
-  }
-
-  render = () => {
     const gargePage = document.querySelector('.garage-page');
     if (gargePage) gargePage.append(this.elem);
   };
 }
+
+export const garage = new Garage();

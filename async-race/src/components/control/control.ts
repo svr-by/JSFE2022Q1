@@ -1,5 +1,8 @@
+// import { app } from '../../app/app';
 import { Button } from '../button/button';
 import { Input } from '../input/input';
+import { API } from '../../api/api';
+import { services } from '../../services/services';
 
 export class Control {
   elem: HTMLElement;
@@ -54,5 +57,25 @@ export class Control {
     this.btnReset.appendToParent('#controlRace');
     this.btnReset.elem.disabled = true;
     this.btnGenerate.appendToParent('#controlRace');
+
+    this.addListeners();
+  };
+
+  addListeners = () => {
+    this.inpTextCreate.elem.addEventListener('input', () => {
+      this.btnCreate.elem.disabled = this.inpTextCreate.elem.value.length !== 0 ? false : true;
+    });
+
+    this.btnCreate.elem.addEventListener('click', async () => {
+      const car = {
+        name: this.inpTextCreate.elem.value,
+        color: this.inpColorCreate.elem.value,
+      };
+      await API.createCar(car);
+      await services.updateGarage();
+      this.inpTextCreate.elem.value = '';
+      this.btnCreate.elem.disabled = true;
+      this.inpColorCreate.elem.value = '#000000';
+    });
   };
 }

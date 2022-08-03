@@ -1,13 +1,16 @@
 import { Header } from '../components/header/header';
 import { Control } from '../components/control/control';
-import { Garage } from '../components/garage/garage';
+// import { Garage } from '../components/garage/garage';
+// import { garage } from '../components/garage/garage';
 import { Footer } from '../components/footer/footer';
 import { Winners } from '../components/winners/winners';
+
+import { services } from '../services/services';
 
 class App {
   header = new Header();
   control = new Control();
-  garage = new Garage();
+  // garage = new Garage();
   footer = new Footer();
   winners = new Winners();
 
@@ -16,7 +19,7 @@ class App {
     this.render();
   }
 
-  render() {
+  render = async () => {
     document.body.innerHTML = `
     <main class="main">
       <div class="wrapper">
@@ -27,10 +30,10 @@ class App {
     `;
     this.header.render();
     this.control.render();
-    this.garage.render();
+    await services.updateGarage();
     this.winners.render();
     this.footer.render();
-  }
+  };
 }
 
 export default App;

@@ -23,7 +23,7 @@ class APIservices {
     this.winners = `${this.base}/winners`;
   }
 
-  getCars = async (page: number, limit = 10): Promise<getCarsData> => {
+  getCars = async (page: number, limit = 7): Promise<getCarsData> => {
     const response = await fetch(`${this.garage}?_page=${page}&_limit=${limit}`);
     return {
       items: await response.json(),
