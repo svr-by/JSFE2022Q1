@@ -1,4 +1,4 @@
-export class Footer {
+class Footer {
   elem = document.createElement('footer');
 
   render = () => {
@@ -17,3 +17,5 @@ export class Footer {
     document.body.append(this.elem);
   };
 }
+
+export const footer = new Footer();

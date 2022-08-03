@@ -1,24 +1,52 @@
 import { car } from '../../types/types';
+import { services } from '../../services/services';
+import { Button } from '../button/button';
 import { Car } from './car';
 
 export class Track {
-  car = new Car();
+  elem: HTMLElement;
+  car: Car;
+  btnSelect: Button;
+  btnRemove: Button;
+  btnStart: Button;
+  btnStop: Button;
 
-  render = ({ id, name, color }: car) => `
-    <div class="track">
-      <div class="track__control">
-        <button class="button" id="select-car-${id}">Select</button>
-        <button class="button" id="remove-car-${id}">Remove</button>
-        <h4 class="track__name">${name}</h4>
-      </div>
-      <div class="track__road">
-        <div class="launcher">
-          <button class="track__btn start-btn" id="start-car-${id}">A</button>
-          <button class="track__btn stop-btn" id="stop-car-${id}" disabled>B</button>
-        </div>
-        <div class="car" id="car-${id}">${this.car.renderCarImg(color)}</div>
-        <div class="finish"></div>
-      </div>
-    </div>
-  `;
+  constructor() {
+    this.elem = document.createElement('div');
+    this.car = new Car();
+    this.btnSelect = new Button('Select', undefined, ['button']);
+    this.btnRemove = new Button('Remove', undefined, ['button']);
+    this.btnStart = new Button('A', undefined, ['track__btn']);
+    this.btnStop = new Button('B', undefined, ['track__btn']);
+  }
+
+  render = ({ id, name, color }: car) => {
+    this.elem.classList.add('track');
+    const trackControl = services.createElement('div', '', ['track__control']);
+    this.btnSelect.elem.dataset.carId = `${id}`;
+    this.btnRemove.elem.dataset.carId = `${id}`;
+    const trackName = services.createElement('h4', `${name}`, ['track__name']);
+    trackControl.append(this.btnSelect.elem);
+    trackControl.append(this.btnRemove.elem);
+    trackControl.append(trackName);
+    this.elem.append(trackControl);
+
+    const trackRoad = services.createElement('div', '', ['track__road']);
+    const launcher = services.createElement('div', '', ['launcher']);
+    this.btnStart.elem.dataset.carId = `${id}`;
+    this.btnStop.elem.dataset.carId = `${id}`;
+    this.btnStop.elem.disabled = true;
+    launcher.append(this.btnStart.elem);
+    launcher.append(this.btnStop.elem);
+    this.car.bodyColor = color;
+    this.car.renderCarImg();
+    this.car.elem.dataset.carId = `${id}`;
+    const finish = services.createElement('div', '', ['finish']);
+    trackRoad.append(launcher);
+    trackRoad.append(this.car.elem);
+    trackRoad.append(finish);
+    this.elem.append(trackRoad);
+
+    return this.elem;
+  };
 }

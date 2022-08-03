@@ -3,6 +3,14 @@ import { API } from '../api/api';
 import { state } from '../state/state';
 
 class Services {
+  createElement = (tag: string, text?: string, classes?: string[], id?: string) => {
+    const elem = document.createElement(`${tag}`);
+    elem.innerText = `${text}`;
+    if (classes) elem.classList.add(...classes);
+    if (id) elem.id = id;
+    return elem;
+  };
+
   updateGarage = async () => {
     const { items, count } = await API.getCars(state.garagePage);
     state.garageCars = items;

@@ -1,10 +1,9 @@
-// import { app } from '../../app/app';
 import { Button } from '../button/button';
 import { Input } from '../input/input';
 import { API } from '../../api/api';
 import { services } from '../../services/services';
 
-export class Control {
+class Control {
   elem: HTMLElement;
   inpTextCreate: Input;
   inpColorCreate: Input;
@@ -18,13 +17,6 @@ export class Control {
 
   constructor() {
     this.elem = document.createElement('div');
-    this.elem.classList.add('control');
-    this.elem.innerHTML = `
-      <h3 class="control__title">Control panel</h3>
-      <div class="control__row" id="controlCreate"></div>
-      <div class="control__row" id="controlUpdate"></div>
-      <div class="control__row" id="controlRace"></div>
-    `;
     this.inpTextCreate = new Input('text', 'inpTextCreate', ['control__input']);
     this.inpColorCreate = new Input('color', 'inpColorCreate', ['control__color']);
     this.btnCreate = new Button('Create', 'btnCreate', ['button', 'control__btn']);
@@ -37,6 +29,13 @@ export class Control {
   }
 
   render = () => {
+    this.elem.classList.add('control');
+    this.elem.innerHTML = `
+      <h3 class="control__title">Control panel</h3>
+      <div class="control__row" id="controlCreate"></div>
+      <div class="control__row" id="controlUpdate"></div>
+      <div class="control__row" id="controlRace"></div>
+    `;
     const gargePage = document.querySelector('.garage-page');
     if (gargePage) gargePage.append(this.elem);
 
@@ -61,7 +60,7 @@ export class Control {
     this.addListeners();
   };
 
-  addListeners = () => {
+  private addListeners = () => {
     this.inpTextCreate.elem.addEventListener('input', () => {
       this.btnCreate.elem.disabled = this.inpTextCreate.elem.value.length !== 0 ? false : true;
     });
@@ -79,3 +78,5 @@ export class Control {
     });
   };
 }
+
+export const control = new Control();

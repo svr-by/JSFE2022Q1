@@ -3,14 +3,18 @@ import { Pagination } from '../pagination/paginstion';
 import { Car } from '../garage/car';
 import { state } from '../../state/state';
 
-export class Winners {
+class Winners {
   elem: HTMLElement;
   pagination: Pagination;
   car: Car;
 
   constructor() {
     this.car = new Car();
+    this.pagination = new Pagination();
     this.elem = document.createElement('div');
+  }
+
+  render = () => {
     this.elem.classList.add('winners');
     this.elem.innerHTML = `
       <h2 class="page-title page-title--winners">Winners (${state.winnersTotalCars})</h2>
@@ -24,20 +28,16 @@ export class Winners {
           <th class="winners__btn">Best time, s</th>
         </thead>
         <tbody>
-          ${state.winnersCars.map((winner, ind) => this.renderWinner(winner, ind)).join('')}
+          ${state.winnersCars.map((winner, ind) => this.renderWinnerRow(winner, ind)).join('')}
         </tbody>
       </table>
     `;
-    this.pagination = new Pagination();
     this.elem.append(this.pagination.elem);
-  }
-
-  render = () => {
     const winnersPage = document.querySelector('.winners-page');
     if (winnersPage) winnersPage.append(this.elem);
   };
 
-  private renderWinner = (winner: extWinner, ind: number) => `
+  private renderWinnerRow = (winner: extWinner, ind: number) => `
     <tr>
       <th>${ind + 1}</th>
       <th>${this.car.renderCarImg(winner.car.color)}</th>
@@ -47,3 +47,5 @@ export class Winners {
     </tr>
   `;
 }
+
+export const winners = new Winners();
