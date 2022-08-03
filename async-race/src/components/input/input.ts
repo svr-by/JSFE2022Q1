@@ -1,9 +1,9 @@
-export class Button {
-  elem: HTMLButtonElement;
+export class Input {
+  elem: HTMLInputElement;
 
-  constructor(text: string, id?: string, classes?: string[]) {
-    this.elem = document.createElement('button');
-    this.elem.innerText = `${text}`;
+  constructor(type?: string, id?: string, classes?: string[]) {
+    this.elem = document.createElement('input');
+    if (type) this.elem.setAttribute('type', `${type}`);
     if (id) this.elem.id = id;
     if (classes) this.elem.classList.add(...classes);
   }
