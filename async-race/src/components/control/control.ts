@@ -36,17 +36,20 @@ export class Control {
   render = () => {
     const gargePage = document.querySelector('.garage-page');
     if (gargePage) gargePage.append(this.elem);
+
     this.inpTextCreate.appendToParent('#controlCreate');
-    this.inpTextCreate.elem.placeholder = `Car's name`;
+    this.inpTextCreate.elem.placeholder = `Input car's name`;
     this.inpColorCreate.appendToParent('#controlCreate');
     this.btnCreate.appendToParent('#controlCreate');
+    this.btnCreate.elem.disabled = true;
+
     this.inpTextUpdate.appendToParent('#controlUpdate');
     this.inpTextUpdate.elem.disabled = true;
     this.inpColorUpdate.appendToParent('#controlUpdate');
     this.inpColorUpdate.elem.disabled = true;
     this.btnUpdate.appendToParent('#controlUpdate');
     this.btnUpdate.elem.disabled = true;
-    this.btnRace.appendToParent('#controlRace');
+
     this.btnRace.appendToParent('#controlRace');
     this.btnReset.appendToParent('#controlRace');
     this.btnReset.elem.disabled = true;
