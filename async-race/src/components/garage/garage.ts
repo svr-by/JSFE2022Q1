@@ -13,6 +13,7 @@ class Garage {
   }
 
   render = () => {
+    this.elem.innerHTML = '';
     this.elem.classList.add('garage');
     const pageTitle = services.createElement('h2', `Garage (${state.garageTotalCars})`, ['page-title']);
     const pageNum = services.createElement('h3', `Page #${state.garagePage}`, ['page-num']);

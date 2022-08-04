@@ -47,6 +47,15 @@ export class Track {
     trackRoad.append(finish);
     this.elem.append(trackRoad);
 
+    this.addListeners();
+
     return this.elem;
+  };
+
+  private addListeners = () => {
+    this.btnRemove.elem.addEventListener('click', async (event) => {
+      const id = (event.target as HTMLElement).dataset.carId;
+      if (id) services.removeCar(+id);
+    });
   };
 }

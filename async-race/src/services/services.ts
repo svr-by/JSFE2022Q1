@@ -1,6 +1,7 @@
 import { garage } from '../components/garage/garage';
 import { API } from '../api/api';
 import { state } from '../state/state';
+import { createCarBody } from '../types/types';
 
 class Services {
   createElement = (tag: string, text?: string, classes?: string[], id?: string) => {
@@ -9,6 +10,17 @@ class Services {
     if (classes) elem.classList.add(...classes);
     if (id) elem.id = id;
     return elem;
+  };
+
+  createCar = async (car: createCarBody) => {
+    await API.createCar(car);
+    this.updateGarage();
+  };
+
+  removeCar = async (id: number) => {
+    await API.deleteCar(id);
+    //delete car from winners
+    this.updateGarage();
   };
 
   updateGarage = async () => {

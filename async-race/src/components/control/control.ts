@@ -1,6 +1,5 @@
 import { Button } from '../button/button';
 import { Input } from '../input/input';
-import { API } from '../../api/api';
 import { services } from '../../services/services';
 
 class Control {
@@ -70,8 +69,7 @@ class Control {
         name: this.inpTextCreate.elem.value,
         color: this.inpColorCreate.elem.value,
       };
-      await API.createCar(car);
-      await services.updateGarage();
+      await services.createCar(car);
       this.inpTextCreate.elem.value = '';
       this.btnCreate.elem.disabled = true;
       this.inpColorCreate.elem.value = '#000000';
