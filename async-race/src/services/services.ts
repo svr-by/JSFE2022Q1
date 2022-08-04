@@ -35,12 +35,23 @@ class Services {
       state.selectedCar = await API.getCar(+id);
       name = state.selectedCar.name;
       color = state.selectedCar.color;
+    } else {
+      state.selectedCar = null;
     }
     control.inpTextUpdate.elem.value = name;
     control.inpColorUpdate.elem.value = color;
     control.inpTextUpdate.elem.disabled = disabled;
     control.inpColorUpdate.elem.disabled = disabled;
     control.btnUpdate.elem.disabled = disabled;
+  };
+
+  updateCar = async (carProps: createCarBody) => {
+    if (state.selectedCar) {
+      await API.updateCar(state.selectedCar.id, carProps);
+    }
+    this.updateControl();
+    this.updateGarage();
+    state.selectedCar = null;
   };
 
   updateControl = () => {

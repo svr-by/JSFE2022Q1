@@ -25,10 +25,8 @@ export class Track {
     const trackControl = services.createElement('div', '', ['track__control']);
     this.btnSelect.elem.dataset.carId = `${id}`;
     this.btnRemove.elem.dataset.carId = `${id}`;
-    const trackName = services.createElement('h4', `${name}`, ['track__name']);
     trackControl.append(this.btnSelect.elem);
     trackControl.append(this.btnRemove.elem);
-    trackControl.append(trackName);
     this.elem.append(trackControl);
 
     const trackRoad = services.createElement('div', '', ['track__road']);
@@ -41,9 +39,12 @@ export class Track {
     this.car.bodyColor = color;
     this.car.renderCarImg();
     this.car.elem.dataset.carId = `${id}`;
+    const trackName = services.createElement('h4', `${name}`, ['track__name']);
     const finish = services.createElement('div', '', ['finish']);
+    finish.dataset.carId = `${id}`;
     trackRoad.append(launcher);
     trackRoad.append(this.car.elem);
+    trackRoad.append(trackName);
     trackRoad.append(finish);
     this.elem.append(trackRoad);
 
