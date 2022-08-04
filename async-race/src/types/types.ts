@@ -5,7 +5,7 @@ export type car = {
 };
 
 export type getCarsData = {
-  items: car[];
+  items: car[] | [];
   count: string | null;
 };
 

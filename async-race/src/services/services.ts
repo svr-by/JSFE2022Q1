@@ -1,4 +1,5 @@
 import { garage } from '../components/garage/garage';
+import { control } from '../components/control/control';
 import { API } from '../api/api';
 import { state } from '../state/state';
 import { createCarBody } from '../types/types';
@@ -14,20 +15,49 @@ class Services {
 
   createCar = async (car: createCarBody) => {
     await API.createCar(car);
+    this.updateControl();
     this.updateGarage();
   };
 
   removeCar = async (id: number) => {
     await API.deleteCar(id);
     //delete car from winners
+    this.updateControl();
     this.updateGarage();
+  };
+
+  selectCar = async (id: string | undefined) => {
+    let disabled = true;
+    let name = '';
+    let color = '#000000';
+    if (id) {
+      disabled = false;
+      state.selectedCar = await API.getCar(+id);
+      name = state.selectedCar.name;
+      color = state.selectedCar.color;
+    }
+    control.inpTextUpdate.elem.value = name;
+    control.inpColorUpdate.elem.value = color;
+    control.inpTextUpdate.elem.disabled = disabled;
+    control.inpColorUpdate.elem.disabled = disabled;
+    control.btnUpdate.elem.disabled = disabled;
+  };
+
+  updateControl = () => {
+    control.inpTextCreate.elem.value = '';
+    control.inpColorCreate.elem.value = '#000000';
+    control.btnCreate.elem.disabled = true;
+    control.inpTextUpdate.elem.value = '';
+    control.inpColorUpdate.elem.value = '#000000';
+    control.inpTextUpdate.elem.disabled = true;
+    control.inpColorUpdate.elem.disabled = true;
+    control.btnUpdate.elem.disabled = true;
   };
 
   updateGarage = async () => {
     const { items, count } = await API.getCars(state.garagePage);
     state.garageCars = items;
     if (count) state.garageTotalCars = +count;
-
     garage.render();
     this.updatePagination();
   };

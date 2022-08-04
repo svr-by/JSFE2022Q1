@@ -55,7 +55,20 @@ export class Track {
   private addListeners = () => {
     this.btnRemove.elem.addEventListener('click', async (event) => {
       const id = (event.target as HTMLElement).dataset.carId;
-      if (id) services.removeCar(+id);
+      if (id) await services.removeCar(+id);
+    });
+
+    this.btnSelect.elem.addEventListener('click', async (event) => {
+      let id = (event.target as HTMLElement).dataset.carId;
+      if (id) {
+        document.querySelectorAll('.select').forEach((btn) => {
+          if ((btn as HTMLElement).dataset.carId !== id) btn.classList.remove('select');
+        });
+        this.btnSelect.elem.classList.toggle('select');
+
+        id = this.btnSelect.elem.classList.contains('select') ? id : undefined;
+        await services.selectCar(id);
+      }
     });
   };
 }

@@ -10,9 +10,16 @@
   cursor: pointer;
   transition: all 0.3s;
 
-  &:not(:disabled):hover {
+  &:not(:disabled):hover,
+  &.select {
     background-color: $color-dark-l;
   }
+ 
+  &.select {
+    color: $color-orange;
+  }
+
+
 
   &:disabled {
     color: $color-dark-xxl;

@@ -3,7 +3,7 @@ import { car, extWinner } from '../types/types';
 class State {
   garagePageLimit = 7;
   garagePage = 1;
-  garageTotalCars = 4;
+  garageTotalCars = 0;
   garageCars: car[] = [];
 
   winnersPageLimit = 7;
@@ -21,6 +21,8 @@ class State {
       },
     },
   ];
+
+  selectedCar: car | null = null;
 
   view: 'garage' | 'winners' = 'garage';
   sort: 'id' | 'wins' | 'time' = 'wins';

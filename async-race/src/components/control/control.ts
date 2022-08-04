@@ -70,9 +70,9 @@ class Control {
         color: this.inpColorCreate.elem.value,
       };
       await services.createCar(car);
-      this.inpTextCreate.elem.value = '';
-      this.btnCreate.elem.disabled = true;
-      this.inpColorCreate.elem.value = '#000000';
+      // this.inpTextCreate.elem.value = '';
+      // this.btnCreate.elem.disabled = true;
+      // this.inpColorCreate.elem.value = '#000000';
     });
   };
 }

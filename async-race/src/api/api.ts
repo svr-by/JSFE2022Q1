@@ -24,11 +24,20 @@ class APIservices {
   }
 
   getCars = async (page: number, limit = 7): Promise<getCarsData> => {
-    const response = await fetch(`${this.garage}?_page=${page}&_limit=${limit}`);
-    return {
-      items: await response.json(),
-      count: response.headers.get('X-Total-Count'),
+    const response = await fetch(`${this.garage}?_page=${page}&_limit=${limit}`).catch((err: Error) =>
+      console.log(err.message)
+    );
+    let result: getCarsData = {
+      items: [],
+      count: null,
     };
+    if (response && response.ok) {
+      result = {
+        items: await response.json(),
+        count: response.headers.get('X-Total-Count'),
+      };
+    }
+    return result;
   };
 
   getCar = async (id: number): Promise<car> => {
