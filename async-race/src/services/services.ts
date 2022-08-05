@@ -16,14 +16,14 @@ class Services {
   createCar = async (car: createCarBody) => {
     await API.createCar(car);
     this.updateControl();
-    this.updateGarage();
+    await this.updateGarage();
   };
 
   removeCar = async (id: number) => {
     await API.deleteCar(id);
     //delete car from winners
     this.updateControl();
-    this.updateGarage();
+    await this.updateGarage();
   };
 
   selectCar = async (id: string | undefined) => {
@@ -50,7 +50,7 @@ class Services {
       await API.updateCar(state.selectedCar.id, carProps);
     }
     this.updateControl();
-    this.updateGarage();
+    await this.updateGarage();
     state.selectedCar = null;
   };
 
@@ -84,6 +84,19 @@ class Services {
     } else {
       garage.pagination.btnPrev.elem.disabled = true;
     }
+    //update for winners
+  };
+
+  renderNextPage = async () => {
+    state.garagePage += 1;
+    await this.updateGarage();
+    //update for winners
+  };
+
+  renderPrevPage = async () => {
+    state.garagePage -= 1;
+    await this.updateGarage();
+    //update for winners
   };
 
   private getRandomName = () => {

@@ -9,12 +9,12 @@ class Garage {
 
   constructor() {
     this.elem = document.createElement('div');
+    this.elem.classList.add('garage');
     this.pagination = new Pagination();
   }
 
   render = () => {
     this.elem.innerHTML = '';
-    this.elem.classList.add('garage');
     const pageTitle = services.createElement('h2', `Garage (${state.garageTotalCars})`, ['page-title']);
     const pageNum = services.createElement('h3', `Page #${state.garagePage}`, ['page-num']);
     const raceTrack = services.createElement('div', '', ['race-track']);

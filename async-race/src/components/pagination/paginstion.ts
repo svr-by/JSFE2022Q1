@@ -1,4 +1,5 @@
 import { Button } from '../button/button';
+import { services } from '../../services/services';
 
 export class Pagination {
   elem: HTMLDivElement;
@@ -14,5 +15,15 @@ export class Pagination {
     this.btnNext = new Button('Next', undefined, ['button']);
     this.btnNext.elem.disabled = true;
     this.elem.append(this.btnNext.elem);
+    this.addListeners();
   }
+
+  private addListeners = () => {
+    this.btnPrev.elem.addEventListener('click', async () => {
+      await services.renderPrevPage();
+    });
+    this.btnNext.elem.addEventListener('click', async () => {
+      await services.renderNextPage();
+    });
+  };
 }
