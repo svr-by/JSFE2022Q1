@@ -1,16 +1,20 @@
 export class Car {
   elem: HTMLElement;
   bodyColor: string;
+  width: number;
+  height: number;
 
   constructor() {
     this.elem = document.createElement('div');
+    this.elem.classList.add('car');
     this.bodyColor = '#FFB021';
+    this.width = 150;
+    this.height = 45;
   }
 
   renderCarImg = (color2 = '#FF0000', color3 = '#808080') => {
-    this.elem.classList.add('car');
     this.elem.innerHTML = `
-    <svg width="100" height="29" viewBox="0 0 550 158" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="${this.width}" height="${this.height}" viewBox="0 0 550 158" fill="none" xmlns="http://www.w3.org/2000/svg">
     <g clip-path="url(#clip0_2_2)">
     <path opacity="0.76" fill-rule="evenodd" clip-rule="evenodd" d="M155.917 137.368L45.1476 131.143C45.1476 131.143 38.9169 81.3444 40.6476 80.9985C42.3784 80.6527 94.3015 52.9869 94.3015 52.9869L154.186 82.3818L155.917 137.368Z" fill="#4D4D4D" stroke="#100000" stroke-width="0.541867"/>
     <path opacity="0.76" d="M482.34 77.5403C482.34 78.9236 489.264 134.947 489.264 134.947L374.34 136.676C374.34 136.676 376.417 77.1945 378.84 75.1196C381.263 73.0446 427.648 57.1368 427.648 57.1368L482.34 77.5403Z" fill="#4D4D4D" stroke="#100000" stroke-width="0.541867"/>

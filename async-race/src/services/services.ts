@@ -85,6 +85,62 @@ class Services {
       garage.pagination.btnPrev.elem.disabled = true;
     }
   };
+
+  private getRandomName = () => {
+    const brands = [
+      'Ascari',
+      'McLaren',
+      'Bentley',
+      'Bugatti',
+      'Porsche',
+      'Ferrari',
+      'Lotus',
+      'Maserati',
+      'Jaguar',
+      'Zenvo',
+      'Venturi',
+      'Laraki',
+      'Lamborghini',
+    ];
+    const models = [
+      'Viper',
+      'Stylus',
+      'Cayman',
+      'Sarthe',
+      'Cerbera',
+      'Costin',
+      'Alpine',
+      'Spyder',
+      'Zonda',
+      'Calibra',
+      'Senna',
+      'Urraco',
+      'Sky',
+      'CLK',
+      'GTX',
+      'GTR',
+    ];
+    const brand = brands[Math.floor(brands.length * Math.random())];
+    const model = models[Math.floor(models.length * Math.random())];
+    return `${brand} ${model}`;
+  };
+
+  private getRandomColor = () => {
+    return `#${Math.random().toString(16).slice(2, 8)}`;
+  };
+
+  private getRandomCars = (qty = 100) => {
+    return new Array(qty).fill(0).map(() => ({
+      name: this.getRandomName(),
+      color: this.getRandomColor(),
+    }));
+  };
+
+  generateCars = async () => {
+    const cars = this.getRandomCars();
+    await Promise.all(cars.map((car) => API.createCar(car)));
+    await this.updateGarage();
+  };
 }
 
 export const services = new Services();

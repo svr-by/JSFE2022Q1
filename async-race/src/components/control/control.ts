@@ -79,6 +79,12 @@ class Control {
       };
       await services.updateCar(carProps);
     });
+
+    this.btnGenerate.elem.addEventListener('click', async () => {
+      this.btnGenerate.elem.disabled = true;
+      await services.generateCars();
+      this.btnGenerate.elem.disabled = false;
+    });
   };
 }
 

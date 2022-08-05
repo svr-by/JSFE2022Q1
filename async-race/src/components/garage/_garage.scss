@@ -1,6 +1,5 @@
 .garage-page {
   color: $color-white;
-  // display: none;
 }
 
 .garage {
@@ -28,6 +27,10 @@
   font-style: italic;
   letter-spacing: 0.1em;
   color: $color-dark-xl;
+
+  @media screen and (max-width: $tablet) {
+    font-size: 18px;
+  }
 }
 .track__road {
   display: flex;
@@ -36,6 +39,7 @@
   background-color: $color-dark-l;
 }
 .launcher {
+  display: flex;
   padding-left: 10px;
 }
 .track__btn {
@@ -58,8 +62,7 @@
   display: block;
   width: 40px;
   height: 40px;
-  // margin-left: auto;
-  margin-right: 120px;
+  margin-right: 170px;
   background-repeat: no-repeat;
   background-size: contain;
   background-image: url(assets/img/flag.png);
@@ -68,6 +71,4 @@
   display: flex;
   align-items: flex-end;
   align-self: end;
-  width: 100px;
-  height: 50px;
 }
