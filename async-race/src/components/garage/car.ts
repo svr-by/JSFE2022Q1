@@ -12,7 +12,7 @@ export class Car {
     this.height = 45;
   }
 
-  renderCarImg = (color2 = '#FF0000', color3 = '#808080') => {
+  renderCarImg = (rearLightsColor = '#FF0000', frontLightsColor = '#808080') => {
     this.elem.innerHTML = `
     <svg width="${this.width}" height="${this.height}" viewBox="0 0 550 158" fill="none" xmlns="http://www.w3.org/2000/svg">
     <g clip-path="url(#clip0_2_2)">
@@ -41,11 +41,11 @@ export class Car {
     <path d="M386 41.9767L373.03 45.9535L332.754 47L312.958 27.9535L310 20.6279L321.15 11" stroke="#100000" stroke-width="0.541867"/>
     </g>
     <g opacity="0.76">
-    <path d="M532.533 82.7277C503.297 89.277 483.814 83.73 481.302 57.1368Z" fill="${color3}"/>
+    <path d="M532.533 82.7277C503.297 89.277 483.814 83.73 481.302 57.1368Z" fill="${frontLightsColor}"/>
     <path d="M532.533 82.7277C503.297 89.277 483.814 83.73 481.302 57.1368" stroke="#100000" stroke-width="0.541867"/>
     </g>
     <g opacity="0.76">
-    <path d="M3.0248 45.8923L28.8076 41.9651C39.3499 52.7395 37.832 54.9634 39.4445 59.4066C38.9698 61.1007 38.9016 62.7948 36.6696 64.4889C24.9537 65.2754 13.2377 63.5594 1.52178 62.2943" fill="${color2}"/>
+    <path d="M3.0248 45.8923L28.8076 41.9651C39.3499 52.7395 37.832 54.9634 39.4445 59.4066C38.9698 61.1007 38.9016 62.7948 36.6696 64.4889C24.9537 65.2754 13.2377 63.5594 1.52178 62.2943" fill="${rearLightsColor}"/>
     <path d="M3.0248 45.8923L28.8076 41.9651C39.3499 52.7395 37.832 54.9634 39.4445 59.4066C38.9698 61.1007 38.9016 62.7948 36.6696 64.4889C24.9537 65.2754 13.2377 63.5594 1.52178 62.2943" stroke="#100000" stroke-width="0.541867"/>
     </g>
     <path d="M385.75 112.219C385.75 137.122 405.956 157.309 430.883 157.309C455.809 157.309 476.016 137.122 476.016 112.219C476.016 87.3167 455.809 67.1293 430.883 67.1293C405.956 67.1293 385.75 87.3167 385.75 112.219V112.219Z" fill="black" stroke="#FF0000" stroke-width="0.0553196"/>
@@ -119,4 +119,34 @@ export class Car {
     </svg>
     `;
   };
+
+  animationRace = (distance: number, animationTime: number) => {
+    let start: number | null = null;
+    const store = { id: 0 };
+    const step = (timeStamp: number) => {
+      if (!start) start = timeStamp;
+      const time = timeStamp - start;
+      const passed = Math.round(time * (distance / animationTime));
+      this.elem.style.transform = `translateX(${Math.min(passed, distance)}px)`;
+
+      if (passed < distance) {
+        store.id = window.requestAnimationFrame(step);
+      }
+    };
+    store.id = window.requestAnimationFrame(step);
+    return store;
+  };
+
+  animationAlarm() {
+    const delay = 250;
+    const alarmColor = '#fbff00';
+    let counter = 1;
+    return setInterval(() => {
+      if (counter++ % 2) {
+        this.renderCarImg(alarmColor, alarmColor);
+      } else {
+        this.renderCarImg();
+      }
+    }, delay);
+  }
 }

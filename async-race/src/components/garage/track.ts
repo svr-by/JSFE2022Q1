@@ -5,6 +5,7 @@ import { Car } from './car';
 
 export class Track {
   elem: HTMLElement;
+  finish: HTMLElement;
   car: Car;
   btnSelect: Button;
   btnRemove: Button;
@@ -12,7 +13,8 @@ export class Track {
   btnStop: Button;
 
   constructor() {
-    this.elem = document.createElement('div');
+    this.elem = services.createElement('div', '', ['track']);
+    this.finish = services.createElement('div', '', ['finish']);
     this.car = new Car();
     this.btnSelect = new Button('Select', undefined, ['button']);
     this.btnRemove = new Button('Remove', undefined, ['button']);
@@ -21,7 +23,6 @@ export class Track {
   }
 
   render = ({ id, name, color }: car) => {
-    this.elem.classList.add('track');
     const trackControl = services.createElement('div', '', ['track__control']);
     this.btnSelect.elem.dataset.carId = `${id}`;
     this.btnRemove.elem.dataset.carId = `${id}`;
@@ -40,12 +41,11 @@ export class Track {
     this.car.renderCarImg();
     this.car.elem.dataset.carId = `${id}`;
     const trackName = services.createElement('h4', `${name}`, ['track__name']);
-    const finish = services.createElement('div', '', ['finish']);
-    finish.dataset.carId = `${id}`;
+    this.finish.dataset.carId = `${id}`;
     trackRoad.append(launcher);
     trackRoad.append(this.car.elem);
     trackRoad.append(trackName);
-    trackRoad.append(finish);
+    trackRoad.append(this.finish);
     this.elem.append(trackRoad);
 
     this.addListeners();
@@ -71,5 +71,32 @@ export class Track {
         await services.selectCar(id);
       }
     });
+
+    this.btnStart.elem.addEventListener('click', () => {
+      this.btnStart.elem.disabled = true;
+      this.btnStop.elem.disabled = false;
+      const distance = this.getDistance(this.car.elem, this.finish) + this.car.width * 0.75;
+      const animationId = this.car.animationRace(distance, 2000);
+      console.log(animationId);
+    });
+
+    this.btnStop.elem.addEventListener('click', () => {
+      const animationId = this.car.animationAlarm();
+      console.log(animationId);
+    });
+  };
+
+  private getCoordinates = (element: HTMLElement) => {
+    const { top, left, width, height } = element.getBoundingClientRect();
+    return {
+      x: left + width / 2,
+      y: top + height / 2,
+    };
+  };
+
+  private getDistance = (elem1: HTMLElement, elem2: HTMLElement) => {
+    const coords1 = this.getCoordinates(elem1);
+    const coords2 = this.getCoordinates(elem2);
+    return Math.hypot(coords2.x - coords1.x, coords2.y - coords1.y);
   };
 }
