@@ -91,17 +91,17 @@ export class Track {
     return Math.hypot(coords2.x - coords1.x, coords2.y - coords1.y);
   };
 
-  stopDrive = async () => {
-    this.btnStop.elem.disabled = true;
-    await services.requestStopDrive(this.car);
-    this.btnStart.elem.disabled = false;
-  };
-
   startDrive = async () => {
     this.btnStart.elem.disabled = true;
     const distance = this.getDistance(this.car.elem, this.finish) + this.car.width * 0.75;
     await services.requestDrive(this.car, distance);
     this.btnStop.elem.disabled = false;
     await services.requestDriveStatus(this.car);
+  };
+
+  stopDrive = async () => {
+    this.btnStop.elem.disabled = true;
+    await services.requestStopDrive(this.car);
+    this.btnStart.elem.disabled = false;
   };
 }

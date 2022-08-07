@@ -18,9 +18,12 @@ class Garage {
     const pageTitle = services.createElement('h2', `Garage (${state.garageTotalCars})`, ['page-title']);
     const pageNum = services.createElement('h3', `Page #${state.garagePage}`, ['page-num']);
     const raceTrack = services.createElement('div', '', ['race-track']);
+    state.garageTracks = [];
     state.garageCars.forEach((car) => {
-      const track = new Track().render(car);
-      raceTrack.append(track);
+      const track = new Track();
+      state.garageTracks.push(track);
+      const trackElem = track.render(car);
+      raceTrack.append(trackElem);
     });
     this.elem.append(pageTitle);
     this.elem.append(pageNum);

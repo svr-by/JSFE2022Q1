@@ -1,5 +1,3 @@
-import { animationId } from '../../types/types';
-
 export class Car {
   elem: HTMLElement;
   bodyColor: string;
@@ -124,7 +122,7 @@ export class Car {
 
   animationRace = (distance: number, animationTime: number) => {
     let start: number | null = null;
-    const store: animationId = { driveId: 0 };
+    const store = { driveId: 0 };
     const step = (timeStamp: number) => {
       if (!start) start = timeStamp;
       const time = timeStamp - start;
@@ -139,7 +137,7 @@ export class Car {
     return store;
   };
 
-  stopAnimationRace = () => {
+  returnToStart = () => {
     this.elem.style.transform = `translateX(0px)`;
     this.renderCarImg();
   };

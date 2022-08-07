@@ -1,4 +1,4 @@
-import { car, extWinner, animationState } from '../types/types';
+import { car, extWinner, animationState, alarmId } from '../types/types';
 import { Track } from '../components/garage/track';
 
 class State {
@@ -31,6 +31,7 @@ class State {
   sortOrder: 'ASC' | 'DESC' = 'DESC';
 
   animation: animationState = {};
+  animationAlarm: alarmId[] = [];
 }
 
 export const state = new State();

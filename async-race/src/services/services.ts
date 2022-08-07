@@ -173,22 +173,42 @@ class Services {
     const { success } = await API.driveEngine(+id);
     if (!success) {
       window.cancelAnimationFrame(state.animation[id].driveId);
-      state.animation[id].alarmId = car.animationAlarm();
+      const alarmId = car.animationAlarm();
+      state.animationAlarm.push({ id, alarmId });
+      // console.log(state);
     }
     return { success, id };
   };
 
   requestStopDrive = async (car: Car) => {
     const id = car.elem.dataset.carId as string;
-    window.cancelAnimationFrame(state.animation[id].driveId);
+    if (state.animation[id]) {
+      window.cancelAnimationFrame(state.animation[id].driveId);
+    }
+    this.clearAlarms(id);
     await API.stopEngine(+id);
-    car.stopAnimationRace();
-    clearInterval(state.animation[id].alarmId);
+    car.returnToStart();
+  };
+
+  clearAlarms = (id: string) => {
+    for (let i = 0; i < state.animationAlarm.length; i++) {
+      const alarm = state.animationAlarm[i];
+      if (alarm.id === id) {
+        clearInterval(alarm.alarmId);
+        state.animationAlarm.splice(i, 1);
+        i--;
+      }
+    }
   };
 
   startDriveAll = async () => {
+    await this.stopDriveAll();
     const racersId = await Promise.all(state.garageTracks.map((track) => track.startDrive()));
     console.log(racersId);
+  };
+
+  stopDriveAll = async () => {
+    await Promise.all(state.garageTracks.map((track) => track.stopDrive()));
   };
 }
 

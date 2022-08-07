@@ -46,11 +46,11 @@ export type getWinnersData = {
 
 export type updateWinnerBody = Pick<winner, 'wins' | 'time'>;
 
-export type animationId = {
-  driveId: number;
-  alarmId?: NodeJS.Timer;
+export type animationState = {
+  [index: string]: { driveId: number };
 };
 
-export type animationState = {
-  [index: string]: animationId;
+export type alarmId = {
+  id: string;
+  alarmId: NodeJS.Timer;
 };
