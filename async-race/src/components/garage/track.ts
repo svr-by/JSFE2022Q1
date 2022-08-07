@@ -72,18 +72,9 @@ export class Track {
       }
     });
 
-    this.btnStart.elem.addEventListener('click', () => {
-      this.btnStart.elem.disabled = true;
-      this.btnStop.elem.disabled = false;
-      const distance = this.getDistance(this.car.elem, this.finish) + this.car.width * 0.75;
-      const animationId = this.car.animationRace(distance, 2000);
-      console.log(animationId);
-    });
+    this.btnStart.elem.addEventListener('click', this.startDrive);
 
-    this.btnStop.elem.addEventListener('click', () => {
-      const animationId = this.car.animationAlarm();
-      console.log(animationId);
-    });
+    this.btnStop.elem.addEventListener('click', this.stopDrive);
   };
 
   private getCoordinates = (element: HTMLElement) => {
@@ -98,5 +89,19 @@ export class Track {
     const coords1 = this.getCoordinates(elem1);
     const coords2 = this.getCoordinates(elem2);
     return Math.hypot(coords2.x - coords1.x, coords2.y - coords1.y);
+  };
+
+  stopDrive = async () => {
+    this.btnStop.elem.disabled = true;
+    await services.requestStopDrive(this.car);
+    this.btnStart.elem.disabled = false;
+  };
+
+  startDrive = async () => {
+    this.btnStart.elem.disabled = true;
+    const distance = this.getDistance(this.car.elem, this.finish) + this.car.width * 0.75;
+    await services.requestDrive(this.car, distance);
+    this.btnStop.elem.disabled = false;
+    await services.requestDriveStatus(this.car);
   };
 }

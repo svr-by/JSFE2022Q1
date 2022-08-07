@@ -74,23 +74,26 @@ class APIservices {
     return await response.json();
   };
 
-  updateEngine = async (id: number, status: string): Promise<raceParams | raceStatus> => {
+  private updateEngine = async (id: number, status: string): Promise<raceParams> => {
     const response = await fetch(`${this.engine}?id=${id}&status=${status}`, {
       method: 'PATCH',
     }).catch();
     return !response.ok ? { success: false } : await response.json();
   };
 
-  startEngine = async (id: number): Promise<raceParams | raceStatus> => {
+  startEngine = async (id: number): Promise<raceParams> => {
     return await this.updateEngine(id, engineStatus.started);
   };
 
-  stopEngine = async (id: number): Promise<raceParams | raceStatus> => {
+  stopEngine = async (id: number): Promise<raceParams> => {
     return await this.updateEngine(id, engineStatus.stopped);
   };
 
-  driveEngine = async (id: number): Promise<raceParams | raceStatus> => {
-    return await this.updateEngine(id, engineStatus.drive);
+  driveEngine = async (id: number): Promise<raceStatus> => {
+    const response = await fetch(`${this.engine}?id=${id}&status=${engineStatus.drive}`, {
+      method: 'PATCH',
+    }).catch();
+    return !response.ok ? { success: false } : await response.json();
   };
 
   getSortOrder = (sort?: string, order?: string) => {

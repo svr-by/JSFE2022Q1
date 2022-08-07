@@ -3,6 +3,7 @@ import { control } from '../components/control/control';
 import { API } from '../api/api';
 import { state } from '../state/state';
 import { createCarBody } from '../types/types';
+import { Car } from '../components/garage/car';
 
 class Services {
   createElement = (tag: string, text?: string, classes?: string[], id?: string) => {
@@ -74,6 +75,11 @@ class Services {
   };
 
   updatePagination = () => {
+    if (state.garagePageLimit > state.garageTotalCars) {
+      garage.pagination.elem.style.display = 'none';
+    } else {
+      garage.pagination.elem.style.display = 'block';
+    }
     if (state.garagePage * state.garagePageLimit < state.garageTotalCars) {
       garage.pagination.btnNext.elem.disabled = false;
     } else {
@@ -153,6 +159,36 @@ class Services {
     const cars = this.getRandomCars();
     await Promise.all(cars.map((car) => API.createCar(car)));
     await this.updateGarage();
+  };
+
+  requestDrive = async (car: Car, actualDist: number) => {
+    const id = car.elem.dataset.carId as string;
+    const { velocity, distance } = await API.startEngine(+id);
+    const time = Math.round(distance / velocity);
+    state.animation[id] = car.animationRace(actualDist, time);
+  };
+
+  requestDriveStatus = async (car: Car) => {
+    const id = car.elem.dataset.carId as string;
+    const { success } = await API.driveEngine(+id);
+    if (!success) {
+      window.cancelAnimationFrame(state.animation[id].driveId);
+      state.animation[id].alarmId = car.animationAlarm();
+    }
+    return { success, id };
+  };
+
+  requestStopDrive = async (car: Car) => {
+    const id = car.elem.dataset.carId as string;
+    window.cancelAnimationFrame(state.animation[id].driveId);
+    await API.stopEngine(+id);
+    car.stopAnimationRace();
+    clearInterval(state.animation[id].alarmId);
+  };
+
+  startDriveAll = async () => {
+    const racersId = await Promise.all(state.garageTracks.map((track) => track.startDrive()));
+    console.log(racersId);
   };
 }
 
