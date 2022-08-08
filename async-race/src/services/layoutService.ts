@@ -41,15 +41,25 @@ class LayoutService {
   };
 
   renderNextPage = async () => {
-    state.garagePage += 1;
-    await this.updateGarage();
-    //update for winners
+    if (state.view === 'garage') {
+      state.garagePage += 1;
+      await this.updateGarage();
+    }
+    if (state.view === 'winners') {
+      state.winnersPage += 1;
+      await this.updateWinners();
+    }
   };
 
   renderPrevPage = async () => {
-    state.garagePage -= 1;
-    await this.updateGarage();
-    //update for winners
+    if (state.view === 'garage') {
+      state.garagePage -= 1;
+      await this.updateGarage();
+    }
+    if (state.view === 'winners') {
+      state.winnersPage -= 1;
+      await this.updateWinners();
+    }
   };
 
   getCoordinates = (element: HTMLElement) => {

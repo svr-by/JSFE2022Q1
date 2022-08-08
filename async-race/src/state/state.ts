@@ -8,7 +8,7 @@ class State {
   garageCars: car[] = [];
   garageTracks: Track[] = [];
 
-  winnersPageLimit = 7;
+  winnersPageLimit = 10;
   winnersPage = 1;
   winnersTotalCars = 1;
   winnersCars: extWinner[] = [];

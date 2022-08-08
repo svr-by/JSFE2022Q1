@@ -35,15 +35,15 @@ class Header {
     const garagePage = document.querySelector('.garage-page') as HTMLElement;
     const winnersPage = document.querySelector('.winners-page') as HTMLElement;
     this.btnGarage.elem.addEventListener('click', () => {
+      state.view = 'garage';
       winnersPage.style.display = 'none';
       garagePage.style.display = 'block';
-      state.view = 'garage';
     });
     this.btnWinners.elem.addEventListener('click', async () => {
+      state.view = 'winners';
       await layoutService.updateWinners();
       winnersPage.style.display = 'block';
       garagePage.style.display = 'none';
-      state.view = 'winners';
     });
   };
 }
