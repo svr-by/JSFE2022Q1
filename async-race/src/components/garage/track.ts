@@ -11,6 +11,7 @@ export class Track {
   btnRemove: Button;
   btnStart: Button;
   btnStop: Button;
+  carId: number | null;
 
   constructor() {
     this.elem = services.createElement('div', '', ['track']);
@@ -20,9 +21,11 @@ export class Track {
     this.btnRemove = new Button('Remove', undefined, ['button']);
     this.btnStart = new Button('A', undefined, ['track__btn']);
     this.btnStop = new Button('B', undefined, ['track__btn']);
+    this.carId = null;
   }
 
   render = ({ id, name, color }: car) => {
+    this.carId = id;
     const trackControl = services.createElement('div', '', ['track__control']);
     this.btnSelect.elem.dataset.carId = `${id}`;
     this.btnRemove.elem.dataset.carId = `${id}`;
@@ -94,9 +97,10 @@ export class Track {
   startDrive = async () => {
     this.btnStart.elem.disabled = true;
     const distance = this.getDistance(this.car.elem, this.finish) + this.car.width * 0.75;
-    await services.requestDrive(this.car, distance);
+    const time = await services.requestDrive(this.car, distance);
     this.btnStop.elem.disabled = false;
-    await services.requestDriveStatus(this.car);
+    const { success, id } = await services.requestDriveStatus(this.car);
+    return { success, id, time };
   };
 
   stopDrive = async () => {

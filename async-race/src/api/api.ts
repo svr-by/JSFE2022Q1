@@ -97,10 +97,10 @@ class APIservices {
   };
 
   getSortOrder = (sort?: string, order?: string) => {
-    return sort && order ? `&_limit=${sort}&_limit=${order}` : '';
+    return sort && order ? `&_sort=${sort}&_order=${order}` : '';
   };
 
-  getWinners = async (page: number, limit = 10, sort?: string, order?: string): Promise<getWinnersData> => {
+  getWinners = async (page: number, sort?: string, order?: string, limit = 10): Promise<getWinnersData> => {
     const response = await fetch(`${this.winners}?_page=${page}&_limit=${limit}${this.getSortOrder(sort, order)}`);
     const winnersArr: winner[] = await response.json();
     return {

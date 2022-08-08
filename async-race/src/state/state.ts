@@ -11,24 +11,13 @@ class State {
   winnersPageLimit = 7;
   winnersPage = 1;
   winnersTotalCars = 1;
-  winnersCars: extWinner[] = [
-    {
-      wins: 1,
-      time: 10,
-      id: 1,
-      car: {
-        name: 'Tesla',
-        color: '#e6e6fa',
-        id: 1,
-      },
-    },
-  ];
+  winnersCars: extWinner[] = [];
+  winnersSort: 'id' | 'wins' | 'time' = 'wins';
+  winnersSortOrder: 'ASC' | 'DESC' = 'DESC';
 
   selectedCar: car | null = null;
 
   view: 'garage' | 'winners' = 'garage';
-  sort: 'id' | 'wins' | 'time' = 'wins';
-  sortOrder: 'ASC' | 'DESC' = 'DESC';
 
   animation: animationState = {};
   animationAlarm: alarmId[] = [];

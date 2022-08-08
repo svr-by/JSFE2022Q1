@@ -54,3 +54,9 @@ export type alarmId = {
   id: string;
   alarmId: NodeJS.Timer;
 };
+
+export type racer = {
+  success: boolean;
+  id: string;
+  time: number;
+};

@@ -1,5 +1,6 @@
 import { Button } from '../button/button';
 import { state } from '../../state/state';
+import { services } from '../../services/services';
 
 class Header {
   elem: HTMLElement;
@@ -38,7 +39,8 @@ class Header {
       garagePage.style.display = 'block';
       state.view = 'garage';
     });
-    this.btnWinners.elem.addEventListener('click', () => {
+    this.btnWinners.elem.addEventListener('click', async () => {
+      await services.updateWinners();
       winnersPage.style.display = 'block';
       garagePage.style.display = 'none';
       state.view = 'winners';

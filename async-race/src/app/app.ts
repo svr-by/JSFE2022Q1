@@ -1,7 +1,6 @@
 import { header } from '../components/header/header';
 import { control } from '../components/control/control';
 import { footer } from '../components/footer/footer';
-import { winners } from '../components/winners/winners';
 import { services } from '../services/services';
 
 class App {
@@ -17,8 +16,8 @@ class App {
     header.render();
     control.render();
     await services.updateGarage();
-    winners.render();
     footer.render();
+    await services.updateWinners();
   };
 }
 
