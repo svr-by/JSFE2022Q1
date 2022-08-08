@@ -12,6 +12,41 @@ export class Car {
     this.height = 45;
   }
 
+  animationRace = (distance: number, animationTime: number) => {
+    let start: number | null = null;
+    const store = { driveId: 0 };
+    const step = (timeStamp: number) => {
+      if (!start) start = timeStamp;
+      const time = timeStamp - start;
+      const passed = Math.round(time * (distance / animationTime));
+      this.elem.style.transform = `translateX(${Math.min(passed, distance)}px)`;
+
+      if (passed < distance) {
+        store.driveId = window.requestAnimationFrame(step);
+      }
+    };
+    store.driveId = window.requestAnimationFrame(step);
+    return store;
+  };
+
+  returnToStart = () => {
+    this.elem.style.transform = `translateX(0px)`;
+    this.renderCarImg();
+  };
+
+  animationAlarm() {
+    const delay = 250;
+    const alarmColor = '#fbff00';
+    let counter = 1;
+    return setInterval(() => {
+      if (counter++ % 2) {
+        this.renderCarImg(alarmColor, alarmColor);
+      } else {
+        this.renderCarImg();
+      }
+    }, delay);
+  }
+
   renderCarImg = (rearLightsColor = '#FF0000', frontLightsColor = '#808080') => {
     this.elem.innerHTML = `
     <svg width="${this.width}" height="${this.height}" viewBox="0 0 550 158" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -119,39 +154,4 @@ export class Car {
     </svg>
     `;
   };
-
-  animationRace = (distance: number, animationTime: number) => {
-    let start: number | null = null;
-    const store = { driveId: 0 };
-    const step = (timeStamp: number) => {
-      if (!start) start = timeStamp;
-      const time = timeStamp - start;
-      const passed = Math.round(time * (distance / animationTime));
-      this.elem.style.transform = `translateX(${Math.min(passed, distance)}px)`;
-
-      if (passed < distance) {
-        store.driveId = window.requestAnimationFrame(step);
-      }
-    };
-    store.driveId = window.requestAnimationFrame(step);
-    return store;
-  };
-
-  returnToStart = () => {
-    this.elem.style.transform = `translateX(0px)`;
-    this.renderCarImg();
-  };
-
-  animationAlarm() {
-    const delay = 250;
-    const alarmColor = '#fbff00';
-    let counter = 1;
-    return setInterval(() => {
-      if (counter++ % 2) {
-        this.renderCarImg(alarmColor, alarmColor);
-      } else {
-        this.renderCarImg();
-      }
-    }, delay);
-  }
 }

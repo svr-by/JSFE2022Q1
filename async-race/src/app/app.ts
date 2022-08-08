@@ -1,7 +1,7 @@
 import { header } from '../components/header/header';
 import { control } from '../components/control/control';
 import { footer } from '../components/footer/footer';
-import { services } from '../services/services';
+import { layoutService } from '../services/layoutService';
 
 class App {
   render = async () => {
@@ -15,9 +15,9 @@ class App {
     `;
     header.render();
     control.render();
-    await services.updateGarage();
+    await layoutService.updateGarage();
     footer.render();
-    await services.updateWinners();
+    await layoutService.updateWinners();
   };
 }
 

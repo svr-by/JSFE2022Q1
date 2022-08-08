@@ -1,6 +1,6 @@
 import { Button } from '../button/button';
 import { state } from '../../state/state';
-import { services } from '../../services/services';
+import { layoutService } from '../../services/layoutService';
 
 export class Pagination {
   elem: HTMLDivElement;
@@ -21,10 +21,10 @@ export class Pagination {
 
   private addListeners = () => {
     this.btnPrev.elem.addEventListener('click', async () => {
-      await services.renderPrevPage();
+      await layoutService.renderPrevPage();
     });
     this.btnNext.elem.addEventListener('click', async () => {
-      await services.renderNextPage();
+      await layoutService.renderNextPage();
     });
   };
 

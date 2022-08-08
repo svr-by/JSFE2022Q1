@@ -1,5 +1,5 @@
 import { extWinner } from '../../types/types';
-import { services } from '../../services/services';
+import { layoutService } from '../../services/layoutService';
 import { Pagination } from '../pagination/paginstion';
 import { Car } from '../garage/car';
 import { state } from '../../state/state';
@@ -41,16 +41,16 @@ class Winners {
   };
 
   private renderWinnerRow = (winner: extWinner) => {
-    const tableRow = services.createElement('tr', '');
-    tableRow.append(services.createElement('th', `${winner.car.id}`));
+    const tableRow = layoutService.createElement('tr', '');
+    tableRow.append(layoutService.createElement('th', `${winner.car.id}`));
     const car = new Car();
     car.bodyColor = winner.car.color;
     car.width = 100;
     car.renderCarImg();
     tableRow.append(car.elem);
-    tableRow.append(services.createElement('th', `${winner.car.name}`));
-    tableRow.append(services.createElement('th', `${winner.wins}`));
-    tableRow.append(services.createElement('th', `${winner.time}`));
+    tableRow.append(layoutService.createElement('th', `${winner.car.name}`));
+    tableRow.append(layoutService.createElement('th', `${winner.wins}`));
+    tableRow.append(layoutService.createElement('th', `${winner.time}`));
     return tableRow;
   };
 }

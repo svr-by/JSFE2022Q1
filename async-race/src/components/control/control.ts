@@ -1,6 +1,7 @@
 import { Button } from '../button/button';
 import { Input } from '../input/input';
-import { services } from '../../services/services';
+import { carService } from '../../services/carService';
+import { racingService } from '../../services/racingService';
 
 class Control {
   elem: HTMLElement;
@@ -69,7 +70,7 @@ class Control {
         name: this.inpTextCreate.elem.value,
         color: this.inpColorCreate.elem.value,
       };
-      await services.createCar(car);
+      await carService.createCar(car);
     });
 
     this.btnUpdate.elem.addEventListener('click', async () => {
@@ -77,26 +78,25 @@ class Control {
         name: this.inpTextUpdate.elem.value,
         color: this.inpColorUpdate.elem.value,
       };
-      await services.updateCar(carProps);
+      await carService.updateCar(carProps);
     });
 
     this.btnGenerate.elem.addEventListener('click', async () => {
       this.btnGenerate.elem.disabled = true;
-      await services.generateCars();
+      await carService.generateCars();
       this.btnGenerate.elem.disabled = false;
     });
 
     this.btnRace.elem.addEventListener('click', async () => {
       this.btnRace.elem.disabled = true;
-      await services.startDriveAll();
+      await racingService.startDriveAll();
       this.btnRace.elem.disabled = false;
       this.btnReset.elem.disabled = false;
     });
 
     this.btnReset.elem.addEventListener('click', async () => {
       this.btnReset.elem.disabled = true;
-      await services.stopDriveAll();
-      // this.btnReset.elem.disabled = false;
+      await racingService.stopDriveAll();
     });
   };
 }

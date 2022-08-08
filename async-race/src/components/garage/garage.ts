@@ -1,6 +1,6 @@
 import { Track } from './track';
-import { services } from '../../services/services';
 import { Pagination } from '../pagination/paginstion';
+import { layoutService } from '../../services/layoutService';
 import { state } from '../../state/state';
 
 class Garage {
@@ -15,9 +15,9 @@ class Garage {
 
   render = () => {
     this.elem.innerHTML = '';
-    const pageTitle = services.createElement('h2', `Garage (${state.garageTotalCars})`, ['page-title']);
-    const pageNum = services.createElement('h3', `Page #${state.garagePage}`, ['page-num']);
-    const raceTrack = services.createElement('div', '', ['race-track']);
+    const pageTitle = layoutService.createElement('h2', `Garage (${state.garageTotalCars})`, ['page-title']);
+    const pageNum = layoutService.createElement('h3', `Page #${state.garagePage}`, ['page-num']);
+    const raceTrack = layoutService.createElement('div', '', ['race-track']);
     state.garageTracks = [];
     state.garageCars.forEach((car) => {
       const track = new Track();

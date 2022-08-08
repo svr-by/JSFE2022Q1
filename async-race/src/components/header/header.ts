@@ -1,6 +1,6 @@
 import { Button } from '../button/button';
 import { state } from '../../state/state';
-import { services } from '../../services/services';
+import { layoutService } from '../../services/layoutService';
 
 class Header {
   elem: HTMLElement;
@@ -40,7 +40,7 @@ class Header {
       state.view = 'garage';
     });
     this.btnWinners.elem.addEventListener('click', async () => {
-      await services.updateWinners();
+      await layoutService.updateWinners();
       winnersPage.style.display = 'block';
       garagePage.style.display = 'none';
       state.view = 'winners';

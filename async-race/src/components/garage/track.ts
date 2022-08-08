@@ -1,5 +1,7 @@
 import { car } from '../../types/types';
-import { services } from '../../services/services';
+import { layoutService } from '../../services/layoutService';
+import { carService } from '../../services/carService';
+import { racingService } from '../../services/racingService';
 import { Button } from '../button/button';
 import { Car } from './car';
 
@@ -14,8 +16,8 @@ export class Track {
   carId: number | null;
 
   constructor() {
-    this.elem = services.createElement('div', '', ['track']);
-    this.finish = services.createElement('div', '', ['finish']);
+    this.elem = layoutService.createElement('div', '', ['track']);
+    this.finish = layoutService.createElement('div', '', ['finish']);
     this.car = new Car();
     this.btnSelect = new Button('Select', undefined, ['button']);
     this.btnRemove = new Button('Remove', undefined, ['button']);
@@ -26,15 +28,15 @@ export class Track {
 
   render = ({ id, name, color }: car) => {
     this.carId = id;
-    const trackControl = services.createElement('div', '', ['track__control']);
+    const trackControl = layoutService.createElement('div', '', ['track__control']);
     this.btnSelect.elem.dataset.carId = `${id}`;
     this.btnRemove.elem.dataset.carId = `${id}`;
     trackControl.append(this.btnSelect.elem);
     trackControl.append(this.btnRemove.elem);
     this.elem.append(trackControl);
 
-    const trackRoad = services.createElement('div', '', ['track__road']);
-    const launcher = services.createElement('div', '', ['launcher']);
+    const trackRoad = layoutService.createElement('div', '', ['track__road']);
+    const launcher = layoutService.createElement('div', '', ['launcher']);
     this.btnStart.elem.dataset.carId = `${id}`;
     this.btnStop.elem.dataset.carId = `${id}`;
     this.btnStop.elem.disabled = true;
@@ -43,7 +45,7 @@ export class Track {
     this.car.bodyColor = color;
     this.car.renderCarImg();
     this.car.elem.dataset.carId = `${id}`;
-    const trackName = services.createElement('h4', `${name}`, ['track__name']);
+    const trackName = layoutService.createElement('h4', `${name}`, ['track__name']);
     this.finish.dataset.carId = `${id}`;
     trackRoad.append(launcher);
     trackRoad.append(this.car.elem);
@@ -57,55 +59,45 @@ export class Track {
   };
 
   private addListeners = () => {
-    this.btnRemove.elem.addEventListener('click', async (event) => {
-      const id = (event.target as HTMLElement).dataset.carId;
-      if (id) await services.removeCar(+id);
-    });
+    this.btnRemove.elem.addEventListener('click', async () => await this.removeCar());
 
-    this.btnSelect.elem.addEventListener('click', async (event) => {
-      let id = (event.target as HTMLElement).dataset.carId;
-      if (id) {
-        document.querySelectorAll('.select').forEach((btn) => {
-          if ((btn as HTMLElement).dataset.carId !== id) btn.classList.remove('select');
-        });
-        this.btnSelect.elem.classList.toggle('select');
+    this.btnSelect.elem.addEventListener('click', async () => await this.selectCar());
 
-        id = this.btnSelect.elem.classList.contains('select') ? id : undefined;
-        await services.selectCar(id);
-      }
-    });
+    this.btnStart.elem.addEventListener('click', async () => await this.startDrive());
 
-    this.btnStart.elem.addEventListener('click', this.startDrive);
-
-    this.btnStop.elem.addEventListener('click', this.stopDrive);
+    this.btnStop.elem.addEventListener('click', async () => await this.stopDrive());
   };
 
-  private getCoordinates = (element: HTMLElement) => {
-    const { top, left, width, height } = element.getBoundingClientRect();
-    return {
-      x: left + width / 2,
-      y: top + height / 2,
-    };
+  removeCar = async () => {
+    const id = this.btnRemove.elem.dataset.carId;
+    if (id) await carService.removeCar(+id);
   };
 
-  private getDistance = (elem1: HTMLElement, elem2: HTMLElement) => {
-    const coords1 = this.getCoordinates(elem1);
-    const coords2 = this.getCoordinates(elem2);
-    return Math.hypot(coords2.x - coords1.x, coords2.y - coords1.y);
+  selectCar = async () => {
+    let id = this.btnSelect.elem.dataset.carId;
+    if (id) {
+      document.querySelectorAll('.select').forEach((btn) => {
+        if ((btn as HTMLElement).dataset.carId !== id) btn.classList.remove('select');
+      });
+      this.btnSelect.elem.classList.toggle('select');
+
+      id = this.btnSelect.elem.classList.contains('select') ? id : undefined;
+      await carService.selectCar(id);
+    }
   };
 
   startDrive = async () => {
     this.btnStart.elem.disabled = true;
-    const distance = this.getDistance(this.car.elem, this.finish) + this.car.width * 0.75;
-    const time = await services.requestDrive(this.car, distance);
+    const distance = layoutService.getDistance(this.car.elem, this.finish) + this.car.width * 0.75;
+    const time = await racingService.requestDrive(this.car, distance);
     this.btnStop.elem.disabled = false;
-    const { success, id } = await services.requestDriveStatus(this.car);
+    const { success, id } = await racingService.requestDriveStatus(this.car);
     return { success, id, time };
   };
 
   stopDrive = async () => {
     this.btnStop.elem.disabled = true;
-    await services.requestStopDrive(this.car);
+    await racingService.requestStopDrive(this.car);
     this.btnStart.elem.disabled = false;
   };
 }
