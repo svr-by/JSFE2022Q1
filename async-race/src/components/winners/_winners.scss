@@ -1,0 +1,28 @@
+.winners {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.winners-page {
+  display: none;
+  padding-top: 40px;
+  color: $color-white;
+}
+
+.winners__table {
+  margin: 0 auto;
+  padding: 10px;
+  font-size: 18px;
+  border: 2px solid $color-dark-xxl;
+  border-radius: 5%;
+}
+
+.winners__table thead th {
+  text-transform: uppercase;
+  border-bottom: 2px dashed $color-white;
+}
+
+.winners__table th {
+  padding: 10px;
+}

@@ -1,0 +1,74 @@
+.garage-page {
+  color: $color-white;
+}
+
+.garage {
+  padding: 40px 0;
+}
+
+.race-track {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.track {
+  border-bottom: 2px dashed $color-white;
+}
+.track__control {
+  display: flex;
+  margin-bottom: 10px;
+}
+.track__name {
+  margin: 0 auto;
+  font-size: 24px;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-style: italic;
+  letter-spacing: 0.1em;
+  color: $color-dark-xl;
+
+  @media screen and (max-width: $tablet) {
+    font-size: 18px;
+  }
+}
+.track__road {
+  display: flex;
+  align-items: center;
+  height: 60px;
+  background-color: $color-dark-l;
+}
+.launcher {
+  display: flex;
+  padding-left: 10px;
+}
+.track__btn {
+  height: 30px;
+  margin-right: 10px;
+  padding: 0 10px;
+  background-color: transparent;
+  border: 1px solid $color-green;
+  font-size: 14px;
+  color: $color-green;
+  cursor: pointer;
+  transition: all 0.3s;
+
+  &:disabled {
+    border: 1px solid $color-dark-xl;
+    color: $color-dark-xl;
+  }
+}
+.finish {
+  display: block;
+  width: 40px;
+  height: 40px;
+  margin-right: 170px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url(assets/img/flag.png);
+}
+.car {
+  display: flex;
+  align-items: flex-end;
+  align-self: end;
+}

@@ -1,0 +1,22 @@
+.header {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  padding-top: 20px;
+}
+
+.header__wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo {
+  width: 200px;
+}
+
+.logo__img {
+  width: 100%;
+  object-fit: cover;
+}

@@ -1,0 +1,57 @@
+html {  
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+* {
+  box-sizing: inherit;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  font-family: 'Arial';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 160%;
+  background-color: #000000;
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 1440px;
+  min-width: 780px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+.main {
+  padding-top: 130px;
+  flex-grow: 1;
+}
+
+.page-title {
+  margin: 0 0 20px 0;
+  font-size: 32px;
+  color: $color-white;
+  text-transform: uppercase;
+
+  &.page-title--winners {
+    text-align: center;
+  }
+}
+
+
+.page-num {
+  margin: 0 0 20px 0;
+  font-size: 24px;
+  color: $color-white;
+  text-transform: uppercase;
+
+  &.page-num--winners {
+    text-align: center;
+  }
+}
