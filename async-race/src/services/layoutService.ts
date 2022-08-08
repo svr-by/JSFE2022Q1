@@ -62,7 +62,13 @@ class LayoutService {
     }
   };
 
-  getCoordinates = (element: HTMLElement) => {
+  setSortOrder = async (sortParam: 'id' | 'wins' | 'time') => {
+    state.winnersSortOrder = state.winnersSortOrder === 'ASC' ? 'DESC' : 'ASC';
+    state.winnersSort = sortParam;
+    await this.updateWinners();
+  };
+
+  private getCoordinates = (element: HTMLElement) => {
     const { top, left, width, height } = element.getBoundingClientRect();
     return {
       x: left + width / 2,

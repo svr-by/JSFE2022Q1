@@ -27,3 +27,12 @@
 .winners__table th {
   padding: 10px;
 }
+
+.winners__btn {
+  cursor: pointer;
+  transition: all 0.3s;
+
+  &:hover {
+    color: $color-orange;
+  }
+}
