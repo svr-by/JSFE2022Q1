@@ -2,14 +2,18 @@ import { Track } from './track';
 import { Pagination } from '../pagination/paginstion';
 import { layoutService } from '../../services/layoutService';
 import { state } from '../../state/state';
+import { racer } from '../../types/types';
 
 class Garage {
   elem: HTMLElement;
+  winnerMessage: HTMLElement;
   pagination: Pagination;
 
   constructor() {
     this.elem = document.createElement('div');
     this.elem.classList.add('garage');
+    this.winnerMessage = document.createElement('h2');
+    this.winnerMessage.classList.add('winner-message');
     this.pagination = new Pagination();
   }
 
@@ -29,9 +33,20 @@ class Garage {
     this.elem.append(pageNum);
     this.elem.append(raceTrack);
     this.elem.append(this.pagination.elem);
+    this.elem.append(this.winnerMessage);
 
     const gargePage = document.querySelector('.garage-page');
     if (gargePage) gargePage.append(this.elem);
+  };
+
+  showWinner = (winner: racer) => {
+    this.winnerMessage.classList.add('visible');
+    const time = (winner.time / 1000).toFixed(2);
+    this.winnerMessage.innerText = `Racer ${winner.id} went first in ${time}s!`;
+    setTimeout(() => {
+      this.winnerMessage.innerText = '';
+      this.winnerMessage.classList.remove('visible');
+    }, 5000);
   };
 }
 

@@ -41,18 +41,34 @@ class LayoutService {
   };
 
   renderNextPage = async () => {
-    state.garagePage += 1;
-    await this.updateGarage();
-    //update for winners
+    if (state.view === 'garage') {
+      state.garagePage += 1;
+      await this.updateGarage();
+    }
+    if (state.view === 'winners') {
+      state.winnersPage += 1;
+      await this.updateWinners();
+    }
   };
 
   renderPrevPage = async () => {
-    state.garagePage -= 1;
-    await this.updateGarage();
-    //update for winners
+    if (state.view === 'garage') {
+      state.garagePage -= 1;
+      await this.updateGarage();
+    }
+    if (state.view === 'winners') {
+      state.winnersPage -= 1;
+      await this.updateWinners();
+    }
   };
 
-  getCoordinates = (element: HTMLElement) => {
+  setSortOrder = async (sortParam: 'id' | 'wins' | 'time') => {
+    state.winnersSortOrder = state.winnersSortOrder === 'ASC' ? 'DESC' : 'ASC';
+    state.winnersSort = sortParam;
+    await this.updateWinners();
+  };
+
+  private getCoordinates = (element: HTMLElement) => {
     const { top, left, width, height } = element.getBoundingClientRect();
     return {
       x: left + width / 2,

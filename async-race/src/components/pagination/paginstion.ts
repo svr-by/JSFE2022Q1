@@ -43,7 +43,7 @@ export class Pagination {
       pageLimit = state.winnersPageLimit;
     }
 
-    if (pageLimit > totalCars) {
+    if (pageLimit >= totalCars) {
       this.elem.style.display = 'none';
     } else {
       this.elem.style.display = 'block';

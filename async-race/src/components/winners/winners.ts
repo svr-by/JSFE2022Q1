@@ -23,8 +23,8 @@ class Winners {
           <th>Number</th>
           <th>Car</th>
           <th>Name</th>
-          <th class="winners__btn">Wins</th>
-          <th class="winners__btn">Best time, s</th>
+          <th class="winners__btn" id="by-wins">Wins</th>
+          <th class="winners__btn" id="by-time">Best time, s</th>
         </thead>
         <tbody>
         </tbody>
@@ -35,6 +35,8 @@ class Winners {
       const winnerRow = this.renderWinnerRow(winner);
       winnersTbody.append(winnerRow);
     });
+    this.addListeners();
+
     this.elem.append(this.pagination.elem);
     const winnersPage = document.querySelector('.winners-page');
     if (winnersPage) winnersPage.append(this.elem);
@@ -52,6 +54,14 @@ class Winners {
     tableRow.append(layoutService.createElement('th', `${winner.wins}`));
     tableRow.append(layoutService.createElement('th', `${winner.time}`));
     return tableRow;
+  };
+
+  private addListeners = () => {
+    const btnByWins = this.elem.querySelector('#by-wins') as HTMLElement;
+    btnByWins.addEventListener('click', () => layoutService.setSortOrder('wins'));
+
+    const btnByTime = this.elem.querySelector('#by-time') as HTMLElement;
+    btnByTime.addEventListener('click', () => layoutService.setSortOrder('time'));
   };
 }
 

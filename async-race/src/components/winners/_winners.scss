@@ -1,6 +1,7 @@
 .winners {
   display: flex;
   flex-direction: column;
+  margin-bottom: 50px;
   align-items: center;
 }
 
@@ -25,4 +26,30 @@
 
 .winners__table th {
   padding: 10px;
+}
+
+.winners__btn {
+  cursor: pointer;
+  transition: all 0.3s;
+
+  &:hover {
+    color: $color-orange;
+  }
+}
+
+.winner-message {
+  top: 50%;
+  left: 0;
+  right: 0;
+  text-align: center;
+  display: none;
+  position: fixed;
+  font-size: 40px;
+  color: $color-white;
+  background: $color-dark-l;
+  text-shadow: 0 -1px 4px #FFF, 0 -2px 10px #ff0, 0 -10px 20px #ff8000, 0 -18px 40px #F00;
+
+  &.visible {
+    display: block;
+  }
 }
