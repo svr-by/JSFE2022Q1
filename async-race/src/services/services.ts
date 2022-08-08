@@ -73,7 +73,7 @@ class Services {
     state.garageCars = items;
     if (count) state.garageTotalCars = +count;
     garage.render();
-    this.updatePagination();
+    garage.pagination.updatePagination();
   };
 
   updateWinners = async () => {
@@ -81,26 +81,7 @@ class Services {
     state.winnersCars = items;
     if (count) state.winnersTotalCars = +count;
     winners.render();
-    this.updatePagination();
-  };
-
-  updatePagination = () => {
-    if (state.garagePageLimit > state.garageTotalCars) {
-      garage.pagination.elem.style.display = 'none';
-    } else {
-      garage.pagination.elem.style.display = 'block';
-    }
-    if (state.garagePage * state.garagePageLimit < state.garageTotalCars) {
-      garage.pagination.btnNext.elem.disabled = false;
-    } else {
-      garage.pagination.btnNext.elem.disabled = true;
-    }
-    if (state.garagePage > 1) {
-      garage.pagination.btnPrev.elem.disabled = false;
-    } else {
-      garage.pagination.btnPrev.elem.disabled = true;
-    }
-    //update for winners
+    winners.pagination.updatePagination();
   };
 
   renderNextPage = async () => {
@@ -240,13 +221,11 @@ class Services {
     const winnerTime = +(time / 1000).toFixed(2);
     console.log('saveWinner:', winner, 'winnerTime:', winnerTime);
     if (winner.id) {
-      // console.log('updateWinner');
       await API.updateWinner(+id, {
         wins: ++winner.wins,
         time: time < winnerTime ? time : winnerTime,
       });
     } else {
-      // console.log('createWinner');
       await API.createWinner({
         id: winner.id,
         wins: 1,

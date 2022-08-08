@@ -1,4 +1,5 @@
 import { Button } from '../button/button';
+import { state } from '../../state/state';
 import { services } from '../../services/services';
 
 export class Pagination {
@@ -25,5 +26,37 @@ export class Pagination {
     this.btnNext.elem.addEventListener('click', async () => {
       await services.renderNextPage();
     });
+  };
+
+  updatePagination = () => {
+    let currentPage: number;
+    let totalCars: number;
+    let pageLimit: number;
+
+    if (state.view === 'garage') {
+      currentPage = state.garagePage;
+      totalCars = state.garageTotalCars;
+      pageLimit = state.garagePageLimit;
+    } else {
+      currentPage = state.winnersPage;
+      totalCars = state.winnersTotalCars;
+      pageLimit = state.winnersPageLimit;
+    }
+
+    if (pageLimit > totalCars) {
+      this.elem.style.display = 'none';
+    } else {
+      this.elem.style.display = 'block';
+    }
+    if (currentPage * pageLimit < totalCars) {
+      this.btnNext.elem.disabled = false;
+    } else {
+      this.btnNext.elem.disabled = true;
+    }
+    if (currentPage > 1) {
+      this.btnPrev.elem.disabled = false;
+    } else {
+      this.btnPrev.elem.disabled = true;
+    }
   };
 }
