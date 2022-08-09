@@ -14,6 +14,10 @@
 
 .logo {
   width: 200px;
+
+  @media screen and (max-width: $width-small) {
+    width: 150px;
+  }
 }
 
 .logo__img {

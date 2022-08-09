@@ -7,14 +7,10 @@ import { garage } from '../components/garage/garage';
 class RacingService {
   requestDrive = async (car: Car, actualDist: number) => {
     const id = car.elem.dataset.carId as string;
-    // console.log('id:', id, 'API.startEngine');
     const { velocity, distance } = await API.startEngine(+id);
     const time = Math.round(distance / velocity);
-    // console.log('id', id, 'velocity', velocity, 'distance', distance, 'time', time);
     state.animation[id] = car.animationRace(actualDist, time);
-    // console.log('id:', id, 'API.driveEngine');
     const { success } = await API.driveEngine(+id);
-    // console.log('id:', id, 'drivestatus =', success);
     if (!success) {
       window.cancelAnimationFrame(state.animation[id].driveId);
       const alarmId = car.animationAlarm();
@@ -29,7 +25,6 @@ class RacingService {
       window.cancelAnimationFrame(state.animation[id].driveId);
     }
     this.clearAlarms(id);
-    console.log('id:', id, 'API.stopEngine');
     await API.stopEngine(+id);
     car.returnToStart();
   };
