@@ -46,7 +46,8 @@ class RacingService {
   };
 
   startDriveAll = async () => {
-    await this.stopDriveAll();
+    // await this.stopDriveAll();
+    this.returnToStart();
     const promises = state.garageTracks.map((track) => track.startDrive());
     const trackId = state.garageTracks.map((track) => track.carId) as number[];
     const winner = await this.findWinner(promises, trackId);
@@ -67,6 +68,10 @@ class RacingService {
 
   stopDriveAll = async () => {
     await Promise.all(state.garageTracks.map((track) => track.stopDrive()));
+  };
+
+  returnToStart = () => {
+    state.garageTracks.map((track) => track.car.returnToStart());
   };
 
   saveWinner = async (id: string, time: number) => {
