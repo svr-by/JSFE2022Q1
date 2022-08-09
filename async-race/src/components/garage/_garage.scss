@@ -3,7 +3,7 @@
 }
 
 .garage {
-  padding: 40px 0;
+  padding: 20px 0;
 }
 
 .race-track {
@@ -28,14 +28,17 @@
   letter-spacing: 0.1em;
   color: $color-dark-xl;
 
-  @media screen and (max-width: $tablet) {
+  @media screen and (max-width: $width-middle) {
     font-size: 18px;
+  }
+  @media screen and (max-width: $width-small) {
+    font-size: 14px;
   }
 }
 .track__road {
   display: flex;
   align-items: center;
-  height: 60px;
+  height: 50px;
   background-color: $color-dark-l;
 }
 .launcher {
@@ -66,9 +69,17 @@
   background-repeat: no-repeat;
   background-size: contain;
   background-image: url(assets/img/flag.png);
+
+  @media screen and (max-width: $width-small) {
+    margin-right: 100px;
+  }
 }
 .car {
   display: flex;
   align-items: flex-end;
   align-self: end;
+
+  @media screen and (max-width: $width-small) {
+    width: 80px;
+  }
 }

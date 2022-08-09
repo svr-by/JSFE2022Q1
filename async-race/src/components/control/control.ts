@@ -91,7 +91,6 @@ class Control {
       this.btnRace.elem.disabled = true;
       this.btnGenerate.elem.disabled = true;
       await racingService.startDriveAll();
-      // this.btnRace.elem.disabled = false;
       this.btnReset.elem.disabled = false;
       this.btnGenerate.elem.disabled = false;
     });

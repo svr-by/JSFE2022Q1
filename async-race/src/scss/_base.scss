@@ -23,13 +23,13 @@ body {
 .wrapper {
   width: 100%;
   max-width: 1440px;
-  min-width: 780px;
+  min-width: 500px;
   margin: 0 auto;
   padding: 0 10px;
 }
 
 .main {
-  padding-top: 130px;
+  padding-top: 100px;
   flex-grow: 1;
 }
 
@@ -42,6 +42,10 @@ body {
   &.page-title--winners {
     text-align: center;
   }
+
+  @media screen and (max-width: $width-small) {
+    font-size: 24px;
+  }
 }
 
 
@@ -53,5 +57,9 @@ body {
 
   &.page-num--winners {
     text-align: center;
+  }
+
+  @media screen and (max-width: $width-small) {
+    font-size: 18px;
   }
 }

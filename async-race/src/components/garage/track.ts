@@ -88,7 +88,7 @@ export class Track {
 
   startDrive = async () => {
     this.btnStart.elem.disabled = true;
-    const distance = layoutService.getDistance(this.car.elem, this.finish) + this.car.width * 0.75;
+    const distance = layoutService.getDistance(this.car.elem, this.finish) + this.car.width * 0.5;
     const { success, id, time } = await racingService.requestDrive(this.car, distance);
     this.btnStop.elem.disabled = false;
     return { success, id, time };
