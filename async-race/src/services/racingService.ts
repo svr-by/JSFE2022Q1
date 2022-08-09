@@ -7,21 +7,20 @@ import { garage } from '../components/garage/garage';
 class RacingService {
   requestDrive = async (car: Car, actualDist: number) => {
     const id = car.elem.dataset.carId as string;
+    // console.log('id:', id, 'API.startEngine');
     const { velocity, distance } = await API.startEngine(+id);
     const time = Math.round(distance / velocity);
+    // console.log('id', id, 'velocity', velocity, 'distance', distance, 'time', time);
     state.animation[id] = car.animationRace(actualDist, time);
-    return time;
-  };
-
-  requestDriveStatus = async (car: Car) => {
-    const id = car.elem.dataset.carId as string;
+    // console.log('id:', id, 'API.driveEngine');
     const { success } = await API.driveEngine(+id);
+    // console.log('id:', id, 'drivestatus =', success);
     if (!success) {
       window.cancelAnimationFrame(state.animation[id].driveId);
-      // const alarmId = car.animationAlarm();
-      // state.animationAlarm.push({ id, alarmId });
+      const alarmId = car.animationAlarm();
+      state.animationAlarm.push({ id, alarmId });
     }
-    return { success, id };
+    return { success, id, time };
   };
 
   requestStopDrive = async (car: Car) => {
@@ -30,6 +29,7 @@ class RacingService {
       window.cancelAnimationFrame(state.animation[id].driveId);
     }
     this.clearAlarms(id);
+    console.log('id:', id, 'API.stopEngine');
     await API.stopEngine(+id);
     car.returnToStart();
   };
@@ -46,10 +46,8 @@ class RacingService {
   };
 
   startDriveAll = async () => {
-    // await this.stopDriveAll();
-    this.returnToStart();
-    const promises = state.garageTracks.map((track) => track.startDrive());
     const trackId = state.garageTracks.map((track) => track.carId) as number[];
+    const promises = state.garageTracks.map(async (track) => await track.startDrive());
     const winner = await this.findWinner(promises, trackId);
     garage.showWinner(winner);
     await this.saveWinner(winner.id, winner.time);
@@ -58,7 +56,7 @@ class RacingService {
   findWinner = async (promises: Promise<racer>[], ids: number[]): Promise<racer> => {
     const { success, id, time } = await Promise.race(promises);
     if (!success) {
-      const failedIndex = state.garageTracks.findIndex((track) => track.carId === +id);
+      const failedIndex = ids.findIndex((carId) => carId === +id);
       const succesRacers = [...promises.slice(0, failedIndex), ...promises.slice(failedIndex + 1, promises.length)];
       const succesInds = [...ids.slice(0, failedIndex), ...ids.slice(failedIndex + 1, ids.length)];
       return await this.findWinner(succesRacers, succesInds);
@@ -68,10 +66,6 @@ class RacingService {
 
   stopDriveAll = async () => {
     await Promise.all(state.garageTracks.map((track) => track.stopDrive()));
-  };
-
-  returnToStart = () => {
-    state.garageTracks.map((track) => track.car.returnToStart());
   };
 
   saveWinner = async (id: string, time: number) => {

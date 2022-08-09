@@ -23,21 +23,16 @@ class APIservices {
     this.winners = `${this.base}/winners`;
   }
 
-  getCars = async (page: number, limit = 7): Promise<getCarsData> => {
+  getCars = async (page: number, limit = 7): Promise<getCarsData | undefined> => {
     const response = await fetch(`${this.garage}?_page=${page}&_limit=${limit}`).catch((err: Error) =>
       console.log(err.message)
     );
-    let result: getCarsData = {
-      items: [],
-      count: null,
-    };
     if (response && response.ok) {
-      result = {
+      return {
         items: await response.json(),
         count: response.headers.get('X-Total-Count'),
       };
     }
-    return result;
   };
 
   getCar = async (id: number): Promise<car> => {
@@ -100,13 +95,17 @@ class APIservices {
     return sort && order ? `&_sort=${sort}&_order=${order}` : '';
   };
 
-  getWinners = async (page: number, sort?: string, order?: string, limit = 10): Promise<getWinnersData> => {
-    const response = await fetch(`${this.winners}?_page=${page}&_limit=${limit}${this.getSortOrder(sort, order)}`);
-    const winnersArr: winner[] = await response.json();
-    return {
-      items: await Promise.all(winnersArr.map(async (winner) => ({ ...winner, car: await this.getCar(winner.id) }))),
-      count: response.headers.get('X-Total-Count'),
-    };
+  getWinners = async (page: number, sort?: string, order?: string, limit = 10): Promise<getWinnersData | undefined> => {
+    const response = await fetch(
+      `${this.winners}?_page=${page}&_limit=${limit}${this.getSortOrder(sort, order)}`
+    ).catch((err: Error) => console.log(err.message));
+    if (response && response.ok) {
+      const winnersArr: winner[] = await response.json();
+      return {
+        items: await Promise.all(winnersArr.map(async (winner) => ({ ...winner, car: await this.getCar(winner.id) }))),
+        count: response.headers.get('X-Total-Count'),
+      };
+    }
   };
 
   getWinner = async (id: number): Promise<winner> => {
