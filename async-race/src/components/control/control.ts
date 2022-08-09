@@ -89,14 +89,17 @@ class Control {
 
     this.btnRace.elem.addEventListener('click', async () => {
       this.btnRace.elem.disabled = true;
+      this.btnGenerate.elem.disabled = true;
       await racingService.startDriveAll();
-      this.btnRace.elem.disabled = false;
+      // this.btnRace.elem.disabled = false;
       this.btnReset.elem.disabled = false;
+      this.btnGenerate.elem.disabled = false;
     });
 
     this.btnReset.elem.addEventListener('click', async () => {
       this.btnReset.elem.disabled = true;
       await racingService.stopDriveAll();
+      this.btnRace.elem.disabled = false;
     });
   };
 }
