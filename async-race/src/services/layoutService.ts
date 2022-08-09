@@ -25,17 +25,23 @@ class LayoutService {
   };
 
   updateGarage = async () => {
-    const { items, count } = await API.getCars(state.garagePage);
-    state.garageCars = items;
-    if (count) state.garageTotalCars = +count;
+    const serverData = await API.getCars(state.garagePage);
+    if (serverData) {
+      const { items, count } = serverData;
+      state.garageCars = items;
+      if (count) state.garageTotalCars = +count;
+    }
     garage.render();
     garage.pagination.updatePagination();
   };
 
   updateWinners = async () => {
-    const { items, count } = await API.getWinners(state.winnersPage, state.winnersSort, state.winnersSortOrder);
-    state.winnersCars = items;
-    if (count) state.winnersTotalCars = +count;
+    const serverData = await API.getWinners(state.winnersPage, state.winnersSort, state.winnersSortOrder);
+    if (serverData) {
+      const { items, count } = serverData;
+      state.winnersCars = items;
+      if (count) state.winnersTotalCars = +count;
+    }
     winners.render();
     winners.pagination.updatePagination();
   };

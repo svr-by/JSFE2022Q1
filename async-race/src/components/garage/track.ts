@@ -59,13 +59,13 @@ export class Track {
   };
 
   private addListeners = () => {
-    this.btnRemove.elem.addEventListener('click', async () => await this.removeCar());
+    this.btnRemove.elem.addEventListener('click', this.removeCar);
 
-    this.btnSelect.elem.addEventListener('click', async () => await this.selectCar());
+    this.btnSelect.elem.addEventListener('click', this.selectCar);
 
-    this.btnStart.elem.addEventListener('click', async () => await this.startDrive());
+    this.btnStart.elem.addEventListener('click', this.startDrive);
 
-    this.btnStop.elem.addEventListener('click', async () => await this.stopDrive());
+    this.btnStop.elem.addEventListener('click', this.stopDrive);
   };
 
   removeCar = async () => {
@@ -89,9 +89,8 @@ export class Track {
   startDrive = async () => {
     this.btnStart.elem.disabled = true;
     const distance = layoutService.getDistance(this.car.elem, this.finish) + this.car.width * 0.75;
-    const time = await racingService.requestDrive(this.car, distance);
+    const { success, id, time } = await racingService.requestDrive(this.car, distance);
     this.btnStop.elem.disabled = false;
-    const { success, id } = await racingService.requestDriveStatus(this.car);
     return { success, id, time };
   };
 

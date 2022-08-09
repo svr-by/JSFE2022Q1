@@ -15,8 +15,8 @@ class App {
     `;
     header.render();
     control.render();
-    await layoutService.updateGarage();
     footer.render();
+    await layoutService.updateGarage();
     await layoutService.updateWinners();
   };
 }
