@@ -26,6 +26,8 @@ class RacingService {
     }
     this.clearAlarms(id);
     await API.stopEngine(+id);
+    const track = state.garageTracks.find((track) => track.carId === +id);
+    track?.elem.classList.remove('winner');
     car.returnToStart();
   };
 
@@ -45,6 +47,8 @@ class RacingService {
     const promises = state.garageTracks.map(async (track) => await track.startDrive());
     const winner = await this.findWinner(promises, trackId);
     garage.showWinner(winner);
+    const winnerTrack = state.garageTracks.find((track) => track.carId === +winner.id);
+    winnerTrack?.elem.classList.add('winner');
     await this.saveWinner(winner.id, winner.time);
   };
 

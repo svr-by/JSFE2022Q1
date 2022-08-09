@@ -14,6 +14,10 @@
 
 .track {
   border-bottom: 2px dashed $color-white;
+
+  &.winner .track__name{
+    color: $color-orange;
+  }
 }
 .track__control {
   display: flex;
