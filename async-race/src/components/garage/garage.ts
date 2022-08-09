@@ -48,6 +48,14 @@ class Garage {
       this.winnerMessage.classList.remove('visible');
     }, 5000);
   };
+
+  blockPage = () => {
+    this.winnerMessage.classList.add('warning');
+    this.winnerMessage.innerText = `Sorry, server not found! `;
+    const buttons = document.querySelectorAll('button');
+    const inputs = document.querySelectorAll('input');
+    [...buttons, ...inputs].forEach((elem) => (elem.disabled = true));
+  };
 }
 
 export const garage = new Garage();

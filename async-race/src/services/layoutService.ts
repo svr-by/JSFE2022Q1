@@ -30,6 +30,8 @@ class LayoutService {
       const { items, count } = serverData;
       state.garageCars = items;
       if (count) state.garageTotalCars = +count;
+    } else {
+      garage.blockPage();
     }
     garage.render();
     garage.pagination.updatePagination();

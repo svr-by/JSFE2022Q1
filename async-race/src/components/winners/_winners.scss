@@ -52,4 +52,9 @@
   &.visible {
     display: block;
   }
+  &.warning {
+    display: block;
+    color: $color-orange;
+    text-shadow: none;
+  }
 }
