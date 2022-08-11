@@ -4,7 +4,7 @@ import { footer } from '../components/footer/footer';
 import { layoutService } from '../services/layoutService';
 
 class App {
-  render = async () => {
+  async render() {
     document.body.innerHTML = `
     <main class="main">
       <div class="wrapper">
@@ -18,7 +18,7 @@ class App {
     footer.render();
     await layoutService.updateGarage();
     await layoutService.updateWinners();
-  };
+  }
 }
 
 export default App;

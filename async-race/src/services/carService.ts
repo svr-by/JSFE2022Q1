@@ -1,25 +1,25 @@
 import { control } from '../components/control/control';
 import { API } from '../api/api';
 import { state } from '../state/state';
-import { createCarBody } from '../types/types';
 import { layoutService } from './layoutService';
+import { CreateCarBody } from '../types/types';
 
 class CarService {
-  createCar = async (car: createCarBody) => {
+  async createCar(car: CreateCarBody) {
     await API.createCar(car);
     layoutService.updateControl();
-    await layoutService.updateGarage();
-  };
+    layoutService.updateGarage();
+  }
 
-  removeCar = async (id: number) => {
+  async removeCar(id: number) {
     await API.deleteCar(id);
     layoutService.updateControl();
     await layoutService.updateGarage();
     await API.deleteWinner(id);
-    await layoutService.updateGarage();
-  };
+    layoutService.updateGarage();
+  }
 
-  selectCar = async (id: string | undefined) => {
+  async selectCar(id: string | undefined) {
     let disabled = true;
     let name = '';
     let color = '#000000';
@@ -36,24 +36,24 @@ class CarService {
     control.inpTextUpdate.elem.disabled = disabled;
     control.inpColorUpdate.elem.disabled = disabled;
     control.btnUpdate.elem.disabled = disabled;
-  };
+  }
 
-  updateCar = async (carProps: createCarBody) => {
+  async updateCar(carProps: CreateCarBody) {
     if (state.selectedCar) {
       await API.updateCar(state.selectedCar.id, carProps);
     }
     layoutService.updateControl();
     await layoutService.updateGarage();
     state.selectedCar = null;
-  };
+  }
 
-  generateCars = async () => {
+  async generateCars() {
     const cars = this.getRandomCars();
     await Promise.all(cars.map((car) => API.createCar(car)));
-    await layoutService.updateGarage();
-  };
+    layoutService.updateGarage();
+  }
 
-  private getRandomName = () => {
+  private getRandomName() {
     const brands = [
       'Ascari',
       'McLaren',
@@ -90,18 +90,18 @@ class CarService {
     const brand = brands[Math.floor(brands.length * Math.random())];
     const model = models[Math.floor(models.length * Math.random())];
     return `${brand} ${model}`;
-  };
+  }
 
-  private getRandomColor = () => {
+  private getRandomColor() {
     return `#${Math.random().toString(16).slice(2, 8)}`;
-  };
+  }
 
-  private getRandomCars = (qty = 100) => {
+  private getRandomCars(qty = 100) {
     return new Array(qty).fill(0).map(() => ({
       name: this.getRandomName(),
       color: this.getRandomColor(),
     }));
-  };
+  }
 }
 
 export const carService = new CarService();

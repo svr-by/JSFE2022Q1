@@ -1,11 +1,11 @@
 import { API } from '../api/api';
 import { state } from '../state/state';
-import { racer } from '../types/types';
+import { Racer } from '../types/types';
 import { Car } from '../components/garage/car';
 import { garage } from '../components/garage/garage';
 
 class RacingService {
-  requestDrive = async (car: Car, actualDist: number) => {
+  async requestDrive(car: Car, actualDist: number) {
     const id = car.elem.dataset.carId as string;
     const { velocity, distance } = await API.startEngine(+id);
     const time = Math.round(distance / velocity);
@@ -17,9 +17,9 @@ class RacingService {
       state.animationAlarm.push({ id, alarmId });
     }
     return { success, id, time };
-  };
+  }
 
-  requestStopDrive = async (car: Car) => {
+  async requestStopDrive(car: Car) {
     const id = car.elem.dataset.carId as string;
     if (state.animation[id]) {
       window.cancelAnimationFrame(state.animation[id].driveId);
@@ -29,9 +29,9 @@ class RacingService {
     const track = state.garageTracks.find((track) => track.carId === +id);
     track?.elem.classList.remove('winner');
     car.returnToStart();
-  };
+  }
 
-  clearAlarms = (id: string) => {
+  clearAlarms(id: string) {
     for (let i = 0; i < state.animationAlarm.length; i++) {
       const alarm = state.animationAlarm[i];
       if (alarm.id === id) {
@@ -40,9 +40,9 @@ class RacingService {
         i--;
       }
     }
-  };
+  }
 
-  startDriveAll = async () => {
+  async startDriveAll() {
     const trackId = state.garageTracks.map((track) => track.carId) as number[];
     const promises = state.garageTracks.map(async (track) => await track.startDrive());
     const winner = await this.findWinner(promises, trackId);
@@ -50,9 +50,9 @@ class RacingService {
     const winnerTrack = state.garageTracks.find((track) => track.carId === +winner.id);
     winnerTrack?.elem.classList.add('winner');
     await this.saveWinner(winner.id, winner.time);
-  };
+  }
 
-  findWinner = async (promises: Promise<racer>[], ids: number[]): Promise<racer> => {
+  async findWinner(promises: Promise<Racer>[], ids: number[]): Promise<Racer> {
     const { success, id, time } = await Promise.race(promises);
     if (!success) {
       const failedIndex = ids.findIndex((carId) => carId === +id);
@@ -61,13 +61,13 @@ class RacingService {
       return await this.findWinner(succesRacers, succesInds);
     }
     return { success, id, time };
-  };
+  }
 
-  stopDriveAll = async () => {
+  async stopDriveAll() {
     await Promise.all(state.garageTracks.map((track) => track.stopDrive()));
-  };
+  }
 
-  saveWinner = async (id: string, time: number) => {
+  async saveWinner(id: string, time: number) {
     const winner = await API.getWinner(+id);
     const winnerTime = +(time / 1000).toFixed(2);
     if (winner.id) {
@@ -82,7 +82,7 @@ class RacingService {
         time: winnerTime,
       });
     }
-  };
+  }
 }
 
 export const racingService = new RacingService();

@@ -10,25 +10,25 @@ export class Pagination {
   constructor() {
     this.elem = document.createElement('div');
     this.elem.classList.add('pagination');
-    this.btnPrev = new Button('Prev', undefined, ['button']);
+    this.btnPrev = new Button('Prev', ['button']);
     this.btnPrev.elem.disabled = true;
     this.elem.append(this.btnPrev.elem);
-    this.btnNext = new Button('Next', undefined, ['button']);
+    this.btnNext = new Button('Next', ['button']);
     this.btnNext.elem.disabled = true;
     this.elem.append(this.btnNext.elem);
     this.addListeners();
   }
 
-  private addListeners = () => {
+  private addListeners() {
     this.btnPrev.elem.addEventListener('click', async () => {
       await layoutService.renderPrevPage();
     });
     this.btnNext.elem.addEventListener('click', async () => {
       await layoutService.renderNextPage();
     });
-  };
+  }
 
-  updatePagination = () => {
+  updatePagination() {
     let currentPage: number;
     let totalCars: number;
     let pageLimit: number;
@@ -58,5 +58,5 @@ export class Pagination {
     } else {
       this.btnPrev.elem.disabled = true;
     }
-  };
+  }
 }

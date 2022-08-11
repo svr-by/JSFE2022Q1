@@ -1,14 +1,14 @@
-import { car } from '../../types/types';
 import { layoutService } from '../../services/layoutService';
 import { carService } from '../../services/carService';
 import { racingService } from '../../services/racingService';
 import { Button } from '../button/button';
-import { Car } from './car';
+import { Car as CarClass } from './car';
+import { Car } from '../../types/types';
 
 export class Track {
   elem: HTMLElement;
   finish: HTMLElement;
-  car: Car;
+  car: CarClass;
   btnSelect: Button;
   btnRemove: Button;
   btnStart: Button;
@@ -18,15 +18,15 @@ export class Track {
   constructor() {
     this.elem = layoutService.createElement('div', '', ['track']);
     this.finish = layoutService.createElement('div', '', ['finish']);
-    this.car = new Car();
-    this.btnSelect = new Button('Select', undefined, ['button']);
-    this.btnRemove = new Button('Remove', undefined, ['button']);
-    this.btnStart = new Button('A', undefined, ['track__btn']);
-    this.btnStop = new Button('B', undefined, ['track__btn']);
+    this.car = new CarClass();
+    this.btnSelect = new Button('Select', ['button']);
+    this.btnRemove = new Button('Remove', ['button']);
+    this.btnStart = new Button('A', ['track__btn']);
+    this.btnStop = new Button('B', ['track__btn']);
     this.carId = null;
   }
 
-  render = ({ id, name, color }: car) => {
+  render({ id, name, color }: Car) {
     this.carId = id;
     const trackControl = layoutService.createElement('div', '', ['track__control']);
     this.btnSelect.elem.dataset.carId = `${id}`;
@@ -56,24 +56,21 @@ export class Track {
     this.addListeners();
 
     return this.elem;
-  };
+  }
 
-  private addListeners = () => {
-    this.btnRemove.elem.addEventListener('click', this.removeCar);
+  private addListeners() {
+    this.btnRemove.elem.addEventListener('click', () => this.removeCar());
+    this.btnSelect.elem.addEventListener('click', () => this.selectCar());
+    this.btnStart.elem.addEventListener('click', () => this.startDrive());
+    this.btnStop.elem.addEventListener('click', () => this.stopDrive());
+  }
 
-    this.btnSelect.elem.addEventListener('click', this.selectCar);
-
-    this.btnStart.elem.addEventListener('click', this.startDrive);
-
-    this.btnStop.elem.addEventListener('click', this.stopDrive);
-  };
-
-  removeCar = async () => {
+  removeCar() {
     const id = this.btnRemove.elem.dataset.carId;
-    if (id) await carService.removeCar(+id);
-  };
+    if (id) carService.removeCar(+id);
+  }
 
-  selectCar = async () => {
+  selectCar() {
     let id = this.btnSelect.elem.dataset.carId;
     if (id) {
       document.querySelectorAll('.select').forEach((btn) => {
@@ -82,21 +79,21 @@ export class Track {
       this.btnSelect.elem.classList.toggle('select');
 
       id = this.btnSelect.elem.classList.contains('select') ? id : undefined;
-      await carService.selectCar(id);
+      carService.selectCar(id);
     }
-  };
+  }
 
-  startDrive = async () => {
+  async startDrive() {
     this.btnStart.elem.disabled = true;
     const distance = layoutService.getDistance(this.car.elem, this.finish) + this.car.width * 0.5;
     const { success, id, time } = await racingService.requestDrive(this.car, distance);
     this.btnStop.elem.disabled = false;
     return { success, id, time };
-  };
+  }
 
-  stopDrive = async () => {
+  async stopDrive() {
     this.btnStop.elem.disabled = true;
     await racingService.requestStopDrive(this.car);
     this.btnStart.elem.disabled = false;
-  };
+  }
 }

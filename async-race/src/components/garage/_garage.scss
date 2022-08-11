@@ -19,10 +19,12 @@
     color: $color-orange;
   }
 }
+
 .track__control {
   display: flex;
   margin-bottom: 10px;
 }
+
 .track__name {
   margin: 0 auto;
   font-size: 24px;
@@ -39,16 +41,19 @@
     font-size: 14px;
   }
 }
+
 .track__road {
   display: flex;
   align-items: center;
   height: 50px;
   background-color: $color-dark-l;
 }
+
 .launcher {
   display: flex;
   padding-left: 10px;
 }
+
 .track__btn {
   height: 30px;
   margin-right: 10px;
@@ -65,6 +70,7 @@
     color: $color-dark-xl;
   }
 }
+
 .finish {
   display: block;
   width: 40px;
@@ -78,6 +84,7 @@
     margin-right: 100px;
   }
 }
+
 .car {
   display: flex;
   align-items: flex-end;

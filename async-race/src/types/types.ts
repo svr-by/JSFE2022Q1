@@ -1,61 +1,61 @@
-export type car = {
+export type Car = {
   name: string;
   color: string;
   id: number;
 };
 
-export type getCarsData = {
-  items: car[] | [];
+export type GetCarsData = {
+  items: Car[] | [];
   count: string | null;
 };
 
-export type createCarBody = Pick<car, 'name' | 'color'>;
+export type CreateCarBody = Pick<Car, 'name' | 'color'>;
 
-export type raceParams = {
+export type RaceParams = {
   velocity: number;
   distance: number;
 };
 
-export type raceStatus = {
+export type RaceStatus = {
   success: boolean;
 };
 
-export enum engineStatus {
+export enum EngineStatus {
   started = 'started',
   stopped = 'stopped',
   drive = 'drive',
 }
 
-export type winner = {
+export type Winner = {
   wins: number;
   time: number;
   id: number;
 };
 
-export type extWinner = {
+export type ExtWinner = {
   wins: number;
   time: number;
   id: number;
-  car: car;
+  car: Car;
 };
 
-export type getWinnersData = {
-  items: extWinner[];
+export type GetWinnersData = {
+  items: ExtWinner[];
   count: string | null;
 };
 
-export type updateWinnerBody = Pick<winner, 'wins' | 'time'>;
+export type UpdateWinnerBody = Pick<Winner, 'wins' | 'time'>;
 
-export type animationState = {
+export type AnimationState = {
   [index: string]: { driveId: number };
 };
 
-export type alarmId = {
+export type AlarmId = {
   id: string;
   alarmId: NodeJS.Timer;
 };
 
-export type racer = {
+export type Racer = {
   success: boolean;
   id: string;
   time: number;
