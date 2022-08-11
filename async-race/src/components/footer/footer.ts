@@ -1,7 +1,7 @@
 class Footer {
   elem = document.createElement('footer');
 
-  render = () => {
+  render() {
     this.elem.innerHTML = `
       <div class="wrapper footer__wrapper">
         <div>
@@ -15,7 +15,7 @@ class Footer {
       </div>
     `;
     document.body.append(this.elem);
-  };
+  }
 }
 
 export const footer = new Footer();

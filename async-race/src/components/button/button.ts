@@ -1,10 +1,9 @@
 export class Button {
   elem: HTMLButtonElement;
 
-  constructor(text: string, id?: string, classes?: string[]) {
+  constructor(text: string, classes?: string[]) {
     this.elem = document.createElement('button');
     this.elem.innerText = `${text}`;
-    if (id) this.elem.id = id;
     if (classes) this.elem.classList.add(...classes);
   }
 

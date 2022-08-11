@@ -12,7 +12,7 @@ export class Car {
     this.height = 45;
   }
 
-  animationRace = (distance: number, animationTime: number) => {
+  animationRace(distance: number, animationTime: number) {
     let start: number | null = null;
     const store = { driveId: 0 };
     const step = (timeStamp: number) => {
@@ -27,12 +27,12 @@ export class Car {
     };
     store.driveId = window.requestAnimationFrame(step);
     return store;
-  };
+  }
 
-  returnToStart = () => {
+  returnToStart() {
     this.elem.style.transform = `translateX(0px)`;
     this.renderCarImg();
-  };
+  }
 
   animationAlarm() {
     const delay = 250;
@@ -47,7 +47,7 @@ export class Car {
     }, delay);
   }
 
-  renderCarImg = (rearLightsColor = '#FF0000', frontLightsColor = '#808080') => {
+  renderCarImg(rearLightsColor = '#FF0000', frontLightsColor = '#808080') {
     this.elem.innerHTML = `
     <svg width="${this.width}" height="${this.height}" viewBox="0 0 550 158" fill="none" xmlns="http://www.w3.org/2000/svg">
     <g clip-path="url(#clip0_2_2)">
@@ -153,5 +153,5 @@ export class Car {
     </defs>
     </svg>
     `;
-  };
+  }
 }

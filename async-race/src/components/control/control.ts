@@ -17,18 +17,18 @@ class Control {
 
   constructor() {
     this.elem = document.createElement('div');
-    this.inpTextCreate = new Input('text', 'inpTextCreate', ['control__input']);
-    this.inpColorCreate = new Input('color', 'inpColorCreate', ['control__color']);
-    this.btnCreate = new Button('Create', 'btnCreate', ['button', 'control__btn']);
-    this.inpTextUpdate = new Input('text', 'inpTextUpdate', ['control__input']);
-    this.inpColorUpdate = new Input('color', 'inpColorUpdate', ['control__color']);
-    this.btnUpdate = new Button('Update', 'btnUpdate', ['button', 'control__btn']);
-    this.btnRace = new Button('Race', 'btnRace', ['button', 'control__btn']);
-    this.btnReset = new Button('Reset', 'btnReset', ['button', 'control__btn']);
-    this.btnGenerate = new Button('Generate Cars', 'btnGenerate', ['button', 'control__btn']);
+    this.inpTextCreate = new Input('text', ['control__input']);
+    this.inpColorCreate = new Input('color', ['control__color']);
+    this.btnCreate = new Button('Create', ['button', 'control__btn']);
+    this.inpTextUpdate = new Input('text', ['control__input']);
+    this.inpColorUpdate = new Input('color', ['control__color']);
+    this.btnUpdate = new Button('Update', ['button', 'control__btn']);
+    this.btnRace = new Button('Race', ['button', 'control__btn']);
+    this.btnReset = new Button('Reset', ['button', 'control__btn']);
+    this.btnGenerate = new Button('Generate Cars', ['button', 'control__btn']);
   }
 
-  render = () => {
+  render() {
     this.elem.classList.add('control');
     this.elem.innerHTML = `
       <h3 class="control__title">Control panel</h3>
@@ -58,27 +58,27 @@ class Control {
     this.btnGenerate.appendToParent('#controlRace');
 
     this.addListeners();
-  };
+  }
 
-  private addListeners = () => {
+  private addListeners() {
     this.inpTextCreate.elem.addEventListener('input', () => {
       this.btnCreate.elem.disabled = this.inpTextCreate.elem.value.length !== 0 ? false : true;
     });
 
-    this.btnCreate.elem.addEventListener('click', async () => {
+    this.btnCreate.elem.addEventListener('click', () => {
       const car = {
         name: this.inpTextCreate.elem.value,
         color: this.inpColorCreate.elem.value,
       };
-      await carService.createCar(car);
+      carService.createCar(car);
     });
 
-    this.btnUpdate.elem.addEventListener('click', async () => {
+    this.btnUpdate.elem.addEventListener('click', () => {
       const carProps = {
         name: this.inpTextUpdate.elem.value,
         color: this.inpColorUpdate.elem.value,
       };
-      await carService.updateCar(carProps);
+      carService.updateCar(carProps);
     });
 
     this.btnGenerate.elem.addEventListener('click', async () => {
@@ -100,7 +100,7 @@ class Control {
       await racingService.stopDriveAll();
       this.btnRace.elem.disabled = false;
     });
-  };
+  }
 }
 
 export const control = new Control();

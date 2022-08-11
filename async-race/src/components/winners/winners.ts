@@ -1,4 +1,4 @@
-import { extWinner } from '../../types/types';
+import { ExtWinner } from '../../types/types';
 import { layoutService } from '../../services/layoutService';
 import { Pagination } from '../pagination/paginstion';
 import { Car } from '../garage/car';
@@ -14,7 +14,7 @@ class Winners {
     this.pagination = new Pagination();
   }
 
-  render = () => {
+  render() {
     this.elem.innerHTML = `
       <h2 class="page-title page-title--winners">Winners (${state.winnersTotalCars})</h2>
       <h3 class="page-num page-num--winners">Page #${state.winnersPage}</h3>
@@ -40,9 +40,9 @@ class Winners {
     this.elem.append(this.pagination.elem);
     const winnersPage = document.querySelector('.winners-page');
     if (winnersPage) winnersPage.append(this.elem);
-  };
+  }
 
-  private renderWinnerRow = (winner: extWinner) => {
+  private renderWinnerRow(winner: ExtWinner) {
     const tableRow = layoutService.createElement('tr', '');
     tableRow.append(layoutService.createElement('th', `${winner.car.id}`));
     const car = new Car();
@@ -54,15 +54,15 @@ class Winners {
     tableRow.append(layoutService.createElement('th', `${winner.wins}`));
     tableRow.append(layoutService.createElement('th', `${winner.time}`));
     return tableRow;
-  };
+  }
 
-  private addListeners = () => {
+  private addListeners() {
     const btnByWins = this.elem.querySelector('#by-wins') as HTMLElement;
     btnByWins.addEventListener('click', () => layoutService.setSortOrder('wins'));
 
     const btnByTime = this.elem.querySelector('#by-time') as HTMLElement;
     btnByTime.addEventListener('click', () => layoutService.setSortOrder('time'));
-  };
+  }
 }
 
 export const winners = new Winners();

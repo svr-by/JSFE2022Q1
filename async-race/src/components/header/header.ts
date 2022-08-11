@@ -10,11 +10,11 @@ class Header {
   constructor() {
     this.elem = document.createElement('header');
     this.elem.classList.add('header');
-    this.btnGarage = new Button('To garage', 'btnGarage', ['button']);
-    this.btnWinners = new Button('To winners', 'btnGarage', ['button']);
+    this.btnGarage = new Button('To garage', ['button']);
+    this.btnWinners = new Button('To winners', ['button']);
   }
 
-  render = () => {
+  render() {
     this.elem.innerHTML = `
       <div class="wrapper header__wrapper">
         <a href="javascript:void(0)">
@@ -29,23 +29,25 @@ class Header {
     this.btnGarage.appendToParent('.nav');
     this.btnWinners.appendToParent('.nav');
     this.addListeners();
-  };
+  }
 
-  private addListeners = () => {
+  private addListeners() {
     const garagePage = document.querySelector('.garage-page') as HTMLElement;
     const winnersPage = document.querySelector('.winners-page') as HTMLElement;
+
     this.btnGarage.elem.addEventListener('click', () => {
       state.view = 'garage';
       winnersPage.style.display = 'none';
       garagePage.style.display = 'block';
     });
+
     this.btnWinners.elem.addEventListener('click', async () => {
       state.view = 'winners';
       await layoutService.updateWinners();
       winnersPage.style.display = 'block';
       garagePage.style.display = 'none';
     });
-  };
+  }
 }
 
 export const header = new Header();

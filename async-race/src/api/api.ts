@@ -1,13 +1,13 @@
 import {
-  car,
-  getCarsData,
-  createCarBody,
-  raceParams,
-  raceStatus,
-  engineStatus,
-  winner,
-  getWinnersData,
-  updateWinnerBody,
+  Car,
+  GetCarsData,
+  CreateCarBody,
+  RaceParams,
+  RaceStatus,
+  EngineStatus,
+  Winner,
+  GetWinnersData,
+  UpdateWinnerBody,
 } from '../types/types';
 
 class APIservices {
@@ -23,7 +23,7 @@ class APIservices {
     this.winners = `${this.base}/winners`;
   }
 
-  getCars = async (page: number, limit = 7): Promise<getCarsData | undefined> => {
+  async getCars(page: number, limit = 7): Promise<GetCarsData | undefined> {
     const response = await fetch(`${this.garage}?_page=${page}&_limit=${limit}`).catch((err: Error) =>
       console.log(err.message)
     );
@@ -33,14 +33,14 @@ class APIservices {
         count: response.headers.get('X-Total-Count'),
       };
     }
-  };
+  }
 
-  getCar = async (id: number): Promise<car> => {
+  async getCar(id: number): Promise<Car> {
     const response = await fetch(`${this.garage}/${id}`);
     return await response.json();
-  };
+  }
 
-  createCar = async (body: createCarBody): Promise<car> => {
+  async createCar(body: CreateCarBody): Promise<Car> {
     const response = await fetch(`${this.garage}`, {
       method: 'POST',
       headers: {
@@ -49,16 +49,16 @@ class APIservices {
       body: JSON.stringify(body),
     });
     return await response.json();
-  };
+  }
 
-  deleteCar = async (id: number): Promise<Record<string, never>> => {
+  async deleteCar(id: number): Promise<Record<string, never>> {
     const response = await fetch(`${this.garage}/${id}`, {
       method: 'DELETE',
     });
     return await response.json();
-  };
+  }
 
-  updateCar = async (id: number, body: createCarBody): Promise<car> => {
+  async updateCar(id: number, body: CreateCarBody): Promise<Car> {
     const response = await fetch(`${this.garage}/${id}`, {
       method: 'PUT',
       headers: {
@@ -67,53 +67,53 @@ class APIservices {
       body: JSON.stringify(body),
     });
     return await response.json();
-  };
+  }
 
-  private updateEngine = async (id: number, status: string): Promise<raceParams> => {
+  private async updateEngine(id: number, status: string): Promise<RaceParams> {
     const response = await fetch(`${this.engine}?id=${id}&status=${status}`, {
       method: 'PATCH',
-    }).catch();
-    return !response.ok ? { success: false } : await response.json();
-  };
+    });
+    return await response.json();
+  }
 
-  startEngine = async (id: number): Promise<raceParams> => {
-    return await this.updateEngine(id, engineStatus.started);
-  };
+  startEngine(id: number): Promise<RaceParams> {
+    return this.updateEngine(id, EngineStatus.started);
+  }
 
-  stopEngine = async (id: number): Promise<raceParams> => {
-    return await this.updateEngine(id, engineStatus.stopped);
-  };
+  stopEngine(id: number): Promise<RaceParams> {
+    return this.updateEngine(id, EngineStatus.stopped);
+  }
 
-  driveEngine = async (id: number): Promise<raceStatus> => {
-    const response = await fetch(`${this.engine}?id=${id}&status=${engineStatus.drive}`, {
+  async driveEngine(id: number): Promise<RaceStatus> {
+    const response = await fetch(`${this.engine}?id=${id}&status=${EngineStatus.drive}`, {
       method: 'PATCH',
     }).catch();
     return !response.ok ? { success: false } : await response.json();
-  };
+  }
 
-  getSortOrder = (sort?: string, order?: string) => {
+  getSortOrder(sort?: string, order?: string) {
     return sort && order ? `&_sort=${sort}&_order=${order}` : '';
-  };
+  }
 
-  getWinners = async (page: number, sort?: string, order?: string, limit = 10): Promise<getWinnersData | undefined> => {
+  async getWinners(page: number, sort?: string, order?: string, limit = 10): Promise<GetWinnersData | undefined> {
     const response = await fetch(
       `${this.winners}?_page=${page}&_limit=${limit}${this.getSortOrder(sort, order)}`
     ).catch((err: Error) => console.log(err.message));
     if (response && response.ok) {
-      const winnersArr: winner[] = await response.json();
+      const winnersArr: Winner[] = await response.json();
       return {
         items: await Promise.all(winnersArr.map(async (winner) => ({ ...winner, car: await this.getCar(winner.id) }))),
         count: response.headers.get('X-Total-Count'),
       };
     }
-  };
+  }
 
-  getWinner = async (id: number): Promise<winner> => {
+  async getWinner(id: number): Promise<Winner> {
     const response = await fetch(`${this.winners}/${id}`);
     return await response.json();
-  };
+  }
 
-  createWinner = async (body: winner): Promise<winner> => {
+  async createWinner(body: Winner): Promise<Winner> {
     const response = await fetch(`${this.winners}`, {
       method: 'POST',
       headers: {
@@ -122,16 +122,16 @@ class APIservices {
       body: JSON.stringify(body),
     });
     return await response.json();
-  };
+  }
 
-  deleteWinner = async (id: number): Promise<Record<string, never>> => {
+  async deleteWinner(id: number): Promise<Record<string, never>> {
     const response = await fetch(`${this.winners}/${id}`, {
       method: 'DELETE',
     });
     return await response.json();
-  };
+  }
 
-  updateWinner = async (id: number, body: updateWinnerBody): Promise<winner> => {
+  async updateWinner(id: number, body: UpdateWinnerBody): Promise<Winner> {
     const response = await fetch(`${this.winners}/${id}`, {
       method: 'PUT',
       headers: {
@@ -140,7 +140,7 @@ class APIservices {
       body: JSON.stringify(body),
     });
     return await response.json();
-  };
+  }
 }
 
 export const API = new APIservices();

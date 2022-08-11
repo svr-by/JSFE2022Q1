@@ -2,7 +2,7 @@ import { Track } from './track';
 import { Pagination } from '../pagination/paginstion';
 import { layoutService } from '../../services/layoutService';
 import { state } from '../../state/state';
-import { racer } from '../../types/types';
+import { Racer } from '../../types/types';
 
 class Garage {
   elem: HTMLElement;
@@ -17,7 +17,7 @@ class Garage {
     this.pagination = new Pagination();
   }
 
-  render = () => {
+  render() {
     this.elem.innerHTML = '';
     const pageTitle = layoutService.createElement('h2', `Garage (${state.garageTotalCars})`, ['page-title']);
     const pageNum = layoutService.createElement('h3', `Page #${state.garagePage}`, ['page-num']);
@@ -37,9 +37,9 @@ class Garage {
 
     const gargePage = document.querySelector('.garage-page');
     if (gargePage) gargePage.append(this.elem);
-  };
+  }
 
-  showWinner = (winner: racer) => {
+  showWinner(winner: Racer) {
     this.winnerMessage.classList.add('visible');
     const time = (winner.time / 1000).toFixed(2);
     this.winnerMessage.innerText = `Racer ${winner.id} went first in ${time}s!`;
@@ -47,15 +47,18 @@ class Garage {
       this.winnerMessage.innerText = '';
       this.winnerMessage.classList.remove('visible');
     }, 5000);
-  };
+  }
 
-  blockPage = () => {
+  blockPage() {
     this.winnerMessage.classList.add('warning');
     this.winnerMessage.innerText = `Sorry, server not found! `;
+    this.elem.append(this.winnerMessage);
     const buttons = document.querySelectorAll('button');
     const inputs = document.querySelectorAll('input');
     [...buttons, ...inputs].forEach((elem) => (elem.disabled = true));
-  };
+    const gargePage = document.querySelector('.garage-page');
+    if (gargePage) gargePage.append(this.elem);
+  }
 }
 
 export const garage = new Garage();
