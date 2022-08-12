@@ -3,9 +3,10 @@ import { winners } from '../components/winners/winners';
 import { control } from '../components/control/control';
 import { API } from '../api/api';
 import { state } from '../state/state';
+import { newElement } from '../types/types';
 
 class LayoutService {
-  createElement(tag: string, text?: string, classes?: string[], id?: string) {
+  createElement({ tag, text, classes, id }: newElement) {
     const elem = document.createElement(tag);
     if (text) elem.innerText = text;
     if (classes) elem.classList.add(...classes);

@@ -60,3 +60,10 @@ export type Racer = {
   id: string;
   time: number;
 };
+
+export type newElement = {
+  tag: string;
+  text?: string;
+  classes?: string[];
+  id?: string;
+};
