@@ -2,10 +2,10 @@ import { control } from '../components/control/control';
 import { API } from '../api/api';
 import { state } from '../state/state';
 import { layoutService } from './layoutService';
-import { CreateCarBody } from '../types/types';
+import { CarParams } from '../types/types';
 
 class CarService {
-  async createCar(car: CreateCarBody) {
+  async createCar(car: CarParams) {
     await API.createCar(car);
     layoutService.updateControl();
     layoutService.updateGarage();
@@ -38,7 +38,7 @@ class CarService {
     control.btnUpdate.elem.disabled = disabled;
   }
 
-  async updateCar(carProps: CreateCarBody) {
+  async updateCar(carProps: CarParams) {
     if (state.selectedCar) {
       await API.updateCar(state.selectedCar.id, carProps);
     }

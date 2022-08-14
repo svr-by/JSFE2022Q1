@@ -3,10 +3,10 @@ import { winners } from '../components/winners/winners';
 import { control } from '../components/control/control';
 import { API } from '../api/api';
 import { state } from '../state/state';
-import { newElement } from '../types/types';
+import { NewElement } from '../types/types';
 
 class LayoutService {
-  createElement({ tag, text, classes, id }: newElement) {
+  createElement({ tag, text, classes, id }: NewElement) {
     const elem = document.createElement(tag);
     if (text) elem.innerText = text;
     if (classes) elem.classList.add(...classes);
@@ -26,15 +26,15 @@ class LayoutService {
   }
 
   async updateGarage() {
-    const serverData = await API.getCars(state.garagePage);
+    const serverData = await API.getCars(state.garagePage).catch(() => {
+      garage.blockPage();
+    });
     if (serverData) {
       const { items, count } = serverData;
       state.garageCars = items;
       if (count) state.garageTotalCars = +count;
       garage.render();
       garage.pagination.updatePagination();
-    } else {
-      garage.blockPage();
     }
   }
 
@@ -49,25 +49,25 @@ class LayoutService {
     winners.pagination.updatePagination();
   }
 
-  async renderNextPage() {
+  renderNextPage() {
     if (state.view === 'garage') {
       state.garagePage += 1;
-      await this.updateGarage();
+      this.updateGarage();
     }
     if (state.view === 'winners') {
       state.winnersPage += 1;
-      await this.updateWinners();
+      this.updateWinners();
     }
   }
 
-  async renderPrevPage() {
+  renderPrevPage() {
     if (state.view === 'garage') {
       state.garagePage -= 1;
-      await this.updateGarage();
+      this.updateGarage();
     }
     if (state.view === 'winners') {
       state.winnersPage -= 1;
-      await this.updateWinners();
+      this.updateWinners();
     }
   }
 

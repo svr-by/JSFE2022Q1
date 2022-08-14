@@ -1,13 +1,13 @@
 import {
   Car,
-  GetCarsData,
-  CreateCarBody,
+  CarsData,
+  CarParams,
   RaceParams,
   RaceStatus,
   EngineStatus,
   Winner,
-  GetWinnersData,
-  UpdateWinnerBody,
+  WinnersData,
+  WinnerParams,
 } from '../types/types';
 
 class APIservices {
@@ -23,10 +23,8 @@ class APIservices {
     this.winners = `${this.base}/winners`;
   }
 
-  async getCars(page: number, limit = 7): Promise<GetCarsData | undefined> {
-    const response = await fetch(`${this.garage}?_page=${page}&_limit=${limit}`).catch((err: Error) =>
-      console.log(err.message)
-    );
+  async getCars(page: number, limit = 7): Promise<CarsData | undefined> {
+    const response = await fetch(`${this.garage}?_page=${page}&_limit=${limit}`);
     if (response && response.ok) {
       return {
         items: await response.json(),
@@ -40,7 +38,7 @@ class APIservices {
     return await response.json();
   }
 
-  async createCar(body: CreateCarBody): Promise<Car> {
+  async createCar(body: CarParams): Promise<Car> {
     const response = await fetch(`${this.garage}`, {
       method: 'POST',
       headers: {
@@ -58,7 +56,7 @@ class APIservices {
     return await response.json();
   }
 
-  async updateCar(id: number, body: CreateCarBody): Promise<Car> {
+  async updateCar(id: number, body: CarParams): Promise<Car> {
     const response = await fetch(`${this.garage}/${id}`, {
       method: 'PUT',
       headers: {
@@ -87,7 +85,7 @@ class APIservices {
   async driveEngine(id: number): Promise<RaceStatus> {
     const response = await fetch(`${this.engine}?id=${id}&status=${EngineStatus.drive}`, {
       method: 'PATCH',
-    }).catch();
+    });
     return !response.ok ? { success: false } : await response.json();
   }
 
@@ -95,10 +93,8 @@ class APIservices {
     return sort && order ? `&_sort=${sort}&_order=${order}` : '';
   }
 
-  async getWinners(page: number, sort?: string, order?: string, limit = 10): Promise<GetWinnersData | undefined> {
-    const response = await fetch(
-      `${this.winners}?_page=${page}&_limit=${limit}${this.getSortOrder(sort, order)}`
-    ).catch((err: Error) => console.log(err.message));
+  async getWinners(page: number, sort?: string, order?: string, limit = 10): Promise<WinnersData | undefined> {
+    const response = await fetch(`${this.winners}?_page=${page}&_limit=${limit}${this.getSortOrder(sort, order)}`);
     if (response && response.ok) {
       const winnersArr: Winner[] = await response.json();
       return {
@@ -131,7 +127,7 @@ class APIservices {
     return await response.json();
   }
 
-  async updateWinner(id: number, body: UpdateWinnerBody): Promise<Winner> {
+  async updateWinner(id: number, body: WinnerParams): Promise<Winner> {
     const response = await fetch(`${this.winners}/${id}`, {
       method: 'PUT',
       headers: {

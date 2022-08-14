@@ -1,5 +1,5 @@
 import { Track } from './track';
-import { Pagination } from '../pagination/paginstion';
+import { Pagination } from '../pagination/pagination';
 import { layoutService } from '../../services/layoutService';
 import { state } from '../../state/state';
 import { Racer } from '../../types/types';

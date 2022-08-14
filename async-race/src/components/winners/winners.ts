@@ -1,6 +1,6 @@
 import { ExtWinner } from '../../types/types';
 import { layoutService } from '../../services/layoutService';
-import { Pagination } from '../pagination/paginstion';
+import { Pagination } from '../pagination/pagination';
 import { Car } from '../garage/car';
 import { state } from '../../state/state';
 
