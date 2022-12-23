@@ -16,8 +16,8 @@ export class Track {
   carId: number | null;
 
   constructor() {
-    this.elem = layoutService.createElement('div', '', ['track']);
-    this.finish = layoutService.createElement('div', '', ['finish']);
+    this.elem = layoutService.createElement({ tag: 'div', classes: ['track'] });
+    this.finish = layoutService.createElement({ tag: 'div', classes: ['finish'] });
     this.car = new CarClass();
     this.btnSelect = new Button('Select', ['button']);
     this.btnRemove = new Button('Remove', ['button']);
@@ -28,15 +28,15 @@ export class Track {
 
   render({ id, name, color }: Car) {
     this.carId = id;
-    const trackControl = layoutService.createElement('div', '', ['track__control']);
+    const trackControl = layoutService.createElement({ tag: 'div', classes: ['track__control'] });
     this.btnSelect.elem.dataset.carId = `${id}`;
     this.btnRemove.elem.dataset.carId = `${id}`;
     trackControl.append(this.btnSelect.elem);
     trackControl.append(this.btnRemove.elem);
     this.elem.append(trackControl);
 
-    const trackRoad = layoutService.createElement('div', '', ['track__road']);
-    const launcher = layoutService.createElement('div', '', ['launcher']);
+    const trackRoad = layoutService.createElement({ tag: 'div', classes: ['track__road'] });
+    const launcher = layoutService.createElement({ tag: 'div', classes: ['launcher'] });
     this.btnStart.elem.dataset.carId = `${id}`;
     this.btnStop.elem.dataset.carId = `${id}`;
     this.btnStop.elem.disabled = true;
@@ -45,7 +45,7 @@ export class Track {
     this.car.bodyColor = color;
     this.car.renderCarImg();
     this.car.elem.dataset.carId = `${id}`;
-    const trackName = layoutService.createElement('h4', `${name}`, ['track__name']);
+    const trackName = layoutService.createElement({ tag: 'h4', text: `${name}`, classes: ['track__name'] });
     this.finish.dataset.carId = `${id}`;
     trackRoad.append(launcher);
     trackRoad.append(this.car.elem);

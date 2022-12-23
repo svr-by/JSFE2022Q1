@@ -8,8 +8,7 @@ class Header {
   btnWinners: Button;
 
   constructor() {
-    this.elem = document.createElement('header');
-    this.elem.classList.add('header');
+    this.elem = layoutService.createElement({ tag: 'header', classes: ['header'] });
     this.btnGarage = new Button('To garage', ['button']);
     this.btnWinners = new Button('To winners', ['button']);
   }

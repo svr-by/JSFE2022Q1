@@ -1,2 +1,1 @@
-# svr-by-JSFE2022Q1
-Private repository for @svr-by
+Tasks from the front-end development course of [RS School](https://github.com/rolling-scopes-school/tasks/tree/master/stage2).

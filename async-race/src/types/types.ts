@@ -4,12 +4,12 @@ export type Car = {
   id: number;
 };
 
-export type GetCarsData = {
+export type CarsData = {
   items: Car[] | [];
   count: string | null;
 };
 
-export type CreateCarBody = Pick<Car, 'name' | 'color'>;
+export type CarParams = Pick<Car, 'name' | 'color'>;
 
 export type RaceParams = {
   velocity: number;
@@ -39,12 +39,12 @@ export type ExtWinner = {
   car: Car;
 };
 
-export type GetWinnersData = {
+export type WinnersData = {
   items: ExtWinner[];
   count: string | null;
 };
 
-export type UpdateWinnerBody = Pick<Winner, 'wins' | 'time'>;
+export type WinnerParams = Pick<Winner, 'wins' | 'time'>;
 
 export type AnimationState = {
   [index: string]: { driveId: number };
@@ -59,4 +59,11 @@ export type Racer = {
   success: boolean;
   id: string;
   time: number;
+};
+
+export type NewElement = {
+  tag: string;
+  text?: string;
+  classes?: string[];
+  id?: string;
 };

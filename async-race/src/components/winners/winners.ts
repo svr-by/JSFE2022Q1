@@ -1,6 +1,6 @@
 import { ExtWinner } from '../../types/types';
 import { layoutService } from '../../services/layoutService';
-import { Pagination } from '../pagination/paginstion';
+import { Pagination } from '../pagination/pagination';
 import { Car } from '../garage/car';
 import { state } from '../../state/state';
 
@@ -43,16 +43,16 @@ class Winners {
   }
 
   private renderWinnerRow(winner: ExtWinner) {
-    const tableRow = layoutService.createElement('tr', '');
-    tableRow.append(layoutService.createElement('th', `${winner.car.id}`));
+    const tableRow = layoutService.createElement({ tag: 'tr' });
+    tableRow.append(layoutService.createElement({ tag: 'th', text: `${winner.car.id}` }));
     const car = new Car();
     car.bodyColor = winner.car.color;
     car.width = 100;
     car.renderCarImg();
     tableRow.append(car.elem);
-    tableRow.append(layoutService.createElement('th', `${winner.car.name}`));
-    tableRow.append(layoutService.createElement('th', `${winner.wins}`));
-    tableRow.append(layoutService.createElement('th', `${winner.time}`));
+    tableRow.append(layoutService.createElement({ tag: 'th', text: `${winner.car.name}` }));
+    tableRow.append(layoutService.createElement({ tag: 'th', text: `${winner.wins}` }));
+    tableRow.append(layoutService.createElement({ tag: 'th', text: `${winner.time}` }));
     return tableRow;
   }
 
