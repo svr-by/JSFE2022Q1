@@ -17,7 +17,7 @@ class APIservices {
   winners: string;
 
   constructor() {
-    this.base = 'http://127.0.0.1:3000';
+    this.base = 'https://async-race-api.adaptable.app';
     this.garage = `${this.base}/garage`;
     this.engine = `${this.base}/engine`;
     this.winners = `${this.base}/winners`;
